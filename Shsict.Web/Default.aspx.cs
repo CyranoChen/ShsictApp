@@ -10,6 +10,14 @@ namespace Shsict.Web
             //PageBase.PageBase myMasterPage = new PageBase.PageBase();
             //myMasterPage.IsFootVisible = true;
             Session["mode"] = "pc";
+            lblThreadId.Attributes["style"] = "display:none";
+            if (!IsPostBack)
+            {
+                if (Session["ThreadId"] != null)
+                {
+                    lblThreadId.Text = Session["ThreadId"].ToString();
+                }
+            }
         }
     }
 }

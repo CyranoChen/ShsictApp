@@ -138,6 +138,12 @@ namespace Shsict.Web
                                 _objectContent = jsonSerializer.Serialize(listOVesselPlan);
 
                                 break;
+                            case "TVDangerPlan":
+                                TVDangerPlan listTVDangerPlan = TVDangerPlan.Cache.Load(_objectID);
+
+                                _objectContent = jsonSerializer.Serialize(listTVDangerPlan);
+
+                                break;
                             default:
                                 break;
                         }

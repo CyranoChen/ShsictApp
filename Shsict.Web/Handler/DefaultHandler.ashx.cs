@@ -48,7 +48,12 @@ namespace Shsict.Web
                         case "PortOfCall":
                             PortOfCall.Cache.RefreshCache();
                             break;
-
+                        case "TVDangerPlan":
+                            TVDangerPlan.Cache.RefreshCache();
+                            break;
+                        case "TVDangerContainer":
+                            TVDangerContainer.Cache.RefreshCache();
+                            break;
                         default:
                             responseText = string.Empty;
                             break;

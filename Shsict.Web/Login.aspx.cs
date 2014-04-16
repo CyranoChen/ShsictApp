@@ -91,8 +91,8 @@ namespace Shsict.Web
         {
             ContainerPlanUser user = new ContainerPlanUser();
 
-            user.Username = tbun.Text;
-            user.Userpasswd = tbpass.Text;
+            user.Username = tbun.Text.ToUpper();
+            user.Userpasswd = tbpass.Text.ToUpper();
 
             user.Select();
 

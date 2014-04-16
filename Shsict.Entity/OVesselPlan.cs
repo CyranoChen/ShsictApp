@@ -122,6 +122,37 @@ namespace Shsict.Entity
                         break;
                 }
                 #endregion
+
+
+                #region ContainerStatus
+
+                string _ContainerBeginTime = ContainerBeginTime.ToString();
+                string _ContainerDeadline = ContainerDeadline.ToString();
+
+                DateTime dateTime = DateTime.Now.ToLocalTime();
+
+                if (!string.IsNullOrEmpty(_ContainerBeginTime) && !string.IsNullOrEmpty(_ContainerDeadline))
+                {
+                    if (DateTime.Parse(_ContainerBeginTime) > dateTime)
+                    {
+                        ContainerStatus = "W";
+                    }
+                    else if (DateTime.Parse(_ContainerBeginTime) < dateTime && DateTime.Parse(_ContainerDeadline) > dateTime)
+                    {
+                        ContainerStatus = "G";
+                    }
+                    else
+                    {
+                        ContainerStatus = "N";
+                    }
+                }
+                else
+                {
+                    ContainerStatus = "N";
+                
+                }
+                #endregion
+
             }
             else
             {
@@ -246,6 +277,9 @@ namespace Shsict.Entity
         public string IsActive { get; set; }
 
         public string Remark { get; set; }
+
+
+        public string ContainerStatus { get; set; }
 
         #endregion
 

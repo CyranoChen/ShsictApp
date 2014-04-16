@@ -51,6 +51,8 @@
     <Compile Include="OVesselPlan.cs" />
     <Compile Include="PortOfCall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TVDangerContainer.cs" />
+    <Compile Include="TVDangerPlan.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shsict.DataAccess\Shsict.DataAccess.csproj">

@@ -13,21 +13,30 @@ namespace Shsict.Web {
     public partial class Container_ArrangeTime_List {
         
         /// <summary>
-        /// txtTrackingSituation 控件。
+        /// txtArrangeTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTrackingSituation;
+        protected global::System.Web.UI.WebControls.TextBox txtArrangeTime;
         
         /// <summary>
-        /// rptrContainerArrangeTime 控件。
+        /// lblCustom 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptrContainerArrangeTime;
+        protected global::System.Web.UI.WebControls.Label lblCustom;
+        
+        /// <summary>
+        /// ddlplanno 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlplanno;
     }
 }

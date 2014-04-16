@@ -22,6 +22,60 @@ namespace Shsict.Web {
         protected global::System.Web.UI.WebControls.Panel pnlContainerNo;
         
         /// <summary>
+        /// lblTitleNo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTitleNo;
+        
+        /// <summary>
+        /// lblVesselVoyage 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVesselVoyage;
+        
+        /// <summary>
+        /// lblArrivePlanTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblArrivePlanTime;
+        
+        /// <summary>
+        /// lblDeparturePlanTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDeparturePlanTime;
+        
+        /// <summary>
+        /// lblTVDate 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTVDate;
+        
+        /// <summary>
+        /// lblExActTvDate 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExActTvDate;
+        
+        /// <summary>
         /// lblContainerNo 控件。
         /// </summary>
         /// <remarks>
@@ -29,14 +83,5 @@ namespace Shsict.Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblContainerNo;
-        
-        /// <summary>
-        /// lblPlanAarrangeTime 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPlanAarrangeTime;
     }
 }

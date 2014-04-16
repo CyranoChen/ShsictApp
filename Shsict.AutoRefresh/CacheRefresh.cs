@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Shsict.AutoRefresh
 {
-    public class CacheRefresh
+    public static class CacheRefresh
     {
         static EventManager emRefreshCach = new EventManager();
 
         private static ThreadStart thdStartRefreshCach;
         public static Thread thdRefreshCach;
 
-        public bool Start()
+        public static int Start()
         {
             List<Event> elRefreshCach = new List<Event>();
 
@@ -22,43 +22,46 @@ namespace Shsict.AutoRefresh
             Event eventVessel = new EventVesselRefresh();
             Event eventTruck = new EventTruckRefresh();
             Event eventNotice = new EventNoticeRefresh();
+            Event eventTVDangerPlan = new EventTVDangerPlanRefresh();
 
             elRefreshCach.Add(eventContainer);
             elRefreshCach.Add(eventVessel);
             elRefreshCach.Add(eventTruck);
             elRefreshCach.Add(eventNotice);
+            elRefreshCach.Add(eventTVDangerPlan); 
+
             emRefreshCach.EventsList = elRefreshCach;
             thdStartRefreshCach = new ThreadStart(StartRefreshCach);
             thdRefreshCach = new Thread(thdStartRefreshCach);
 
-            if (!CacheRefresh.thdRefreshCach.IsAlive)
+            if (thdRefreshCach.ThreadState.Equals(ThreadState.Unstarted))
             {
                 thdRefreshCach.Start();
+            }
 
-                return true;
-            }
-            else
-            {
-                return false;
-            
-            }
+            return thdRefreshCach.ManagedThreadId;
+            //return thdRefreshCach.ThreadState;
         }
-        public bool End()
+
+        public static ThreadState Suspend()
         {
-            if (CacheRefresh.thdRefreshCach.IsAlive)
+            if (!thdRefreshCach.ThreadState.Equals(ThreadState.Stopped))
             {
-                thdRefreshCach.Abort();
-
-                return true;
+                thdRefreshCach.Suspend();
             }
-            else
-            {
-                return false;
 
-            }
-           
+            return thdRefreshCach.ThreadState;
         }
 
+        public static ThreadState Resume()
+        {
+            if (!thdRefreshCach.ThreadState.Equals(ThreadState.Suspended))
+            {
+                thdRefreshCach.Resume();
+            }
+
+            return thdRefreshCach.ThreadState;
+        }
 
         private static void StartRefreshCach()
         {

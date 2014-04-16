@@ -224,6 +224,30 @@ namespace Shsict.Web
                         }
                         break;
 
+                    case "TVDANGERPLAN":
+                        string _tmpltrlTVDangerPlan = "<li style=\"cursor: pointer\" onclick=\"window.location.href=\'{0}\'\"><h3>{1}</h3><p>船名/航次：{2}</p><p> 直装时间：{3} </p>{4}</li>";
+
+                        TVDangerPlan tv = TVDangerPlan.Cache.Load(fav.OBJECTID);
+
+                        if (tv != null)
+                        {
+                            string _TVDate = "";
+
+                            if (!string.IsNullOrEmpty(tv.TVDATE.ToString()))
+                            {
+                                _TVDate = tv.TVDATE.ToString();
+                                _TVDate = _TVDate.Substring(0, _TVDate.Length - 3);
+                            }
+
+
+
+                            ltrlFavourite.Text = string.Format(_tmpltrlTVDangerPlan, fav.URL, tv.ID, tv.VESSELVOYAGE, tv.TVDATE, _update);
+                        }
+                        else
+                        { ltrlFavourite.Visible = false; }
+
+                        break;
+
                     default:
 
                         break;

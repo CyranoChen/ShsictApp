@@ -48,12 +48,14 @@
     <Compile Include="Event\EventFavouriteRefresh.cs" />
     <Compile Include="Event\EventNoticeRefresh.cs" />
     <Compile Include="Event\EventTruckRefresh.cs" />
+    <Compile Include="Event\EventTVDangerPlanRefresh.cs" />
     <Compile Include="Event\EventVesselRefresh.cs" />
     <Compile Include="IEvent\ContainerCacheRefreshEvent.cs" />
     <Compile Include="IEvent\FavouriteCacheRefreshEvent.cs" />
     <Compile Include="IEvent\IEvent.cs" />
     <Compile Include="IEvent\NoticeCacheRefreshEvent.cs" />
     <Compile Include="IEvent\TruckCacheRefreshEvent.cs" />
+    <Compile Include="IEvent\TVDangerPlanRefreshEvent.cs" />
     <Compile Include="IEvent\VesselCacheRefreshEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -41,7 +41,7 @@ namespace Shsict.Web
             if (!string.IsNullOrEmpty(ContainerID))
             {
                 ContainerPlan con = ContainerPlan.Cache.Load(ContainerID);
-                lblContainerNo.Text = string.Format("<h3 class=\"p15\">计划受理号:{0}</h3>", con.ID);
+                lblContainerNo.Text = string.Format("<h3 class=\"p15\">申请编号:{0}</h3>", con.ID);
                 lblVoyageNumber.Text = con.VesselVoyage.ToString();
                 lbloperation.Text = con.OPERATION.ToString();
                 lblplanaccept.Text = con.PLANACCEPT.ToString();

@@ -21,12 +21,12 @@ namespace Shsict.AutoRefresh
 
                 MyFavourite.ReloadAll("database");
 
-                Console.WriteLine("Favourite Refresh Cache Success");
+                LogEvent.logSuccess("Favourite Refresh Cache Success");
             }
             else
             {
-                Console.WriteLine("Favourite Refresh  Cache  Get Time Error");
-                //  AOCLog.logErro("WorkCallCenterDAY getTimeError");
+                LogEvent.logErroMsg("Favourite Refresh  Cache  Get Time Error");
+              
             }
         }
     }

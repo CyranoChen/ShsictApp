@@ -29,11 +29,12 @@
             <table data-role="table" data-mode="reflow" class="table-stroke">
                 <thead>
                     <tr>
-                        <th data-priority="2">船名/航次</th>
+                        <th data-priority="1">船名/航次</th>
+                        <th data-priority="2"> <asp:Label ID="lblNoName" runat="server"></asp:Label></th>
                         <th data-priority="3">计划靠泊时间</th>
                         <th data-priority="4">计划离泊时间</th>
-                        <th data-priority="5">直装时间</th>
-                        <th data-priority="6">精确直装时间</th>
+                        <th data-priority="5">计划直装时间</th>
+                        <th data-priority="6">配载直装时间</th>
 
                     </tr>
                 </thead>
@@ -42,6 +43,9 @@
                    
                         <td>
                             <asp:Label ID="lblVesselVoyage" runat="server"></asp:Label>
+                        </td>
+                          <td>
+                            <asp:Label ID="lblNo" runat="server"></asp:Label>
                         </td>
                         <td>
                             <asp:Label ID="lblArrivePlanTime" runat="server"></asp:Label>

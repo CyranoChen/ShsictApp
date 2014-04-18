@@ -13,7 +13,6 @@ namespace Shsict.AutoRefresh
             ScheduleType = "Shsict.AutoRefresh.TVDangerPlanRefreshEvent";
             string TVDangerPlanRefreshRateStr = ConfigurationManager.AppSettings.GetValues("TVDangerPlanRefreshRate")[0].ToString();
             Minutes = Int32.Parse(TVDangerPlanRefreshRateStr);
-            Minutes = 1;
             UpdateTime();
         }
     }

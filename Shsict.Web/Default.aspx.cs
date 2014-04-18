@@ -9,15 +9,13 @@ namespace Shsict.Web
             ////base.isFootVisible = true;
             //PageBase.PageBase myMasterPage = new PageBase.PageBase();
             //myMasterPage.IsFootVisible = true;
-            Session["mode"] = "pc";
-            lblThreadId.Attributes["style"] = "display:none";
-            if (!IsPostBack)
+            if (Request.QueryString["Type"] != "admin")
             {
-                if (Session["ThreadId"] != null)
-                {
-                    lblThreadId.Text = Session["ThreadId"].ToString();
-                }
+                Response.Redirect("Portal.aspx");
             }
+            Session["mode"] = "pc";
+
+
         }
     }
 }

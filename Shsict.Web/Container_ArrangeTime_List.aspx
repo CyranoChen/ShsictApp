@@ -41,62 +41,69 @@
             var $itemTemplate = $noDataView.find("li").first();
 
             $.getJSON("Handler/ContainerArrangeTimeList.ashx", { ArrangeTime: _value1, NoType: _value2, Custom: _value3 }, function (data, status, xhr) {
-                    if (status == "success" && data != null) {
-                        if (data.result != "error" && JSON.stringify(data) != "[]") {
-                            $listView.empty();
+                if (status == "success" && data != null) {
+                    if (data.result != "error" && JSON.stringify(data) != "[]") {
+                        $listView.empty();
 
-                            $noDataView.hide();
-                      
-                            $.each(data, function (entryIndex, entry) {
-                                var $item = $itemTemplate.clone();
+                        $noDataView.hide();
 
-                                $item.css("cursor", "pointer");
+                        $.each(data, function (entryIndex, entry) {
+                            var $item = $itemTemplate.clone();
 
-                                $item.click(function () {
-                                    window.location.href = String.format("Container_ArrangeTime_Detail.aspx?ArrangeTime={0}&NoType={1}", entry.ID, _value2);
+                            $item.css("cursor", "pointer");
 
-                                    CustomLoader();
-                                });
+                            $item.click(function () {
+                                window.location.href = String.format("Container_ArrangeTime_Detail.aspx?ArrangeTime={0}&NoType={1}", entry.ID, _value2);
 
-                                var $itemh3 = $item.find("h3");
-                                var itemHtmlh3;
-
-                                if (_value2.toUpperCase().trim() == "A") {
-                                    itemHtmlh3 = entry.ID;
-                                }
-                                else { itemHtmlh3 = entry.PLANNO; }
-
-                                $itemh3.html(itemHtmlh3);
-
-                                var $itemp = $item.find("p").first();
-                                var itemHtmlp = "船名/航次：" + entry.VESSELVOYAGE;
-
-                                $itemp.html(itemHtmlp);
-
-                                var $itemContant = $item.find("p").next();
-                                var itemHtmlContant = "直装时间：" + timeStamp2String(entry.TVDATE);
-
-                                $itemContant.html(itemHtmlContant);
-
-                                $listView.prepend($item);
-
+                                CustomLoader();
                             });
 
-                            $("#btnRefreshCount .ui-btn-text").text(data.length);
-                        }
-                        else {
-                            $("#btnRefreshCount .ui-btn-text").text("0");
+                            var $itemh3 = $item.find("h3");
+                            var itemHtmlh3;
+                            var itempLast;
 
-                            $listView.empty();
 
-                            $noDataView.show();
-                        }
+                            if (_value2.toUpperCase().trim() == "A") {
+                                itemHtmlh3 = "申请编号：" + entry.ID;
+                                itempLast = "计划号：" + entry.PLANNO;
+
+                            }
+                            else {
+                                itemHtmlh3 = "计划号：" + entry.PLANNO;
+                                itempLast = "申请编号：" + entry.ID;
+                            }
+
+                            $itemh3.html(itemHtmlh3);
+                            var $itemp = $item.find("p").first();
+                            var itemHtmlp = "船名/航次：" + entry.VESSELVOYAGE;
+                            $itemp.html(itemHtmlp);
+
+                            var $itemContant = $item.find("p").next();
+                            var itemHtmlContant = "计划直装时间：" + timeStamp2String(entry.TVDATE);
+                            $itemContant.html(itemHtmlContant);
+
+                            var $itempLast = $item.find("p").last();
+                            $itempLast.html(itempLast);
+
+                            $listView.prepend($item);
+
+                        });
+
+                        $("#btnRefreshCount .ui-btn-text").text(data.length);
                     }
                     else {
-                        alert("调用数据接口失败(VesselPlanList)");
-                    }
+                        $("#btnRefreshCount .ui-btn-text").text("0");
 
-                    CustomUnloader();
+                        $listView.empty();
+
+                        $noDataView.show();
+                    }
+                }
+                else {
+                    alert("调用数据接口失败(VesselPlanList)");
+                }
+
+                CustomUnloader();
             });
         }
 
@@ -125,6 +132,7 @@
             <li>
                 <a>
                     <h3>暂无相关数据</h3>
+                    <p></p>
                     <p></p>
                     <p></p>
                 </a>

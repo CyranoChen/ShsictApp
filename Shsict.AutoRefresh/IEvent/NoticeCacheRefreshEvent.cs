@@ -16,12 +16,12 @@ namespace Shsict.AutoRefresh
                 Console.WriteLine("Begin Refresh Notice, Please Wait...");
 
                 Notice.Cache.RefreshCache();
-                Console.WriteLine("Notice Refresh Cache Success");
+                LogEvent.logSuccess("Notice Refresh Cache Success");
             }
             else
             {
-                Console.WriteLine("Notice Refresh  Cache  Get Time Error");
-                //  AOCLog.logErro("WorkCallCenterDAY getTimeError");
+                LogEvent.logErroMsg("Notice Refresh  Cache  Get Time Error");
+
             }
         }
     }

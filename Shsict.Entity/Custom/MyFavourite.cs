@@ -108,7 +108,7 @@ namespace Shsict.Entity
             if (!objContent.Equals(OBJECTCONTENT, StringComparison.OrdinalIgnoreCase))
             {
                 OBJECTCONTENT = objContent;
-                UPDATETIME = DateTime.Now;
+                UPDATETIME = DateTime.Now.ToLocalTime();
                 STATUS = 1;
                 UpdateFlag = true;
             }

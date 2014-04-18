@@ -1,17 +1,14 @@
 ﻿using Shsict.AutoRefresh;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Web;
-using System.Web.SessionState; 
+
 
 namespace Shsict.Web
 {
     /// <summary>
     /// RefreshCacheHandler 的摘要说明
     /// </summary>
-    public class RefreshCacheHandler : IHttpHandler, IRequiresSessionState 
+    public class RefreshCacheHandler : IHttpHandler
     {
 
         public void ProcessRequest(HttpContext context)
@@ -24,33 +21,47 @@ namespace Shsict.Web
                 {
                     if (context.Request.QueryString["condition"].Equals("start"))
                     {
-                        string _ThreadId = CacheRefresh.Start().ToString();
-                        context.Session["ThreadId"] = _ThreadId;
-                        responseText = _ThreadId;
+                        try
+                        {
+                            if (CacheRefresh.thdRefreshCach == null)
+                            {
+                                responseText = CacheRefresh.Start().ToString();
+                            }
+                            else
+                            {
+                                responseText = CacheRefresh.Resume().ToString();
 
+                            }
+                        }
+                        catch { responseText = "error"; }
                     }
+
                     else if (context.Request.QueryString["condition"].Equals("suspend"))
                     {
                         try
                         {
-                            responseText = CacheRefresh.Suspend().ToString();
-                            //responseText = "success";
-                        }
-                        catch { responseText = "error"; }
-                    }
-                    else if (context.Request.QueryString["condition"].Equals("resume"))
-                    {
-                        try
-                        {
-                            responseText = CacheRefresh.Resume().ToString();
-                            //responseText = "success";
+                            if (CacheRefresh.thdRefreshCach != null)
+                            {
+                                responseText = CacheRefresh.Suspend().ToString();
+                            }
+                            else
+                            {
+                                responseText = "error";
+                            }
                         }
                         catch { responseText = "error"; }
                     }
                     else if (context.Request.QueryString["condition"].Equals("status"))
                     {
-
-                        responseText = CacheRefresh.thdRefreshCach.ThreadState.ToString();
+                        if (CacheRefresh.thdRefreshCach != null)
+                        {
+                            responseText = CacheRefresh.thdRefreshCach.ThreadState.ToString();
+                        }
+                        else
+                        {
+                            responseText = "Has not open";
+                        
+                        }
                     }
                 }
                 else

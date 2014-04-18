@@ -10,7 +10,6 @@ namespace Shsict.AutoRefresh
             ScheduleType = "Shsict.AutoRefresh.VesselCacheRefreshEvent";
             string VesselRefreshRateStr = ConfigurationManager.AppSettings.GetValues("VesselRefreshRate")[0].ToString();
             Minutes = Int32.Parse(VesselRefreshRateStr);
-            Minutes = 1;
             UpdateTime();
         }
     }

@@ -24,13 +24,12 @@
             InitCache("TVDangerContainer");
             InitCache("TVDangerPlan");
 
-            var _ThreadId = $(".ThreadId");
+   
             var $pnlMain = $("div.main");
             var viewMsg = "";
             var _btnRefreshCache = $("#btnRefreshCache");
 
-            if (_ThreadId.text().trim() != "")
-            {
+          
                 $.get("Handler/RefreshCacheHandler.ashx", { condition: "status" }, function (data, status, xhr) {
                     if (status == "success" && data != null) {
                         viewMsg = "ThreadState: " + data;
@@ -48,29 +47,14 @@
                     $pnlMain.find("ul").append($pnlMain.find("li").first().clone().text(viewMsg));
                 });
 
-            }
+            
 
 
             $("#btnRefreshCache").click(function () {
-          
-             
-
-                if (_ThreadId.text().trim() == "") {
-                    $.get("Handler/RefreshCacheHandler.ashx", { condition: "start" }, function (data, status, xhr) {
-                        if (status == "success" && data != null) {
-                            viewMsg = "ThreadState: start" ;
-                            _btnRefreshCache.text("结束更新");
-                            _ThreadId.text(data);
-                        } else {
-                            alert("调用接口失败(DefaultHandler.ashx)");
-                        }
-
-                        $pnlMain.find("ul").append($pnlMain.find("li").first().clone().text(viewMsg));
-                    });
-                }
-                else {
+  
+                
                     if (_btnRefreshCache.text().trim().indexOf("开始更新") > -1) {
-                        $.get("Handler/RefreshCacheHandler.ashx", { condition: "resume" }, function (data, status, xhr) {
+                        $.get("Handler/RefreshCacheHandler.ashx", { condition: "start" }, function (data, status, xhr) {
                             if (status == "success" && data != null) {
                                 viewMsg = "ThreadState: " + data;
                                 _btnRefreshCache.text("结束更新");
@@ -94,7 +78,7 @@
                         });
 
                     }
-                }
+                
             });
         });
 
@@ -129,7 +113,7 @@
             <ul>
                 <li>Server Cache Initialing...</li>
             </ul>
-            <asp:Label ID="lblThreadId" runat="server" CssClass="ThreadId"></asp:Label>
+       
         </div>
     </form>
 </body>

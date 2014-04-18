@@ -19,16 +19,15 @@ namespace Shsict.AutoRefresh
                 Console.WriteLine("Begin Refresh TVDangerPlan, Please Wait...");
 
                 TVDangerPlan.Cache.RefreshCache();
-                Console.WriteLine("TVDangerPlan Refresh Cache Success");
+                LogEvent.logSuccess("TVDangerPlan Refresh Cache Success");
 
                 TVDangerContainer.Cache.RefreshCache();
-                Console.WriteLine("TVDangerContainer Refresh Cache Success");
+                LogEvent.logSuccess("TVDangerContainer Refresh Cache Success");
 
             }
             else
             {
-                Console.WriteLine("TVDangerPlan&TVDangerContainer Refresh  Cache  Get Time Error");
-                //  AOCLog.logErro("WorkCallCenterDAY getTimeError");
+                LogEvent.logErroMsg("TVDangerPlan&TVDangerContainer Refresh  Cache  Get Time Error");
             }
         }
     }

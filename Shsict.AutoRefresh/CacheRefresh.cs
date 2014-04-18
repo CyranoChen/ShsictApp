@@ -14,7 +14,7 @@ namespace Shsict.AutoRefresh
         private static ThreadStart thdStartRefreshCach;
         public static Thread thdRefreshCach;
 
-        public static int Start()
+        public static ThreadState Start()
         {
             List<Event> elRefreshCach = new List<Event>();
 
@@ -39,7 +39,7 @@ namespace Shsict.AutoRefresh
                 thdRefreshCach.Start();
             }
 
-            return thdRefreshCach.ManagedThreadId;
+            return thdRefreshCach.ThreadState;
             //return thdRefreshCach.ThreadState;
         }
 
@@ -55,7 +55,7 @@ namespace Shsict.AutoRefresh
 
         public static ThreadState Resume()
         {
-            if (!thdRefreshCach.ThreadState.Equals(ThreadState.Suspended))
+            if (thdRefreshCach.ThreadState.Equals(ThreadState.Suspended))
             {
                 thdRefreshCach.Resume();
             }

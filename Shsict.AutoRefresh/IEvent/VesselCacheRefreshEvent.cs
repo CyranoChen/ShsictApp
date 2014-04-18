@@ -16,16 +16,16 @@ namespace Shsict.AutoRefresh
                 Console.WriteLine("Begin Refresh Vessel, Please Wait...");
 
                 OVesselPlan.Cache.RefreshCache();
-                Console.WriteLine("VesselPlan Refresh Cache Success");
+                LogEvent.logSuccess("VesselPlan Refresh Cache Success");
                 
                 PortOfCall.Cache.RefreshCache();
-                Console.WriteLine("PortOfCall Refresh Cache Success");
+                LogEvent.logSuccess("PortOfCall Refresh Cache Success");
               
             }
             else
             {
-                Console.WriteLine("VesselPlan&PortOfCall Refresh  Cache  Get Time Error");
-                //  AOCLog.logErro("WorkCallCenterDAY getTimeError");
+                LogEvent.logErroMsg("VesselPlan&PortOfCall Refresh Refresh  Cache  Get Time Error");
+  
             }
         }
     }

@@ -16,12 +16,11 @@ namespace Shsict.AutoRefresh
                 Console.WriteLine("Begin Refresh Truck, Please Wait...");
 
                 OTruck.Cache.RefreshCache();
-                Console.WriteLine("Truck Refresh Cache Success");
+                LogEvent.logSuccess("Truck Refresh Cache Success");
             }
             else
             {
-                Console.WriteLine("Truck Refresh  Cache  Get Time Error");
-                //  AOCLog.logErro("WorkCallCenterDAY getTimeError");
+                LogEvent.logErroMsg("Truck Refresh  Cache  Get Time Error");
             }
         }
     }

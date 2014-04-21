@@ -7,7 +7,6 @@ using System.Web.Security;
 
 namespace Shsict.InternalWeb.Models
 {
-
     public class ChangePasswordModel
     {
         [Required]

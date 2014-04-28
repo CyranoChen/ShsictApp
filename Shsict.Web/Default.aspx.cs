@@ -9,13 +9,13 @@ namespace Shsict.Web
             ////base.isFootVisible = true;
             //PageBase.PageBase myMasterPage = new PageBase.PageBase();
             //myMasterPage.IsFootVisible = true;
-            if (Request.QueryString["Type"] != "admin")
+            if (Request.QueryString["Type"]!="admin")
             {
                 Response.Redirect("Portal.aspx");
             }
             Session["mode"] = "pc";
-
-
+           
+          
         }
     }
 }

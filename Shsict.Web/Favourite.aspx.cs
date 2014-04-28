@@ -19,10 +19,11 @@ namespace Shsict.Web
 
             AnonymousRedirect = true;
 
-
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             IMaster master = this.Master as IMaster;
 
             master.setHeaderBtnVisible(false);
@@ -43,7 +44,7 @@ namespace Shsict.Web
             }
             catch (Exception ex)
             {
-             
+
                 ClientScript.RegisterClientScriptBlock(typeof(string), "failed", string.Format("alert('{0}');", ex.Message.ToString()), true);
 
             }
@@ -58,11 +59,11 @@ namespace Shsict.Web
 
                 Literal ltrlFavourite = e.Item.FindControl("ltrlFavourites") as Literal;
 
-                string _update=string.Empty;
+                string _update = string.Empty;
                 if (fav.STATUS == 1)
                 {
                     _update = "<span class=\"ui-li-count\">New</span>";
-                
+
                 }
 
                 switch (fav.OBJECTTYPE.ToUpper())
@@ -146,7 +147,7 @@ namespace Shsict.Web
                                 _departureTime = _departureTime.Substring(0, _departureTime.Length - 3);
                             }
 
-                            ltrlFavourite.Text = string.Format(_tmpltrlContainerDetail, fav.URL, cm.ContainerNo, _arriveTime, _departureTime, cm.ArriveType.ToString(), cm.DepartureType.ToString(),_update);
+                            ltrlFavourite.Text = string.Format(_tmpltrlContainerDetail, fav.URL, cm.ContainerNo, _arriveTime, _departureTime, cm.ArriveType.ToString(), cm.DepartureType.ToString(), _update);
                         }
                         else
                         {
@@ -170,7 +171,7 @@ namespace Shsict.Web
                                 _sendPackingListTime = _sendPackingListTime.Substring(0, _sendPackingListTime.Length - 3);
                             }
 
-                            ltrlFavourite.Text = string.Format(_tmpltrlContainerEload, fav.URL, ce.ContainerNo, ce.VesselName, ce.VoyageNumber, _sendPackingListTime,_update);
+                            ltrlFavourite.Text = string.Format(_tmpltrlContainerEload, fav.URL, ce.ContainerNo, ce.VesselName, ce.VoyageNumber, _sendPackingListTime, _update);
                         }
                         else
                         {
@@ -200,7 +201,7 @@ namespace Shsict.Web
                                 _departureYardTime = _departureYardTime.Substring(0, _departureYardTime.Length - 3);
                             }
 
-                            ltrlFavourite.Text = string.Format(_tmpltrlOTruck, fav.URL, t.TruckNo, _arriveYardTime, _departureYardTime,_update);
+                            ltrlFavourite.Text = string.Format(_tmpltrlOTruck, fav.URL, t.TruckNo, _arriveYardTime, _departureYardTime, _update);
                         }
                         else
                         {
@@ -216,7 +217,7 @@ namespace Shsict.Web
 
                         if (vp != null)
                         {
-                            ltrlFavourite.Text = string.Format(_tmpltrlVesselPlan, fav.URL, vp.VesselName, vp.VesselEnglishName, vp.VoyageNumber, vp.ImportOrExportFlag.Equals("E", StringComparison.OrdinalIgnoreCase) ? "出口" : "进口", vp.VesselPlanStatus,_update);
+                            ltrlFavourite.Text = string.Format(_tmpltrlVesselPlan, fav.URL, vp.VesselName, vp.VesselEnglishName, vp.VoyageNumber, vp.ImportOrExportFlag.Equals("E", StringComparison.OrdinalIgnoreCase) ? "出口" : "进口", vp.VesselPlanStatus, _update);
                         }
                         else
                         {

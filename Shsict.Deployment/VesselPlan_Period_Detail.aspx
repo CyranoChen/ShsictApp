@@ -2,15 +2,6 @@
 
 
 <asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server">
-        <script type="text/javascript">
-            $(function () {
-                $("#btnFavorite").css("display", "block");
-
-                $("span.ObjectID").text(GetQueryString("VesselPlanID"));
-
-                $("span.ObjectType").text("VesselPlan");
-            });
-    </script>
 </asp:Content>
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server">
 </asp:Content>

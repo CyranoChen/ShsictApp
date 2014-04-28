@@ -1,14 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.Master" AutoEventWireup="true" CodeBehind="Truck_ImportExport_Detail.aspx.cs" Inherits="Shsict.Web.Truck_ImportExport_Detail" Title="外集卡进出查询" Theme="Shsict" %>
 <asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server">
-       <script type="text/javascript">
-           $(function () {
-               $("#btnFavorite").css("display", "block");
-
-               $("span.ObjectID").text(GetQueryString("TruckID"));
-
-               $("span.ObjectType").text("Truck");
-           });
-    </script>
 </asp:Content>
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContent" runat="server">
@@ -19,8 +10,6 @@
         <table data-role="table" class="table-stroke detail-list">
             <thead>
                 <tr>
-                    <th>&nbsp;</th>
-                    <th>&nbsp;</th>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -34,14 +23,6 @@
                     <td class="departure-y-t">
                         <asp:Label ID="lblDepartureYardTime" runat="server"></asp:Label>
                         <div class="fieldLabel">出堆场时间</div>
-                    </td>
-                     <td class="Fcontainer">
-                        <asp:Label ID="lblFcontainer" runat="server"></asp:Label>
-                        <div class="fieldLabel">前箱</div>
-                    </td>
-                     <td class="Acontainer">
-                        <asp:Label ID="lblAcontainer" runat="server"></asp:Label>
-                        <div class="fieldLabel">后箱</div>
                     </td>
                 </tr>
             </tbody>

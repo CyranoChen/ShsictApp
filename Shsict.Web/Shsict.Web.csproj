@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,12 +38,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
@@ -286,6 +290,11 @@
     <Compile Include="Handler\TruckImportExportList.ashx.cs">
       <DependentUpon>TruckImportExportList.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\IMessagePushService.cs" />
+    <Compile Include="Service\MessagePushService.svc.cs">
+      <DependentUpon>MessagePushService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Routing.cs" />
     <Compile Include="Truck_ImportExport_Detail.aspx.cs">
       <DependentUpon>Truck_ImportExport_Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -401,6 +410,7 @@
     <Content Include="scripts\shsict.js" />
     <Content Include="scripts\waypoints.js" />
     <Content Include="scripts\waypoints.min.js" />
+    <Content Include="Service\MessagePushService.svc" />
     <Content Include="Truck_ImportExport_Detail.aspx" />
     <Content Include="Truck_ImportExport_List.aspx" />
     <Content Include="UploadFiles\Source\icon\icon_1.png" />
@@ -461,10 +471,9 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4349</DevelopmentServerPort>
+          <DevelopmentServerPort>10823</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/Shsict.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4785201B-3AC4-4011-97FF-0E923C6ED82C}</ProjectGuid>
+    <ProjectGuid>{E9C2F1D9-6BE1-4B7B-B9E3-269483FA772F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shsict.AutoRefresh</RootNamespace>
-    <AssemblyName>Shsict.AutoRefresh</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>Shsict.Service</RootNamespace>
+    <AssemblyName>Shsict.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,12 +28,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,29 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheRefresh.cs" />
-    <Compile Include="EventManager.cs" />
-    <Compile Include="Event\Event.cs" />
-    <Compile Include="Event\EventContainerRefresh.cs" />
-    <Compile Include="Event\EventFavouriteRefresh.cs" />
-    <Compile Include="Event\EventNoticeRefresh.cs" />
-    <Compile Include="Event\EventTruckRefresh.cs" />
-    <Compile Include="Event\EventTVDangerPlanRefresh.cs" />
-    <Compile Include="Event\EventVesselRefresh.cs" />
-    <Compile Include="IEvent\ContainerCacheRefreshEvent.cs" />
-    <Compile Include="IEvent\FavouriteCacheRefreshEvent.cs" />
-    <Compile Include="IEvent\IEvent.cs" />
-    <Compile Include="IEvent\NoticeCacheRefreshEvent.cs" />
-    <Compile Include="IEvent\TruckCacheRefreshEvent.cs" />
-    <Compile Include="IEvent\TVDangerPlanRefreshEvent.cs" />
-    <Compile Include="IEvent\VesselCacheRefreshEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shsict.Entity\Shsict.Entity.csproj">
-      <Project>{5641e8d3-3c77-486d-910c-eb2918007405}</Project>
-      <Name>Shsict.Entity</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

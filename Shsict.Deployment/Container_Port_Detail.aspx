@@ -1,26 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.Master" AutoEventWireup="true" CodeBehind="Container_Port_Detail.aspx.cs" Inherits="Shsict.Web.Container_Port_Detail" Title="运抵报告发送情况" Theme="Shsict" %>
 
-<asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server">
-           <script type="text/javascript">
-               $(function () {
-                   $("#btnFavorite").css("display", "block");
-
-                   $("span.ObjectID").text(GetQueryString("ContainerID"));
-
-                   $("span.ObjectType").text("ContainerEload");
-
-                   var lblBillOfLadingNum = $("span.BillOfLadingNum");
-
-                   if (lblBillOfLadingNum.html() == "" || lblBillOfLadingNum.html().indexOf("<br>") < 0) {
-                       lblBillOfLadingNum.addClass("h30");
-
-                   }
-               });
-       </script>
+<asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server"></asp:Content>
+<asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server">
 </asp:Content>
-
-<asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server"></asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContent" runat="server">
 
     <div data-role="content">
@@ -51,11 +33,11 @@
                     </td>
                     <td class="lading-NO multiField">
                         <div class="fieldLabel">提单号</div>
-                        <asp:Label ID="lblBillOfLadingNum" CssClass="BillOfLadingNum" runat="server" ></asp:Label>
+                        <asp:Label ID="lblBillOfLadingNum" runat="server"></asp:Label>
 
                     </td>
 
-                    <td class="arrive-y-t">
+                    <td class="send-p-t">
                         <asp:Label ID="lblArrivalPortTime" runat="server"></asp:Label>
                         <div class="fieldLabel">进港时间</div>
                     </td>

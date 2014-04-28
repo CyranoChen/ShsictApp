@@ -101,15 +101,20 @@ namespace Shsict.Web
                 Response.SetCookie(new HttpCookie("uid", user.Username));
                 Response.SetCookie(new HttpCookie("custom", user.Usercd));
 
+
+
+                string _str = "if (typeof Mobile != 'undefined'){Mobile.setUser(\"" + UID + "\");}";
                 if (!string.IsNullOrEmpty(NextURL) && UID != null)
                 {
 
-                    Response.Redirect(NextURL);
+
+                    ClientScript.RegisterClientScriptBlock(typeof(string), "succeed", _str + "document.location =\"objc://setUser/" + UID + "\"; window.location.href=\"" + NextURL + "\"", true);
                 }
                 else
                 {
-                    Response.Redirect("Portal.aspx");
+                    ClientScript.RegisterClientScriptBlock(typeof(string), "succeed", _str + "document.location = \"objc://setUser/" + UID + "\"; window.location.href=\"Portal.aspx\"", true);
                 }
+
             }
             else
             {

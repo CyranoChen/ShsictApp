@@ -1,15 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.Master" AutoEventWireup="true" CodeBehind="Container_Trace_Detail.aspx.cs" Inherits="Shsict.Web.Container_Trace_Detail" Title="进箱信息跟踪" Theme="Shsict" %>
 
 <asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server">
-                <script type="text/javascript">
-                    $(function () {
-                        $("#btnFavorite").css("display", "block");
-
-                        $("span.ObjectID").text(GetQueryString("ContainerID"));
-
-                        $("span.ObjectType").text("ContainerMain");
-                    });
-    </script>
 </asp:Content>
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server">
 </asp:Content>

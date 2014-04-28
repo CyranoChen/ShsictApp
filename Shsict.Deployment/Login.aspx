@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Shsict.Web.Login" Title="用户登录" Theme="Shsict" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Shsict.Web.Login" Title="用户登陆" Theme="Shsict" %>
 
 <!DOCTYPE html>
 
@@ -15,24 +15,7 @@
     <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="scripts/jquery.mobile-1.3.2.min.js" type="text/javascript"></script>
     <script src="scripts/shsict.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            var $tbuser = $(".ui-corner-all #tbun");
-            var $tbpass = $(".ui-corner-all #tbpass");
 
-            $tbuser.change(function () {
-                var _value = $tbuser.val().trim().toUpperCase();
-                $tbuser.val(_value);
-          
-            });
-
-            $tbpass.change(function () {
-                var _value = $tbpass.val().trim().toUpperCase();
-                $tbpass.val(_value);
-           
-            });
-        });
-    </script>
 </head>
 <body class="loading">
     <div class="main">
@@ -48,9 +31,9 @@
                     <asp:TextBox ID="tbpass" runat="server" TextMode="Password"></asp:TextBox>
 
 
-                    <asp:LinkButton ID="btnLogin" runat="server" OnClick="btnLogin_Click">登录</asp:LinkButton>
+                    <asp:LinkButton ID="btnLogin" runat="server"  OnClick="btnLogin_Click">登录</asp:LinkButton>
 
-                    <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">登出</asp:LinkButton>
+                    <asp:LinkButton ID="btnLogout" runat="server"  OnClick="btnLogout_Click">登出</asp:LinkButton>
 
                 </div>
                 <asp:Label ID="lblwrong" runat="server" Text="错误用户名或密码" Visible="false"></asp:Label>

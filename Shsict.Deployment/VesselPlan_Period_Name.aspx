@@ -3,37 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphScript" runat="server">
     <script type="text/javascript">
         $(function () {
-            var tbPeriodName = $(".VesselPlan_Period_Name .PeriodName");
-
-            tbPeriodName.attr("placeholder", "请输入船舶英文名(ZK19)").blur(VesselPlanQueryImpl).change(VesselPlanQueryImpl);
-
-            tbPeriodName.keydown(function () {
-                if (event.keyCode == 13) {
-                    VesselPlanQueryImpl();
-
-                    return false;
-                }
-            });
 
             VesselPlanQueryImpl();
-
-            $("#btnRefreshCount").click(VesselPlanQueryImpl);
-           
+            var tbPeriodName = $(".VesselPlan_Period_Name .PeriodName");
+            tbPeriodName.attr("placeholder", "请输入船舶英文名(ZK19)");
+            tbPeriodName.change(function () {
+                VesselPlanQueryImpl();
+            });
         });
 
         function VesselPlanQueryImpl() {
-            CustomLoader();
+            var _value1 = $(".VesselPlan_Period_Name .PeriodName").val();
 
-            var $tbPeriodName = $(".VesselPlan_Period_Name .PeriodName");
             var $listView = $("ul#listVesselPlan");
             var $noDataView = $("ul#NoData").hide();
             var $itemTemplate = $noDataView.find("li").first();
 
-            var _value = $tbPeriodName.val().trim().toUpperCase();
+            $.getJSON("VesselPlanPeriodName.ashx", { EnglishName: _value1 }, function (data, status, xhr) {
 
-            $tbPeriodName.val(_value);
-
-            $.getJSON("Handler/VesselPlanPeriodName.ashx", { EnglishName: _value }, function (data, status, xhr) {
                 if (status == "success" && data != null) {
                     if (data.result != "error" && JSON.stringify(data) != "[]") {
                         $listView.empty();
@@ -50,18 +37,14 @@
                             });
 
                             var $itemh3 = $item.find("h3");
-                            var itemHtmlh3 = entry.EnglishName;
 
+                            var itemHtmlh3 = entry.EnglishName;
                             $itemh3.html(itemHtmlh3);
 
                             $listView.prepend($item);
-
                         });
 
-                        $("#btnRefreshCount .ui-btn-text").text(data.length );
-
                     } else {
-                        $("#btnRefreshCount .ui-btn-text").text("0");
                         $listView.empty();
                         $noDataView.show();
 
@@ -69,11 +52,19 @@
                 } else {
                     alert("调用数据接口失败(VesselPlanList)");
                 }
-
-                CustomUnloader();
             });
         }
 
+        String.format = function () {
+            if (arguments.length == 0)
+                return null;
+            var str = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+                str = str.replace(re, arguments[i]);
+            }
+            return str;
+        };
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphHeader" runat="server">
@@ -82,7 +73,6 @@
             <asp:TextBox ID="txtPeriodName" runat="server" CssClass="PeriodName"></asp:TextBox>
         </div>
     </div>
-      
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="server">
     <div data-role="content">
@@ -90,10 +80,8 @@
         </ul>
         <ul data-role="listview" id="NoData">
             <li>
-                <a>
                 <h3>暂无相关数据</h3>
                 <p></p>
-                </a>
             </li>
         </ul>
     </div>

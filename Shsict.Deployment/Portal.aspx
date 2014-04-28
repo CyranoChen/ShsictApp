@@ -58,8 +58,8 @@
             </div>
             <div class="ui-block-b">
                 <div class="icon-springboard">
-                    <a href="Container_ArrangeTime_List.aspx"  target="_top">
-                   
+                <%--    <a href="Container_ArrangeTime_List.aspx"  target="_top">--%>
+                    <a>
                         <img src="UploadFiles/Source/icon/icon_8.png" alt="按箱号提单号查询直装直提计划">
                         <span class="icon-label" title="按箱号提单号查询直装直提计划">直装直提计划</span> </a>
                 </div>

@@ -23,14 +23,16 @@
             $tbuser.change(function () {
                 var _value = $tbuser.val().trim().toUpperCase();
                 $tbuser.val(_value);
-          
+
             });
 
             $tbpass.change(function () {
                 var _value = $tbpass.val().trim().toUpperCase();
                 $tbpass.val(_value);
-           
             });
+
+          
+
         });
     </script>
 </head>
@@ -51,7 +53,7 @@
                     <asp:LinkButton ID="btnLogin" runat="server" OnClick="btnLogin_Click">登录</asp:LinkButton>
 
                     <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">登出</asp:LinkButton>
-
+                  
                 </div>
                 <asp:Label ID="lblwrong" runat="server" Text="错误用户名或密码" Visible="false"></asp:Label>
 

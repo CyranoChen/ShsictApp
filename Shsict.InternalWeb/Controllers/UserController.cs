@@ -5,29 +5,30 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 using Shsict.InternalWeb.Models;
-using Shsict.InternalWeb.DataAccess;
+using Shsict.DataAccess;
 
 namespace Shsict.InternalWeb.Controllers
 {
     public class UserController : Controller
     {
-        private ShsictConext db = new ShsictConext();
+        //private ShsictConext db = new ShsictConext();
 
         //
         // GET: /User/
 
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(Cache.UserList);
         }
 
         //
         // GET: /User/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(string usercd)
         {
-            User user = db.Users.Find(id);
+            User user = Cache.Load(usercd);
             if (user == null)
             {
                 return HttpNotFound();
@@ -50,12 +51,12 @@ namespace Shsict.InternalWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user)
         {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    db.Users.Add(user);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
 
             return View(user);
         }
@@ -65,12 +66,12 @@ namespace Shsict.InternalWeb.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+            //User user = db.Users.Find(id);
+            //if (user == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View();
         }
 
         //
@@ -80,12 +81,12 @@ namespace Shsict.InternalWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(User user)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+           // if (ModelState.IsValid)
+           //{
+           //     db.Entry(user).State = EntityState.Modified;
+           //     db.SaveChanges();
+           //     return RedirectToAction("Index");
+           // } 
             return View(user);
         }
 
@@ -94,12 +95,12 @@ namespace Shsict.InternalWeb.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+            //User user = db.Users.Find(id);
+            //if (user == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View();
         }
 
         //
@@ -109,16 +110,42 @@ namespace Shsict.InternalWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            //User user = db.Users.Find(id);
+            //db.Users.Remove(user);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        //protected override void Dispose(bool disposing)
+        //{
+        //    db.Dispose();
+        //    base.Dispose(disposing);
+        //}
+
+
+        public static class Cache
         {
-            db.Dispose();
-            base.Dispose(disposing);
+            static Cache()
+            {
+                InitCache();
+            }
+
+            public static void RefreshCache()
+            {
+                InitCache();
+            }
+
+            private static void InitCache()
+            {
+                UserList = Models.User.GetContainerPlanUsers();
+            }
+
+            public static User Load(string Usercd)
+            {
+                return UserList.SingleOrDefault(u => u.Usercd.Equals(Usercd));
+            }
+
+            public static List<User> UserList;
         }
     }
 }

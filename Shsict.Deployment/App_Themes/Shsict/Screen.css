@@ -1,16 +1,9 @@
-/* A bit custom styling */
+﻿/* A bit custom styling */
 html, body {
     padding: 0;
     margin: 0;
 }
 
-html, .ui-mobile, .ui-mobile body {
-    /*height: 635px;*/
-}
-
-    .ui-mobile, .ui-mobile .ui-page {
-        min-height: 635px;
-    }
 
 .ui-content {
     padding: 10px 15px 0px 15px;
@@ -180,7 +173,7 @@ html, .ui-mobile, .ui-mobile body {
 .login {
     width: 80%;
     margin: 0 auto;
-    padding-top: 200px;
+    padding-top: 30%;
 }
 
     .login .con {
@@ -206,7 +199,7 @@ html, .ui-mobile, .ui-mobile body {
 }
 /* set row height */
 #gallery .ui-block-a, #gallery .ui-block-b, #gallery .ui-block-c {
-    height: 100px;
+    height: 90px;
     position: relative;
     white-space: nowrap;
     text-align: center;
@@ -395,7 +388,8 @@ a:link, a:visited, a:hover, a:active {
 
 .ui-listview .ui-li.ui-btn {
     background-image: none;
-    border-color: #222;
+    border-color: #ccc;
+
 }
 
 .ui-field-contain {
@@ -419,10 +413,13 @@ a:link, a:visited, a:hover, a:active {
         display: none;
     }
 
-h3.tit {
+h3.tit, .ui-li-desc span.going {
     color: #1767b3;
 }
 
+.ui-li-desc span.will {
+    color: #da2419;
+}
 /*detail*/
 .detail-list tbody th, .ui-table-reflow tbody th {
     margin-top: 0;
@@ -456,7 +453,72 @@ h3.tit {
     display: block;
     line-height: 1.8;
     font-size: 11px;
-    padding-left:20px;
+    padding-left: 20px;
+}
+
+.table-stroke td.multiField b {
+    float: left;
+}
+
+
+.table-stroke td.multiField span {
+    display: inline-block;
+    line-height: 1.8;
+    font-size: 11px;
+}
+
+.remind ul {
+    margin: 0 auto;
+    width: 240px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .4);
+    background: rgba(255, 255, 255, .4);
+    height: 30px;
+}
+
+.remind {
+    position: fixed;
+    width: 100%;
+    bottom: 5%;
+    z-index: 100;
+    line-height: 30px;
+    height: 30px;
+}
+
+    .remind li {
+        float: left;
+        margin-right: 5px;
+        display: inline;
+        font-size: .8em;
+    }
+
+    .remind i {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        margin: 10px 5px;
+        border-radius: 2px;
+        display: block;
+        float: left;
+    }
+
+    .remind .blue {
+        background: #33b9ff;
+    }
+
+    .remind .red {
+        background: #f02e2e;
+    }
+
+    .remind .black {
+        background: #000;
+    }
+
+.ui-icon-myicon {
+    background-image: url(images/star.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
 }
 
 .yn {
@@ -591,6 +653,15 @@ h3.tit {
     background: url(images/icon-DepartureYard-Time.png) 10px center no-repeat;
 }
 
+.Fcontainer {
+    background: url(images/icon-Fcontainer.png) 10px center no-repeat;
+}
+
+.Acontainer {
+    background: url(images/icon-Acontainer.png) 10px center no-repeat;
+}
+
+
 .operation {
     background: url(images/icon-operation.png) 10px center no-repeat;
 }
@@ -624,6 +695,20 @@ h3.tit {
     padding-left: 15px;
 }
 
+.p15a {
+    padding: 15px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.h30 {
+    height: 30px;
+}
+.table-stroke td.multiField span.f16 {
+    font-size:15px;
+}
 
 
 

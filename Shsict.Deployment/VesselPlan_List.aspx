@@ -12,21 +12,19 @@
 
             VesselPlanQueryImpl();
 
-            ddlImportOrExportFlag.change(function () {
-                VesselPlanQueryImpl();
-            });
+            ddlImportOrExportFlag.change(VesselPlanQueryImpl);
 
-            ddlVesselType.change(function () {
-                VesselPlanQueryImpl();
-            });
+            ddlVesselType.change(VesselPlanQueryImpl);
 
-            ddlStatus.change(function () {
-                VesselPlanQueryImpl();
-            });
+            ddlStatus.change(VesselPlanQueryImpl);
+
+            $("#btnRefreshCount").click(VesselPlanQueryImpl);
 
         });
 
         function VesselPlanQueryImpl() {
+            CustomLoader();
+
             var _value1 = $(".vesselplan-list select.ImportOrExportFlag").val();
             var _value2 = $(".vesselplan-list select.VesselType").val();
             var _value3 = $(".vesselplan-list select.Status").val();
@@ -35,15 +33,15 @@
             var $noDataView = $("ul#NoData").hide();
             var $itemTemplate = $noDataView.find("li").first();
 
-            $.getJSON("VesselPlanList.ashx", { ImportOrExportFlag: _value1, VesselType: _value2, Status: _value3 }, function (data, status, xhr) {
+            $.getJSON("Handler/VesselPlanList.ashx", { ImportOrExportFlag: _value1, VesselType: _value2, Status: _value3 }, function (data, status, xhr) {
                 if (status == "success" && data != null) {
                     if (data.result != "error" && JSON.stringify(data) != "[]") {
                         $listView.empty();
                         $noDataView.hide();
 
                         $.each(data, function (entryIndex, entry) {
-
                             var $item = $itemTemplate.clone();
+
                             $item.css("cursor", "pointer");
                             $item.click(function () {
                                 window.location.href = "VesselPlan_Detail.aspx?VesselPlanID=" + entry.ID;
@@ -52,34 +50,40 @@
 
                             var $itemh3 = $item.find("h3");
                             var itemHtmlh3 = String.format("{0}({1})", entry.VesselName, entry.VesselEnglishName);
+
                             $itemh3.html(itemHtmlh3);
+
                             var $itemContant = $item.find("p");
                             var itemHtmlContant = String.format("航次：{0} | 进/出口：{1} | 范围: {2}", entry.VoyageNumber, entry.ImportOrExportFlag == "E" ? "出口" : "进口", entry.VesselPlanStatus);
+
                             $itemContant.html(itemHtmlContant);
 
                             $listView.prepend($item);
+
                         });
+                        
+                      
+                        //$("#btnRefreshCount").removeClass("ui-btn-icon-notext");
+                        $("#btnRefreshCount .ui-btn-text").text(data.length);
+                        //$("#btnRefreshCount").attr("data-iconpos", "left");
+                        //$("#btnRefreshCount").removeAttr("data-iconpos").button();
+                       //.button();
 
                     } else {
+                        $("#btnRefreshCount .ui-btn-text").text("0");
+
                         $listView.empty();
+
                         $noDataView.show();
                     }
                 } else {
                     alert("调用数据接口失败(VesselPlanList)");
                 }
+
+                CustomUnloader();
             });
         }
 
-        String.format = function () {
-            if (arguments.length == 0)
-                return null;
-            var str = arguments[0];
-            for (var i = 1; i < arguments.length; i++) {
-                var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
-                str = str.replace(re, arguments[i]);
-            }
-            return str;
-        };
     </script>
 </asp:Content>
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server">
@@ -110,12 +114,14 @@
         <ul data-role="listview" id="listVesselPlan">
         </ul>
         <ul data-role="listview" id="NoData">
+
             <li>
+                <a>
                 <h3>暂无相关数据</h3>
                 <p></p>
+              </a>
             </li>
+             
         </ul>
-
-
     </div>
 </asp:Content>

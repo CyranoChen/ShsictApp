@@ -1,6 +1,16 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.Master" AutoEventWireup="true" CodeBehind="Container_Acceptance_Detail.aspx.cs" Inherits="Shsict.Web.Container_Acceptance_Detail" Title="特种箱受理情况" Theme="Shsict" %>
 
-<asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server"></asp:Content>
+<asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            $("#btnFavorite").css("display", "block");
+
+            $("span.ObjectID").text(GetQueryString("ContainerID"));
+
+            $("span.ObjectType").text("ContainerPlan");
+        });
+    </script>
+</asp:Content>
 
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server"></asp:Content>
 
@@ -25,7 +35,7 @@
                 <tr>
                     <td class="yn">
                         <asp:Label ID="lblVoyageNumber" runat="server"></asp:Label>
-                        <div class="fieldLabel">航次</div>
+                        <div class="fieldLabel">船名|航次</div>
                     </td>
                     <td class="operation">
                         <asp:Label ID="lbloperation" runat="server"></asp:Label>

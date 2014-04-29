@@ -3,7 +3,7 @@
 json时间转换
 */
 function timeStamp2String(mytime) {
-    if (mytime !=null) {
+    if (mytime != null) {
         var time = mytime.substring(6, mytime.length - 2);
         var datetime = new Date();
         datetime.setTime(time);
@@ -12,23 +12,21 @@ function timeStamp2String(mytime) {
         var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
         var hour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
         var minute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-        var second = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-        return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute;
     }
     else {
         return "";
-
     }
 }
 /*
 load旋转
 */
-function load(obj) {
-    var $this = obj,
-theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-textonly = !!$this.jqmData("textonly");
+function CustomLoader() {
+    var $this = $(this),
+    theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+    msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+    textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+    textonly = !!$this.jqmData("textonly");
     html = $this.jqmData("html") || "";
     $.mobile.loading("show", {
         text: msgText,
@@ -37,6 +35,19 @@ textonly = !!$this.jqmData("textonly");
         textonly: textonly,
         html: html
     });
+}
+
+function CustomUnloader() {
+    $.mobile.loading("hide");
+}
+
+/*
+GetQueryString js
+*/
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
 }
 /*
 String.format js
@@ -51,3 +62,7 @@ String.format = function () {
     }
     return str;
 };
+
+function Myinit() {
+
+}

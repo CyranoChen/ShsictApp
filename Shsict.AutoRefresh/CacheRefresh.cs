@@ -28,7 +28,7 @@ namespace Shsict.AutoRefresh
             elRefreshCach.Add(eventVessel);
             elRefreshCach.Add(eventTruck);
             elRefreshCach.Add(eventNotice);
-            elRefreshCach.Add(eventTVDangerPlan); 
+            elRefreshCach.Add(eventTVDangerPlan);
 
             emRefreshCach.EventsList = elRefreshCach;
             thdStartRefreshCach = new ThreadStart(StartRefreshCach);
@@ -41,6 +41,7 @@ namespace Shsict.AutoRefresh
 
             return thdRefreshCach.ThreadState;
             //return thdRefreshCach.ThreadState;
+
         }
 
         public static ThreadState Suspend()

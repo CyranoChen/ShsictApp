@@ -6,65 +6,87 @@
             var tbContainerPort = $(".Container-Port .ContainerPort");
             var ddlContainerNoOrbill = $(".Container-Port select.ddlContainerNoOrbill");
 
-            tbContainerPort.attr("placeholder", "请输入箱号(MRKU3189099)/提单号");
+            if (tbContainerPort.val().trim() != "") {
+                QueryImpl();
+            }
 
-            tbContainerPort.change(function () {
-                tbContainerPort.val(tbContainerPort.val().toUpperCase());
-                QueryImpl();
+            tbContainerPort.keydown(function () {
+                if (event.keyCode == 13) {
+                    QueryImpl();
+
+                    return false;
+                }
             });
-            ddlContainerNoOrbill.change(function () {
-                QueryImpl();
-            });
+
+            tbContainerPort.attr("placeholder", "请输入箱号(MRKU3189099)/提单号").blur(QueryImpl).change(QueryImpl);
+
+            ddlContainerNoOrbill.change(QueryImpl);
 
         });
 
         function QueryImpl() {
-            var _value1 = $(".Container-Port .ContainerPort").val();
+            CustomLoader();
+
+            var $tbContainerPort = $(".Container-Port .ContainerPort");
+            var _value1 = $tbContainerPort.val().trim().toUpperCase();
             var _value2 = $(".Container-Port select.ddlContainerNoOrbill").val();
+
+            $tbContainerPort.val(_value1);
 
             var $listView = $("ul#listContainerPort");
             var $noDataView = $("ul#NoData").hide();
             var $itemTemplate = $noDataView.find("li").first();
 
-            $.getJSON("ContainerPortList.ashx", { ContainerPort: _value1, Type: _value2 }, function (data, status, xhr) {
+            $.getJSON("Handler/ContainerPortList.ashx", { ContainerPort: _value1, Type: _value2 }, function (data, status, xhr) {
                 if (status == "success" && data != null) {
                     if (data.result != "error" && JSON.stringify(data) != "[]") {
                         $listView.empty();
+
                         $noDataView.hide();
 
                         $.each(data, function (entryIndex, entry) {
-
                             var $item = $itemTemplate.clone();
 
                             $item.css("cursor", "pointer");
+
                             $item.click(function () {
                                 window.location.href = String.format("Container_Port_Detail.aspx?ContainerID={0}&Type={1}", entry.ID, _value2);
-                                load();
 
+                                CustomLoader();
                             });
 
                             var $itemh3 = $item.find("h3");
                             var itemHtmlh3 = entry.ContainerNo;
+
                             $itemh3.html(itemHtmlh3);
 
-                            var $itemp = $item.find("p");
-                            var itemHtmlp = String.format("船名：{0} | 航次：{1} | 进港时间：{2}  ", entry.VesselName, entry.VoyageNumber, timeStamp2String(entry.SendPackingListTime));
+                            var $itemp = $item.find("p").first();;
+                            var itemHtmlp = String.format("船名：{0} | 航次：{1}", entry.VesselName, entry.VoyageNumber);
+
                             $itemp.html(itemHtmlp);
 
+                            var $itemContant = $item.find("p").next();
+                            var itemHtmlContant = String.format("进港时间：{0}", timeStamp2String(entry.SendPackingListTime));
+
+                            $itemContant.html(itemHtmlContant);
+
                             $listView.prepend($item);
-
                         });
-
-                    } else {
-                        $listView.empty();
-                        $noDataView.show();
-
                     }
-                } else {
+                    else {
+                        $listView.empty();
+
+                        $noDataView.show();
+                    }
+                }
+                else {
                     alert("调用数据接口失败(VesselPlanList)");
                 }
+
+                CustomUnloader();
             });
         }
+
     </script>
 </asp:Content>
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server">
@@ -84,8 +106,11 @@
         </ul>
         <ul data-role="listview" id="NoData">
             <li>
+                <a>
                 <h3>暂无相关数据</h3>
                 <p></p>
+                <p></p>
+                </a>
             </li>
         </ul>
     </div>

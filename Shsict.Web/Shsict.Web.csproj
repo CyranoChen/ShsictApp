@@ -270,6 +270,9 @@
       <DependentUpon>DefaultMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="App_Code\IMaster.cs" />
+    <Compile Include="Handler\LoginHandler.ashx.cs">
+      <DependentUpon>LoginHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Notice.aspx.cs">
       <DependentUpon>Notice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -390,6 +393,7 @@
     <Content Include="Notice.aspx" />
     <Content Include="Handler\ContainerPlanDetail.ashx" />
     <Content Include="Handler\ContainerArrangeTimeList.ashx" />
+    <Content Include="Handler\LoginHandler.ashx" />
     <None Include="Properties\PublishProfiles\Shsict.pubxml" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\jquery.cookie.js" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Shsict.Web.Login" Title="用户登陆" Theme="Shsict" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Shsict.Web.Login" Title="用户登录" Theme="Shsict" %>
 
 <!DOCTYPE html>
 
@@ -18,28 +18,93 @@
 
 </head>
 <body class="loading">
-    <div class="main">
-        <div class="login">
-            <form id="form1" runat="server">
+    <form id="form1" runat="server">
+        <div data-role="page">
+            <div class="main">
+                <div class="login">
+                    <script type="text/javascript">
+                        $(function () {
+                            var $tbuser = $(".ui-corner-all #tbun");
+                            var $tbpass = $(".ui-corner-all #tbpass");
+                            var $lblNextURL = $("#lblNextURL");
+                            $lblNextURL.css("display", "none");
+                            var $lblwrong = $("#lblwrong");
 
-                <div class=" ui-corner-all ui-shadow con">
-                    <h3>用户登录</h3>
-                    <label for="lblun" class="ui-hidden-accessible">Username:</label>
-                    <asp:TextBox ID="tbun" runat="server"></asp:TextBox>
+                            $tbuser.change(function () {
+                                var _value = $tbuser.val().trim().toUpperCase();
+                                $tbuser.val(_value);
 
-                    <label for="lblpw" class="ui-hidden-accessible">Password:</label>
-                    <asp:TextBox ID="tbpass" runat="server" TextMode="Password"></asp:TextBox>
+                            });
+
+                            $tbpass.change(function () {
+                                var _value = $tbpass.val().trim().toUpperCase();
+                                $tbpass.val(_value);
+                            });
 
 
-                    <asp:LinkButton ID="btnLogin" runat="server"  OnClick="btnLogin_Click">登录</asp:LinkButton>
 
-                    <asp:LinkButton ID="btnLogout" runat="server"  OnClick="btnLogout_Click">登出</asp:LinkButton>
+                            $("#btnLogin").click(function () {
+                                $.get("Handler/LoginHandler.ashx", { Method: "Login", UserName: $tbuser.val(), PassWord: $tbpass.val() }, function (data, status, xhr) {
+                                    if (status == "success" && data != null) {
+                                        if (data.trim() != "failed") {
+                                            $lblwrong.css("display", "none");
+
+                                            if (typeof Mobile != 'undefined') {
+                                                Mobile.setUser($tbuser.val());
+
+                                            }
+
+                                            //document.location = "objc://setUser/" + $tbuser.val() + "," + $lblNextURL.text();
+
+                                            if ($lblNextURL.text() != "") {
+                                                window.location.href = $lblNextURL.text();
+                                            }
+                                            else {
+                                                window.location.href = "Portal.aspx";
+                                            }
+                                        }
+                                        else {
+                                            $lblwrong.text("错误用户名或密码");
+                                            $lblwrong.css("display", "block");
+                                        }
+                                    }
+                                    else {
+                                        alert("调用接口失败(DefaultHandler.ashx)");
+                                    }
+                                });
+                            });
+
+                            $("#btnLogout").click(function () {
+                                $.get("Handler/LoginHandler.ashx", { Method: "Logout" }, function (data, status, xhr) {
+                                    if (status == "success" && data != null) {
+                                        if (data.trim() == "succeed") {
+                                            window.location.href = "Portal.aspx";
+                                        }
+                                    } else {
+                                        alert("调用接口失败(DefaultHandler.ashx)");
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <div class=" ui-corner-all ui-shadow con">
+                        <h3>用户登录</h3>
+                        <label for="lblun" class="ui-hidden-accessible">Username:</label>
+                        <asp:TextBox ID="tbun" runat="server"></asp:TextBox>
+
+                        <label for="lblpw" class="ui-hidden-accessible">Password:</label>
+                        <input type="password" id="tbpass" />
+
+                        <button id="btnLogin" data-role="button" data-inline="true" onclick="return false;">登录</button>
+                        <button id="btnLogout" data-role="button" data-inline="true" onclick="return false;">登出 </button>
+                    </div>
+                    <div id="lblwrong" style="display: none"></div>
+                    <asp:Label ID="lblNextURL" runat="server"></asp:Label>
+
 
                 </div>
-                <asp:Label ID="lblwrong" runat="server" Text="错误用户名或密码" Visible="false"></asp:Label>
-
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>

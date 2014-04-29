@@ -23,6 +23,7 @@ namespace Shsict.Web
                     {
                         case "Favourite":
                             Shsict.Entity.MyFavourite.Cache.RefreshCache();
+                            LogEvent.logSuccess("Favourite Refresh Cache Success");
                             break;
                         case "Notice":
                             Shsict.Entity.Notice.Cache.RefreshCache();

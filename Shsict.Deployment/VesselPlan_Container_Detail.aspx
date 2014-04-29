@@ -1,7 +1,36 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.Master" AutoEventWireup="true" CodeBehind="VesselPlan_Container_Detail.aspx.cs" Inherits="Shsict.Web.VesselPlan_Container_Detail" Title="进箱计划查询" Theme="Shsict" %>
 
 
-<asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server"></asp:Content>
+<asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server">
+            <script type="text/javascript">
+                $(function () {
+                    $("#btnFavorite").css("display", "block");
+
+                    $("span.ObjectID").text(GetQueryString("VesselPlanID"));
+
+                    $("span.ObjectType").text("OVesselPlan");
+       
+                    var containerBeginTime = $("td.container-b-t");
+                    var beginTime = Date.parse(containerBeginTime.text().replace("进箱开始", "").trim());
+                    var dueTime = Date.parse($("td.container-d-t").text().replace("进箱截止", "").trim());
+ 
+                    if (beginTime != "" && dueTime!="") {
+                        if (beginTime > Date.now()) {
+
+                            containerBeginTime.css("color","#da2419");
+                        }
+                        else if (beginTime < Date.now() && dueTime > Date.now()) {
+                            containerBeginTime.css("color", "#1767b3");
+                        }
+                        else {
+
+                            containerBeginTime.css("color", "black");
+                        }
+                
+                    }
+                });
+    </script>
+</asp:Content>
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContent" runat="server">

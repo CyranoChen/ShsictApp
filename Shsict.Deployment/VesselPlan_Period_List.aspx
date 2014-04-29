@@ -4,9 +4,11 @@
     <script type="text/javascript">
         $(function () {
             VesselPlanQueryImpl();
+
         });
+
         function VesselPlanQueryImpl() {
-            var _value1 = $(".VesselPlan_Period_Name .PeriodName").val();
+            CustomLoader();
 
             var $listView = $("ul#listVesselPlan");
             var $noDataView = $("ul#NoData").hide();
@@ -14,9 +16,7 @@
 
             var _EnglishName = GetQueryString("EnglishName");
 
-            $.getJSON("VesselPlanPeriodList.ashx", { EnglishName: _EnglishName }, function (data, status, xhr) {
-
-
+            $.getJSON("Handler/VesselPlanPeriodList.ashx", { EnglishName: _EnglishName }, function (data, status, xhr) {
                 if (status == "success" && data != null) {
                     if (data.result != "error" && JSON.stringify(data) != "[]") {
                         $listView.empty();
@@ -40,9 +40,11 @@
                             $itemContant.html(itemHtmlContant);
 
                             $listView.prepend($item);
+
                         });
 
                     } else {
+
                         $listView.empty();
                         $noDataView.show();
 
@@ -50,23 +52,10 @@
                 } else {
                     alert("调用数据接口失败(VesselPlanList)");
                 }
+
+                CustomUnloader();
             });
         }
-        function GetQueryString(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-            var r = window.location.search.substr(1).match(reg);
-            if (r != null) return unescape(r[2]); return null;
-        }
-        String.format = function () {
-            if (arguments.length == 0)
-                return null;
-            var str = arguments[0];
-            for (var i = 1; i < arguments.length; i++) {
-                var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
-                str = str.replace(re, arguments[i]);
-            }
-            return str;
-        };
     </script>
 </asp:Content>
 <asp:Content ID="cphHeader" ContentPlaceHolderID="cphHeader" runat="server">
@@ -77,8 +66,10 @@
         </ul>
         <ul data-role="listview" id="NoData">
             <li>
+                <a>
                 <h3>暂无相关数据</h3>
                 <p></p>
+                </a>
             </li>
         </ul>
     </div>

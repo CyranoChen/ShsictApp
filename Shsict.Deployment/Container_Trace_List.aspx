@@ -3,82 +3,86 @@
 <asp:Content ID="cphScript" ContentPlaceHolderID="cphScript" runat="server">
     <script type="text/javascript">
         $(function () {
-
             var tbContainerTrace = $(".container-trace .ContainerTrace");
-
-            tbContainerTrace.attr("placeholder", "请输入箱号(IRSU2611715)/提单号");
             var ddlContainerNoOrbill = $(".container-trace select.ddlContainerNoOrbill");
 
-            tbContainerTrace.change(function () {
-
-                tbContainerTrace.val(tbContainerTrace.val().toUpperCase());
+            if (tbContainerTrace.val().trim() != "") {
                 QueryImpl();
+            }
 
+            tbContainerTrace.attr("placeholder", "请输入箱号(IRSU2611715)/提单号").blur(QueryImpl).change(QueryImpl);
 
+            tbContainerTrace.keydown(function () {
+                if (event.keyCode == 13)
+                {
+                    QueryImpl();
+
+                    return false;
+                }
             });
 
-            ddlContainerNoOrbill.change(function () {
+            ddlContainerNoOrbill.change(QueryImpl);  
+        });
 
-                if (tbContainerTrace.val() != "") {
-                    QueryImpl();
-                }
-                else {
-                    $listView.empty();
-                    $noDataView.show();
-                }
-            })
+        function QueryImpl() {
+            CustomLoader();
 
-            function QueryImpl() {
+            var $tbContainerNoOrbill = $(".container-trace .ContainerTrace");
+            var _value1 = $tbContainerNoOrbill.val().trim().toUpperCase();
+            var _value2 = $(".container-trace select.ddlContainerNoOrbill").val();
 
-                var _value1 = $(".container-trace .ContainerTrace").val();
-                var _value2 = $(".container-trace select.ddlContainerNoOrbill").val();
+            $tbContainerNoOrbill.val(_value1);
 
-                var $listView = $("ul#listContainerTrace");
-                var $noDataView = $("ul#NoData").hide();
-                var $itemTemplate = $noDataView.find("li").first();
+            var $listView = $("ul#listContainerTrace");
+            var $noDataView = $("ul#NoData").hide();
+            var $itemTemplate = $noDataView.find("li").first();
 
-                $.getJSON("ContainerPlanList.ashx", { ContainerNoOrbill: _value1, Type: _value2 }, function (data, status, xhr) {
-                    if (status == "success" && data != null) {
-                        if (data.result != "error" && JSON.stringify(data) != "[]") {
-                            $listView.empty();
-                            $noDataView.hide();
+            $.getJSON("Handler/ContainerPlanList.ashx", { ContainerNoOrbill: _value1, Type: _value2 }, function (data, status, xhr) {
+                if (status == "success" && data != null) {
+                    if (data.result != "error" && JSON.stringify(data) != "[]") {
+                        $listView.empty();
 
-                            $.each(data, function (entryIndex, entry) {
+                        $noDataView.hide();
 
-                                var $item = $itemTemplate.clone();
+                        $.each(data, function (entryIndex, entry) {
+                            var $item = $itemTemplate.clone();
 
-                                $item.css("cursor", "pointer");
-                                $item.click(function () {
-                                    window.location.href = String.format("Container_Trace_Detail.aspx?ContainerID={0}&Type={1}", entry.ID, _value2);
-                                    //load();
+                            $item.css("cursor", "pointer");
 
-                                });
+                            $item.click(function () {
+                                window.location.href = String.format("Container_Trace_Detail.aspx?ContainerID={0}", entry.ID);
 
-                                var $itemh3 = $item.find("h3");
-                                var itemHtmlh3 = entry.ContainerNo;
-                                $itemh3.html(itemHtmlh3);
-
-                                var $itemp = $item.find("p");
-                                var itemHtmlp = "计划安排时间:" + timeStamp2String(entry.ArrivalContainerTime);
-                                $itemp.html(itemHtmlp);
-
-                                $listView.prepend($item);
-
+                                CustomLoader();
                             });
 
-                        } else {
-                            $listView.empty();
-                            $noDataView.show();
+                            var $itemh3 = $item.find("h3");
+                            var itemHtmlh3 = entry.ContainerNo;
 
-                        }
+                            $itemh3.html(itemHtmlh3);
 
+                            var $itemp = $item.find("p");
+                            var itemHtmlp = "进港时间:" + timeStamp2String(entry.ArrivalContainerTime);
 
-                    } else {
-                        alert("调用数据接口失败(VesselPlanList)");
+                            $itemp.html(itemHtmlp);
+
+                            $listView.prepend($item);
+                        });
+
                     }
-                });
-            }
-        });
+                    else {
+                        $listView.empty();
+
+                        $noDataView.show();
+                    }
+                }
+                else {
+                    alert("调用数据接口失败(VesselPlanList)");
+                }
+
+                CustomUnloader();
+            });
+        }
+
     </script>
 
 </asp:Content>
@@ -98,8 +102,10 @@
         <ul data-role="listview" id="listContainerTrace"></ul>
         <ul data-role="listview" id="NoData">
             <li>
+                <a>
                 <h3>暂无相关数据</h3>
                 <p></p>
+                </a>
             </li>
         </ul>
     </div>

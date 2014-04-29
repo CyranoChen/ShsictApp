@@ -33,7 +33,10 @@ namespace Shsict.Web
 
                             }
                         }
-                        catch { responseText = "error"; }
+                        catch (Exception ex)
+                        {
+                            responseText = string.Format("Start-Exception: {0}", ex.Message);
+                        }
                     }
 
                     else if (context.Request.QueryString["condition"].Equals("suspend"))
@@ -49,7 +52,10 @@ namespace Shsict.Web
                                 responseText = "error";
                             }
                         }
-                        catch { responseText = "error"; }
+                        catch (Exception ex)
+                        {
+                            responseText = string.Format("Suspend-Exception: {0}", ex.Message);
+                        }
                     }
                     else if (context.Request.QueryString["condition"].Equals("status"))
                     {
@@ -60,7 +66,7 @@ namespace Shsict.Web
                         else
                         {
                             responseText = "Has not open";
-                        
+
                         }
                     }
                 }

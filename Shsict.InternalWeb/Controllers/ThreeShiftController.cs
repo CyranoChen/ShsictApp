@@ -5,8 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.OracleClient;
 
-
-
 using Shsict.InternalWeb.Models;
 
 namespace Shsict.InternalWeb.Controllers

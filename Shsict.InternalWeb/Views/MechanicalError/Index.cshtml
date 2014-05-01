@@ -1,0 +1,25 @@
+﻿@*@model MechanicalError*@
+
+@{
+    ViewBag.Title = "未完成维修的机械及故障时间";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{
+ <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true"> Back </a> 
+}
+ <div class="ui-body">
+      <div style="margin:15px auto; border-radius:8px; box-shadow:0 1px 5px rgba(0,0,0,0.3); padding:5px 10px; background-color:#fff;">
+      	<h3 style="line-height:30px; font-weight:normal; height:30px;">JOBNO工号</h3>
+        <div style="font-size:11px; border-bottom:#e8e8e8 1px solid;">
+            <p>SENDMESSAGE发送内容</p>
+            <p>SENDTIME:发送时间</p>
+            <p>ERRORTIME:故障时间</p>
+            <h4>MECHANICALNO:机械号</h4>
+        </div>
+        <a href="#" style="font-size:11px; ">查看详细</a>
+      </div>
+      <div>
+      </div>
+    </div>

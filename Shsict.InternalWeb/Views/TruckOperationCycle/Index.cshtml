@@ -1,0 +1,38 @@
+﻿@*@model TruckOperationCycle*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        <form style="float: right">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <a href="#" data-role="button" data-inline="true">20min</a>
+                <a href="#" data-role="button" data-icon="plus" data-iconpos="notext">Arrow up</a>
+                <a href="#" data-role="button" data-icon="minus" data-iconpos="notext">Arrow down</a>
+            </fieldset>
+        </form>
+    </div>
+}
+<ul data-role="listview">
+    <li>
+        <h3>TRUCKNO &nbsp;&nbsp;COMPLETETRUCKNUM | AVEPERIOD</h3>
+        <span class="ui-li-count">CURRENTINSTRUCTION</span>
+    </li>
+    <li>
+        <h3>集卡号 &nbsp;&nbsp;完成车次数 | 平均周期</h3>
+        <span class="ui-li-count">当前指令</span>
+    </li>
+    <li>
+        <h3>1234567 &nbsp;&nbsp;26 | 30min</h3>
+        <span class="ui-li-count">40min</span>
+    </li>
+    <li>
+        <h3>234567 &nbsp;&nbsp;26 | 30min</h3>
+        <span class="ui-li-count">30min</span>
+    </li>
+</ul>

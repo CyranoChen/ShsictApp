@@ -1,0 +1,76 @@
+﻿@*@model DailyReport*@
+
+@{
+    ViewBag.Title = "昼夜吞吐量";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{
+
+<a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true"> Back </a>
+    <div class="ui-body ui-body-c" style="padding:0 10px; margin-bottom:-1px;">
+      <form style="float:right">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <button data-icon="grid">date</button>
+          <input type="radio" name="radio-choice-c" id="radio-choice-c" value="list" checked="checked">
+          <label for="radio-choice-c">日</label>
+          <input type="radio" name="radio-choice-e" id="radio-choice-e" value="gallery">
+          <label for="radio-choice-e">月</label>
+          <input type="radio" name="radio-choice-d" id="radio-choice-d" value="gallery">
+          <label for="radio-choice-d">年</label>
+        </fieldset>
+      </form>
+        </div>
+
+}
+ <h3 class="tit">基本信息</h3>
+    <table data-role="table" data-mode="reflow" class=" table-stroke">
+      <thead>
+        <tr>
+          <th data-priority="persist">LASTALLDAY_PLAN</th>
+          <th data-priority="2">LASTALLDAY_ACTUAL</th>
+          <th data-priority="3">LASTALLDAY_BARGE</th>
+          <th data-priority="4">LASTALLDAY_SHUTTLE</th>
+          <th data-priority="5">LASTALLDAY_COMPLETERATE</th>
+          <th data-priority="6">MONTHLY_PLAN</th>
+          <th data-priority="7">MONTHLY_TARGET</th>
+          <th data-priority="8">MONTHLY_ACTUAL</th>
+          <th data-priority="9">MONTHLY_BARGE</th>
+          <th data-priority="10">MONTHLY_SHUTTLE</th>
+          <th data-priority="11">MONTHLY_COMPLETERATE</th>
+          <th data-priority="12">MONTHLY_PLANCONTAINER</th>
+          <th>ANNUAL_PLAN</th>
+          <th>ANNUAL_ACTUAL</th>
+          <th>ANNUAL_BARGE</th>
+          <th>ANNUAL_SHUTTLE</th>
+          <th>ANNUAL_COMPLETERATE</th>
+          <th>ANNUAL_PLANCONTAINER</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>日计划TEU</td>
+          <td>日实际TEU</td>
+          <td>日驳船</td>
+          <td>日穿梭巴士</td>
+          <td>日计划完成率</td>
+          <td>月计划TEU</td>
+          <td>月目标TEU</td>
+          <td>月实际TEU</td>
+          <td>月驳船</td>
+          <td>月穿梭巴士</td>
+          <td>月计划完成率</td>
+          <td>月预计箱量</td>
+          <td>年计划TEU</td>
+          <td>年实际TEU</td>
+          <td>年驳船</td>
+          <td>年穿梭巴士</td>
+          <td>年计划完成率</td>
+          <td>年预计箱量</td>
+        </tr>
+      </tbody>
+    </table>
+
+  
+

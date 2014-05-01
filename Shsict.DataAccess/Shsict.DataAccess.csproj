@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThreeShift.cs" />
     <Compile Include="ConnectString\ConnectStringMsSql.cs" />
     <Compile Include="ConnectString\ConnectStringOracle.cs" />
     <Compile Include="ContainerDetail.cs" />

@@ -1,0 +1,44 @@
+﻿@*@model YardDensity*@
+
+@{
+    ViewBag.Title = "堆场利用率";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        <form style="float: right">
+            <fieldset data-type="horizontal" data-mini="true">
+                <button data-icon="grid">date</button>
+            </fieldset>
+        </form>
+    </div>
+}
+<div class="ui-body ui-body-d" style="padding: 0 10px; margin-bottom: -1px;">
+    <h6>总箱位:YD_YARD_SLOT_TOTAL</h6>
+</div>
+
+<ul data-role="listview">
+    <li>
+        <h3>YD_CNTR_STATUS  1</h3>
+        <p>YD_SAC_SUM | YD_YARD_SLOT_SUM</p>
+        <p class="ui-li-aside">占总箱位%</p>
+    </li>
+    <li>
+        <h3>YD_CNTR_STATUS  2</h3>
+        <p>在场箱量 | 适用箱位</p>
+        <p class="ui-li-aside">占总箱位%</p>
+    </li>
+    <li>
+        <h3>YD_CNTR_STATUS  3</h3>
+        <p>YD_SAC_SUM | YD_YARD_SLOT_SUM</p>
+        <p class="ui-li-aside">占总箱位%</p>
+    </li>
+    <li>
+        <h3>YD_CNTR_STATUS  4</h3>
+        <p>在场箱量 | 适用箱位</p>
+        <p class="ui-li-aside">占总箱位%</p>
+    </li>
+</ul>

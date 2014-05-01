@@ -1,0 +1,50 @@
+﻿@*@model VesselBerth*@
+
+@{
+    ViewBag.Title = "靠离泊";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+@section Header{
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        <form style="float: right">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <button data-icon="grid">date</button>
+                <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list">
+                <label for="radio-choice-c">靠泊</label>
+                <input type="radio" name="radio-choice-b" id="radio-choice-e" value="gallery" checked="checked">
+                <label for="radio-choice-e">离泊</label>
+            </fieldset>
+        </form>
+    </div>
+}
+
+<ul data-role="listview">
+    <li>
+        <h3>VESSELNAME</h3>
+        <p>VBT_PBTHDT | VBT_ABTHDT</p>
+        <p>VOT_AWKSTTM</p>
+        <p class="ui-li-aside">状态</p>
+    </li>
+    <li>
+        <h3>船名</h3>
+        <p>计划靠泊时间 | 实际靠泊时间</p>
+        <p>实际开工时间</p>
+        <p class="ui-li-aside">状态</p>
+    </li>
+    <li>
+        <h3>VESSELNAME</h3>
+        <p>VBT_PDPTDT | VBT_ADOTDT</p>
+        <p>VOT_AWKENTM | WKLATER</p>
+        <p class="ui-li-aside">状态</p>
+    </li>
+    <li>
+        <h3>船名</h3>
+        <p>计划离泊时间 | 实际离泊时间</p>
+        <p>完工时间 | 完工情况</p>
+        <p class="ui-li-aside">状态</p>
+    </li>
+</ul>

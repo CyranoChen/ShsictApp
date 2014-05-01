@@ -1,0 +1,66 @@
+﻿@*@model TwinLift*@
+
+@{
+    ViewBag.Title = "双吊具作业情况";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{  <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+    data-transition="slidedown" href="#page1" data-icon="arrow-l"
+    class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        <form style="float: right">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <button data-icon="grid">date</button>
+                <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list">
+                <label for="radio-choice-c">进口</label>
+                <input type="radio" name="radio-choice-b" id="radio-choice-e" value="gallery" checked="checked">
+                <label for="radio-choice-e">出口</label>
+            </fieldset>
+        </form>
+    </div>
+}
+<ul data-role="listview">
+    <li>
+        <a href="#">
+            <h3>VESSELNAME</h3>
+            <p>TOTALCNT | IEFG</p>
+            <p class="ui-li-aside">EFFICIENCY</p>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <h3>船名</h3>
+            <p>总箱量 | 进口</p>
+            <p class="ui-li-aside">+5.8%</p>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <h3>VESSELNAME</h3>
+            <p>TOTALCNT | IEFG</p>
+            <p class="ui-li-aside">EFFICIENCY</p>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <h3>船名</h3>
+            <p>总箱量 | 进口</p>
+            <p class="ui-li-aside">+5.8%</p>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <h3>VESSELNAME</h3>
+            <p>TOTALCNT | IEFG</p>
+            <p class="ui-li-aside">EFFICIENCY</p>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <h3>船名</h3>
+            <p>总箱量 | 进口</p>
+            <p class="ui-li-aside">+5.8%</p>
+        </a>
+    </li>
+</ul>
+

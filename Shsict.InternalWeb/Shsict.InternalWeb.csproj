@@ -380,6 +380,7 @@
     <Content Include="Content\themes\PadScreen.css" />
     <Content Include="Content\themes\Screen.css" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\shsict.pubxml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\images\ajax-loader.gif" />
     <Content Include="Scripts\images\icons-18-black.png" />

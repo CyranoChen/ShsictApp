@@ -1,0 +1,38 @@
+﻿@model List<Shsict.InternalWeb.Models.VesselBerth>
+
+@{
+    ViewBag.Title = "靠离泊";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+@section Header{
+
+
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        <form style="float: right">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <button data-icon="grid">date</button>
+                <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list">
+                <label for="radio-choice-c">靠泊</label>
+                <input type="radio" name="radio-choice-b" id="radio-choice-e" value="gallery" checked="checked">
+                <label for="radio-choice-e">离泊</label>
+            </fieldset>
+        </form>
+    </div>
+}
+
+<ul data-role="listview">
+    @foreach (Shsict.InternalWeb.Models.VesselBerth item in Model)
+    {
+        <li>
+            <h3>@item.VSL_CNNAME</h3>
+            <p>计划靠泊：@item.VBT_PBTHDT </p>
+            <p>实际靠泊：@item.VBT_ABTHDT</p>
+            <p>实际开工：@item.VOT_AWKSTTM</p>
+            <p class="ui-li-aside">@item.VBT_STATUS</p>
+        </li>        
+    }
+</ul>

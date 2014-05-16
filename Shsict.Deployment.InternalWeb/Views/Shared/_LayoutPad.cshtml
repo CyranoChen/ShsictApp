@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Scripts/jquery.mobile-1.4.0.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/PadScreen.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.mobile-1.4.0.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $("#mypanel").trigger("updatelayout");
+
+    </script>
+</head>
+<body id="pad">
+    <div class="v-menu">
+        <ul>
+            <li class="selected"><a href="#" class="home">主页</a></li>
+            <li><a href="#" class="search">检索</a></li>
+            <li><a href="#" class="sta">统计</a></li>
+            <li><a href="#" class="my">关注</a></li>
+            <li><a href="#" class="more">更多</a></li>
+        </ul>
+    </div>
+    <div data-role="page" data-theme="a" id="panel-fixed-page1" data-title="Panel fixed positioning" data-url="panel-fixed-page1" class="jqm-demos ui-responsive-panel">
+        <div data-role="panel" data-position-fixed="true" data-display="push" data-theme="a" id="nav-panel" style="margin-top: -15px;">
+        </div>
+        <div data-role="header" data-position="fixed" data-theme="a">
+            <h3>船舶计划查询 </h3>
+            <a href="#nav-panel" data-icon="bars" data-iconpos="notext" style="margin-left: 65px;">Menu</a>
+        </div>
+        <div data-role="content">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

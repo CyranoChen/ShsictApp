@@ -53,7 +53,7 @@
                 <div class="icon-springboard">
                     <a href="Container_Port_List.aspx"  target="_top">
                         <img src="UploadFiles/Source/icon/icon_7.png" alt="按箱号提单号查询运抵报告">
-                        <span class="icon-label" title="按箱号提单号查询运抵报告">运抵报告发生情况</span> </a>
+                        <span class="icon-label" title="按箱号提单号查询运抵报告">运抵报告发送情况</span> </a>
                 </div>
             </div>
             <div class="ui-block-b">

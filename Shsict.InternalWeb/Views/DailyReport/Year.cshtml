@@ -1,0 +1,74 @@
+﻿@model Shsict.InternalWeb.Models.DailyReport
+@{
+    ViewBag.Title = "昼夜吞吐量";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{
+    <script type="text/javascript">
+        $(function () {
+            $('input:jqmData(role="datebox")').mobiscroll(opt);
+            $("#SearchBox").change(function () {
+                window.location.href = "/DailyReport/Year/" + $("#SearchBox").val();
+            });
+            $("input[name='radio-choice-b']").change(function () {
+               
+                window.location.href = "/DailyReport/" + $(this).val() + "/" + $("#SearchBox").val();
+            });
+        });
+    </script>
+    </script>
+
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+
+        @using (Html.BeginForm("index", "DailyReport", FormMethod.Post, new { id = "SearchForm" }))
+        {
+            @Html.TextBoxFor(a => a.MyDate, new { id = "SearchBox", data_role = "datebox" })
+     
+                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+            <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Day" >
+            <label for="radio-choice-c">日</label>
+            <input type="radio" name="radio-choice-b" id="radio-choice-d" value="Month"  >
+            <label for="radio-choice-d">月</label>
+            <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Year" checked="checked">
+            <label for="radio-choice-e">年</label>
+
+        </fieldset>       
+        }
+
+    </div>
+}
+
+<h3 class="tit">基本信息</h3>
+<table data-role="table" data-mode="reflow" class=" table-stroke">
+    <thead>
+        <tr>
+
+            <th>年计划TEU </th>
+            <th>年实际TEU </th>
+            <th>年驳船 </th>
+            <th>年穿梭巴士 </th>
+            <th>年计划完成率 </th>
+            <th>年预计箱量 </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+
+            <td>@Html.DisplayFor(a => a.ANNUAL_PLAN)</td>
+            <td>@Html.DisplayFor(a => a.ANNUAL_ACTUAL)</td>
+            <td>@Html.DisplayFor(a => a.ANNUAL_BARGE)</td>
+            <td>@Html.DisplayFor(a => a.ANNUAL_SHUTTLE)</td>
+            <td>@Html.DisplayFor(a => a.ANNUAL_COMPLETERATE)</td>
+            <td>@Html.DisplayFor(a => a.ANNUAL_PLANCONTAINER)</td>
+
+        </tr>
+    </tbody>
+</table>
+
+
+

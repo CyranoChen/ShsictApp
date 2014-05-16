@@ -1,44 +1,50 @@
-﻿@*@model YardDensity*@
+﻿@model List<Shsict.InternalWeb.Models.YardDensity>
 
 @{
     ViewBag.Title = "堆场利用率";
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
 @section Header{
+    <script type="text/javascript">
+        $(function () {
+            $('input:jqmData(role="datebox")').mobiscroll(opt);
+            $("#SearchBox").change(function () {
+                window.location.href = "/YardDensity/Index/" + $("#SearchBox").val();
+            });
+
+            $("ul.ui-listview").find("li div.colorbg").each(function () {
+                $(this).css("width", $(this).prev("div.textcontainer").find("p.ui-li-aside").text());
+            });
+        });
+    </script>
     <a id="but_back" data-role="button" data-inline="true" data-rel="back"
         data-transition="slidedown" href="#page1" data-icon="arrow-l"
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
-        <form style="float: right">
-            <fieldset data-type="horizontal" data-mini="true">
-                <button data-icon="grid">date</button>
-            </fieldset>
-        </form>
+        <fieldset data-type="horizontal" data-mini="true">
+            @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
+        </fieldset>
     </div>
 }
-<div class="ui-body ui-body-d" style="padding: 0 10px; margin-bottom: -1px;">
-    <h6>总箱位:YD_YARD_SLOT_TOTAL</h6>
-</div>
 
-<ul data-role="listview">
-    <li>
-        <h3>YD_CNTR_STATUS  1</h3>
-        <p>YD_SAC_SUM | YD_YARD_SLOT_SUM</p>
-        <p class="ui-li-aside">占总箱位%</p>
-    </li>
-    <li>
-        <h3>YD_CNTR_STATUS  2</h3>
-        <p>在场箱量 | 适用箱位</p>
-        <p class="ui-li-aside">占总箱位%</p>
-    </li>
-    <li>
-        <h3>YD_CNTR_STATUS  3</h3>
-        <p>YD_SAC_SUM | YD_YARD_SLOT_SUM</p>
-        <p class="ui-li-aside">占总箱位%</p>
-    </li>
-    <li>
-        <h3>YD_CNTR_STATUS  4</h3>
-        <p>在场箱量 | 适用箱位</p>
-        <p class="ui-li-aside">占总箱位%</p>
-    </li>
-</ul>
+ <div class="ui-body ui-body-d" style="padding:0 10px; margin-bottom:-1px;">
+      <h6>总箱位: @Html.DisplayFor(a => a[0].YD_YARD_SLOT_TOTAL)</h6>
+    </div>
+    <ul data-role="listview" class=" zyl"> 
+         @{int i = 1;   }  
+         @foreach (Shsict.InternalWeb.Models.YardDensity item in Model)
+         {
+           i++;
+           i=i%4;
+          string Myclass = "color" + i;
+      <li>
+        <div class="textcontainer">
+          <h3>@item.YD_CNTR_STATUS </h3>
+          <p>在场箱量：@item.YD_SAC_SUM | 适用箱位：@item.YD_YARD_SLOT_SUM</p>
+          <p class="ui-li-aside">@item.MyYD_PCT</p>
+        </div>
+        <div class="colorbg @Myclass clearfix"></div>
+      </li>
+         }
+    </ul>
+  </div>

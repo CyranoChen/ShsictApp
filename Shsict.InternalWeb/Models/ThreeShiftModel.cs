@@ -17,37 +17,23 @@ namespace Shsict.InternalWeb.Models
         {
             if (dr != null)
             {
-                SID = dr["SID"].ToString();
-
-
-                if (!string.IsNullOrEmpty(dr["SHIFTDATE"].ToString()))
-                {
-                    SHIFTDATE = DateTime.Parse(dr["SHIFTDATE"].ToString());
-                }
-                else
-                {
-                    SHIFTDATE = null;
-                }
-
-
+                SHIFTDATE = DateTime.Parse(dr["SHIFTDATE"].ToString());
                 SHIFT = dr["SHIFT"].ToString();
                 SHIFTPLAN = dr["SHIFTPLAN"].ToString();
                 SHIFTACTUAL = dr["SHIFTACTUAL"].ToString();
                 SHIFTCOMPLETERATE = dr["round(SHIFTCOMPLETERATE,5)"].ToString();
 
-
+                MyDate = SHIFTDATE.ToString("yyyy-MM-dd");
             }
             else
             {
-                throw new Exception("Unable to init Truck.");
+                throw new Exception("Unable to init ThreeShift.");
             }
         }
 
         #region members and propertis
 
-        public string SID { get; set; }
-
-        public DateTime? SHIFTDATE { get; set; }
+        public DateTime SHIFTDATE { get; set; }
 
         public string SHIFT { get; set; }
 
@@ -57,17 +43,9 @@ namespace Shsict.InternalWeb.Models
 
         public string SHIFTCOMPLETERATE { get; set; }
 
+        public string MyDate { get; set; }
+
         #endregion
-
-        public void Select()
-        {
-            DataRow dr = Shsict.DataAccess.ThreeShift.GetThreeShiftByID(SID);
-
-            if (dr != null)
-            {
-                InitThreeShift(dr);
-            }
-        }
 
         public static List<ThreeShift> GetContainerByDate(DateTime Date)
         {

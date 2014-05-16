@@ -3,32 +3,27 @@
     ViewBag.Title = "第一、二、三工班吞吐量";
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
-@section Header{   <a id="but_back" data-role="button" data-inline="true" data-rel="back"
-    data-transition="slidedown" href="#page1" data-icon="arrow-l"
-    class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+@section Header{
+    <script type="text/javascript">
+        $(function () {
+            $('input:jqmData(role="datebox")').mobiscroll(opt);
+            $("#SearchBox").change(function () {
+                window.location.href = "/ThreeShift/Index/" + $("#SearchBox").val();
+            });
+        });
+    </script>
+
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
-        <form style="float: right">
-      @*      <script>
-                $(function () {
-                    $("#cxp").datepicker();
-                });
-            </script>
-            <p>Date:
-                <input type="text" id="cxp" /></p>*@
-         
-           
-            <fieldset data-type="horizontal" data-mini="true">
-                   @Html.TextBoxFor(m =>m[0].SHIFTDATE)
-           @*    @Html.TextBoxFor(m =>view)*@
-                <input type="submit" value="确认"/>
-               @* <button data-icon="grid">date</button>*@
-            </fieldset>
-        </form>
+        <fieldset data-type="horizontal" data-mini="true">
+            @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
+        </fieldset>
     </div>
 }
 
-
-<h3 class="tit">SHIFT1_PLAN  1</h3>
+<h3 class="tit">第一工班</h3>
 <table data-role="table" data-mode="reflow" class=" table-stroke">
     <thead>
         <tr>
@@ -50,15 +45,13 @@
         </tr>
     </tbody>
 </table>
-<h3 class="tit">SHIFT1_PLAN  2</h3>
+<h3 class="tit">第二工班</h3>
 <table data-role="table" data-mode="reflow" class=" table-stroke">
     <thead>
         <tr>
-
             <th data-priority="persist">计划 TEU</th>
             <th data-priority="2">实际TEU</th>
             <th data-priority="3">计划完成率</th>
-
         </tr>
     </thead>
     <tbody>
@@ -75,7 +68,7 @@
         </tr>
     </tbody>
 </table>
-<h3 class="tit">SHIFT1_PLAN  3</h3>
+<h3 class="tit">第三工班</h3>
 <table data-role="table" data-mode="reflow" class=" table-stroke">
     <thead>
         <tr>

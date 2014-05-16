@@ -14,7 +14,6 @@ namespace Shsict.AutoRefresh
             ScheduleType = "Shsict.AutoRefresh.FavouriteCacheRefreshEvent";
             string FavouriteRefreshRateStr = ConfigurationManager.AppSettings.GetValues("FavouriteRefreshRate")[0].ToString();
             Minutes = Int32.Parse(FavouriteRefreshRateStr);
-
             UpdateTime();
         }
     }

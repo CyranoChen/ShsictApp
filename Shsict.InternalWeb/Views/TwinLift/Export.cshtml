@@ -1,0 +1,48 @@
+﻿@model List<Shsict.InternalWeb.Models.TwinLift>
+
+@{
+    ViewBag.Title = "双吊具作业情况";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{
+    <script type="text/javascript">
+        $(function () {
+            $('input:jqmData(role="datebox")').mobiscroll(opt);
+            $("#SearchBox").change(function () {
+                window.location.href = "/TwinLift/Export/" + $("#SearchBox").val();
+            });
+            $("input[name='radio-choice-b']").change(function () {
+                window.location.href = "/TwinLift/" + $(this).val() + "/" + $("#SearchBox").val();
+            });
+        });
+    </script>
+
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
+        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+               @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+            <button data-icon="grid">date</button>
+            <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Import">
+            <label for="radio-choice-c">进口</label>
+            <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Export" checked="checked">
+            <label for="radio-choice-e">出口</label>
+        </fieldset>
+
+    </div>
+}
+<ul data-role="listview">
+    @foreach (Shsict.InternalWeb.Models.TwinLift item in Model)
+    {
+        <li>
+            <a href="#">
+                <h3>@item.VESSELNAME</h3>
+                <p>总箱量：@item.TOTALCNT |进口： @item.IEFG</p>
+                <p class="ui-li-aside">双吊具效率</p>
+            </a>
+        </li>  
+    }
+</ul>
+

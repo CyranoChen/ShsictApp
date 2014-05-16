@@ -25,12 +25,16 @@ namespace Shsict.AutoRefresh
                 Event eventTruck = new EventTruckRefresh();
                 Event eventNotice = new EventNoticeRefresh();
                 Event eventTVDangerPlan = new EventTVDangerPlanRefresh();
+                Event eventFavouriteRefresh = new EventFavouriteRefresh();
+
 
                 elRefreshCach.Add(eventContainer);
                 elRefreshCach.Add(eventVessel);
                 elRefreshCach.Add(eventTruck);
                 elRefreshCach.Add(eventNotice);
                 elRefreshCach.Add(eventTVDangerPlan);
+                elRefreshCach.Add(eventFavouriteRefresh);
+
 
                 emRefreshCach.EventsList = elRefreshCach;
                 thdStartRefreshCach = new ThreadStart(StartRefreshCach);

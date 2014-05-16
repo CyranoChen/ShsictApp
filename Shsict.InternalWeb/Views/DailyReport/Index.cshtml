@@ -1,76 +1,107 @@
-﻿@*@model DailyReport*@
-
+﻿@model Shsict.InternalWeb.Models.DailyReport
 @{
     ViewBag.Title = "昼夜吞吐量";
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
 @section Header{
+    <script type="text/javascript">
+        $(function () {
+            $("form input").change(SubmitForm);
 
-<a id="but_back" data-role="button" data-inline="true" data-rel="back"
+            $('input:jqmData(role="datebox")').mobiscroll(opt);
+
+
+
+        });    
+    </script>
+
+    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
         data-transition="slidedown" href="#page1" data-icon="arrow-l"
-        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true"> Back </a>
-    <div class="ui-body ui-body-c" style="padding:0 10px; margin-bottom:-1px;">
-      <form style="float:right">
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <button data-icon="grid">date</button>
-          <input type="radio" name="radio-choice-c" id="radio-choice-c" value="list" checked="checked">
-          <label for="radio-choice-c">日</label>
-          <input type="radio" name="radio-choice-e" id="radio-choice-e" value="gallery">
-          <label for="radio-choice-e">月</label>
-          <input type="radio" name="radio-choice-d" id="radio-choice-d" value="gallery">
-          <label for="radio-choice-d">年</label>
-        </fieldset>
-      </form>
-        </div>
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
 
+        @using (Html.BeginForm("index", "DailyReport", FormMethod.Post, new { id = "SearchForm" }))
+        {
+            @Html.TextBoxFor(a => a.SearchKeyWord, new { id = "SearchBox", data_role = "datebox" })
+     
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                @Html.RadioButtonFor(a => a.SearchType, "day", new { @id = "radio-choice-c", @name = "radio-choice-b", type = "radio", @checked = "checked" })
+                <label for="radio-choice-c">日</label>
+                @Html.RadioButtonFor(a => a.SearchType, "month", new { @id = "radio-choice-d", @name = "radio-choice-b", type = "radio" })
+                <label for="radio-choice-d">月</label>
+                @Html.RadioButtonFor(a => a.SearchType, "year", new { @id = "radio-choice-e", @name = "radio-choice-b", type = "radio" })
+                <label for="radio-choice-e">年</label>
+            </fieldset>       
+        }
+
+    </div>
 }
- <h3 class="tit">基本信息</h3>
-    <table data-role="table" data-mode="reflow" class=" table-stroke">
-      <thead>
-        <tr>
-          <th data-priority="persist">LASTALLDAY_PLAN</th>
-          <th data-priority="2">LASTALLDAY_ACTUAL</th>
-          <th data-priority="3">LASTALLDAY_BARGE</th>
-          <th data-priority="4">LASTALLDAY_SHUTTLE</th>
-          <th data-priority="5">LASTALLDAY_COMPLETERATE</th>
-          <th data-priority="6">MONTHLY_PLAN</th>
-          <th data-priority="7">MONTHLY_TARGET</th>
-          <th data-priority="8">MONTHLY_ACTUAL</th>
-          <th data-priority="9">MONTHLY_BARGE</th>
-          <th data-priority="10">MONTHLY_SHUTTLE</th>
-          <th data-priority="11">MONTHLY_COMPLETERATE</th>
-          <th data-priority="12">MONTHLY_PLANCONTAINER</th>
-          <th>ANNUAL_PLAN</th>
-          <th>ANNUAL_ACTUAL</th>
-          <th>ANNUAL_BARGE</th>
-          <th>ANNUAL_SHUTTLE</th>
-          <th>ANNUAL_COMPLETERATE</th>
-          <th>ANNUAL_PLANCONTAINER</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>日计划TEU</td>
-          <td>日实际TEU</td>
-          <td>日驳船</td>
-          <td>日穿梭巴士</td>
-          <td>日计划完成率</td>
-          <td>月计划TEU</td>
-          <td>月目标TEU</td>
-          <td>月实际TEU</td>
-          <td>月驳船</td>
-          <td>月穿梭巴士</td>
-          <td>月计划完成率</td>
-          <td>月预计箱量</td>
-          <td>年计划TEU</td>
-          <td>年实际TEU</td>
-          <td>年驳船</td>
-          <td>年穿梭巴士</td>
-          <td>年计划完成率</td>
-          <td>年预计箱量</td>
-        </tr>
-      </tbody>
-    </table>
 
-  
+<h3 class="tit">基本信息</h3>
+<table data-role="table" data-mode="reflow" class=" table-stroke">
+    <thead>
+        <tr>
+            @if (Model.SearchType.Trim().ToUpper() == "DAY")
+            {
+                <th data-priority="persist">日计划TEU</th>
+                <th data-priority="2">日实际TEU</th>
+                <th data-priority="3">日驳船</th>
+                <th data-priority="4">日穿梭巴士</th>
+                <th data-priority="5">日计划完成率</th>
+            }
+            else if (Model.SearchType.Trim().ToUpper() == "MONTH")
+            {
+                <th data-priority="6">月计划TEU</th>
+                <th data-priority="7">月目标TEU</th>
+                <th data-priority="8">月实际TEU</th>
+                <th data-priority="9">月驳船</th>
+                <th data-priority="10">月穿梭巴士</th>
+                <th data-priority="11">月计划完成率</th>
+                <th data-priority="12">月预计箱量</th>
+            }
+            else if (Model.SearchType.Trim().ToUpper() == "YEAR")
+            {
+                <th>年计划TEU </th>
+                <th>年实际TEU </th>
+                <th>年驳船 </th>
+                <th>年穿梭巴士 </th>
+                <th>年计划完成率 </th>
+                <th>年预计箱量 </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @if (Model.SearchType.Trim().ToUpper() == "DAY")
+            {
+                <td>@Html.DisplayFor(a => a.LASTALLDAY_PLAN)</td>
+                <td>@Html.DisplayFor(a => a.LASTALLDAY_ACTUAL)</td>
+                <td>@Html.DisplayFor(a => a.LASTALLDAY_BARGE)</td>
+                <td>@Html.DisplayFor(a => a.LASTALLDAY_SHUTTLE)</td>
+                <td>@Html.DisplayFor(a => a.LASTALLDAY_COMPLETERATE)</td>
+            }
+            else if (Model.SearchType.Trim().ToUpper() == "MONTH")
+            {
+                <td>@Html.DisplayFor(a => a.MONTHLY_PLAN)</td>
+                <td>@Html.DisplayFor(a => a.MONTHLY_TARGET)</td>
+                <td>@Html.DisplayFor(a => a.MONTHLY_ACTUAL)</td>
+                <td>@Html.DisplayFor(a => a.MONTHLY_BARGE)</td>
+                <td>@Html.DisplayFor(a => a.MONTHLY_SHUTTLE)</td>
+                <td>@Html.DisplayFor(a => a.MONTHLY_COMPLETERATE)</td>
+                <td>@Html.DisplayFor(a => a.MONTHLY_PLANCONTAINER)</td>
+            }
+            else if (Model.SearchType.Trim().ToUpper() == "YEAR")
+            {
+                <td>@Html.DisplayFor(a => a.ANNUAL_PLAN)</td>
+                <td>@Html.DisplayFor(a => a.ANNUAL_ACTUAL)</td>
+                <td>@Html.DisplayFor(a => a.ANNUAL_BARGE)</td>
+                <td>@Html.DisplayFor(a => a.ANNUAL_SHUTTLE)</td>
+                <td>@Html.DisplayFor(a => a.ANNUAL_COMPLETERATE)</td>
+                <td>@Html.DisplayFor(a => a.ANNUAL_PLANCONTAINER)</td>
+            }
+        </tr>
+    </tbody>
+</table>
+
+
 

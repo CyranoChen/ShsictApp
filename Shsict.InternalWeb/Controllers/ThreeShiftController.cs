@@ -11,23 +11,57 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class ThreeShiftController : Controller
     {
-        //
-        // GET: /ThreeShift/
-        //private ShsictConext db = new ShsictConext();
-        //[HttpPost]
-        public ActionResult Index(string _date = "2013/9/19")
+        public ActionResult Index(string id)
         {
-            //IList<ThreeShift> _threeShift = db.ThreeShift.ToList();
-            //var _threeShift = db.ThreeShift.ToList();
-            //var _threeShifts = (from p in db.ThreeShift where p.SHIFTDATE == DateTime.Parse("2013/9/19") select p);
+            if (id == null)
+            {
+                id = DateTime.Now.ToString("yyyy-MM-dd");
+
+            }
+
+            var _threeShifts = Cache.ThreeShiftList.FindAll(t => t.SHIFTDATE.Equals(DateTime.Parse(id)));
+
+            string noData = "暂无数据";
+
+            if (!_threeShifts.Exists(f => f.SHIFT.Equals("1")))
+            {
+                ThreeShift FirShifts = new ThreeShift();
+                FirShifts.SHIFT = "1";
+                FirShifts.SHIFTACTUAL = noData;
+                FirShifts.SHIFTCOMPLETERATE = noData;
+                FirShifts.SHIFTPLAN = noData;
+                FirShifts.SHIFTDATE = DateTime.Parse(id);
+                FirShifts.MyDate = id;
+
+                _threeShifts.Add(FirShifts);
+
+            }
+            if (!_threeShifts.Exists(f => f.SHIFT.Equals("2")))
+            {
+                ThreeShift SenShifts = new ThreeShift();
+                SenShifts.SHIFT = "2";
+                SenShifts.SHIFTACTUAL = noData;
+                SenShifts.SHIFTCOMPLETERATE = noData;
+                SenShifts.SHIFTPLAN = noData;
+                SenShifts.SHIFTDATE = DateTime.Parse(id);
+                SenShifts.MyDate = id;
+
+                _threeShifts.Add(SenShifts);
+            }
+            if (!_threeShifts.Exists(f => f.SHIFT.Equals("3")))
+            {
+                ThreeShift TirShifts = new ThreeShift();
+                TirShifts.SHIFT = "3";
+                TirShifts.SHIFTACTUAL = noData;
+                TirShifts.SHIFTCOMPLETERATE = noData;
+                TirShifts.SHIFTPLAN = noData;
+                TirShifts.SHIFTDATE = DateTime.Parse(id);
+                TirShifts.MyDate = id;
+
+                _threeShifts.Add(TirShifts);
+            }
 
 
-            var _threeShifts = Cache.ThreeShiftList.FindAll(t => t.SHIFTDATE.Equals(DateTime.Parse(_date)));
-            ////if (_threeShift == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(_threeShifts);
             return View(_threeShifts.ToList());
         }
 
@@ -47,17 +81,11 @@ namespace Shsict.InternalWeb.Controllers
             {
 
                 ThreeShiftList = ThreeShift.GetContainerMains();
-                //TruckList_Active = TruckList.FindAll(delegate(OTruck t) { return true; });
-            }
-
-            public static ThreeShift Load(string SID)
-            {
-                return ThreeShiftList.Find(delegate(ThreeShift t) { return t.SID.Equals(SID); });
-                //return VesselPlansList.Find(vp => vp.ID.Equals(vpID));
+               
             }
 
             public static List<ThreeShift> ThreeShiftList;
-            //public static List<OTruck> TruckList_Active;
+           
         }
 
     }

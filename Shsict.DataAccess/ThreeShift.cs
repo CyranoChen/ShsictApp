@@ -11,7 +11,7 @@ namespace Shsict.DataAccess
     {
         public static DataRow GetThreeShiftByID(string sID)
         {
-            string sql = @"SELECT SID, SHIFTDATE, SHIFT, SHIFTPLAN, SHIFTACTUAL, SHIFTCOMPLETERATE 
+            string sql = @"SELECT  SHIFTDATE, SHIFT, SHIFTPLAN, SHIFTACTUAL, SHIFTCOMPLETERATE 
                             FROM SSICT_APP_THREESHIFT_VW WHERE (ID = :tID)";
 
             OracleParameter[] para = new OracleParameter[1];
@@ -31,7 +31,7 @@ namespace Shsict.DataAccess
 
         public static DataTable GetThreeShifts()
         {
-            string sql = @"SELECT SID, SHIFTDATE, SHIFT, SHIFTPLAN, SHIFTACTUAL, round(SHIFTCOMPLETERATE,5) 
+            string sql = @"SELECT  SHIFTDATE, SHIFT, SHIFTPLAN, SHIFTACTUAL, round(SHIFTCOMPLETERATE,5) 
                             FROM  SSICT_APP_THREESHIFT_VW";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql);
@@ -48,7 +48,7 @@ namespace Shsict.DataAccess
 
         public static DataTable GetThreeShiftByDate(DateTime shiftDate)
         {
-            string sql = @"SELECT SID, SHIFTDATE, SHIFT, SHIFTPLAN, SHIFTACTUAL, SHIFTCOMPLETERATE 
+            string sql = @"SELECT  SHIFTDATE, SHIFT, SHIFTPLAN, SHIFTACTUAL, SHIFTCOMPLETERATE 
                             FROM  SSICT_APP_THREESHIFT_VW  WHERE SHIFTDATE=to_date(:shiftDate,'yyyy-mm-dd')";
 
             OracleParameter[] para = new OracleParameter[1];

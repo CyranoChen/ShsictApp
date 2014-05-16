@@ -1,4 +1,4 @@
-﻿@*@model VesselBerth*@
+﻿@model List<Shsict.InternalWeb.Models.VesselBerth>
 
 @{
     ViewBag.Title = "靠离泊";
@@ -6,6 +6,8 @@
 }
 
 @section Header{
+
+
     <a id="but_back" data-role="button" data-inline="true" data-rel="back"
         data-transition="slidedown" href="#page1" data-icon="arrow-l"
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
@@ -23,28 +25,14 @@
 }
 
 <ul data-role="listview">
-    <li>
-        <h3>VESSELNAME</h3>
-        <p>VBT_PBTHDT | VBT_ABTHDT</p>
-        <p>VOT_AWKSTTM</p>
-        <p class="ui-li-aside">状态</p>
-    </li>
-    <li>
-        <h3>船名</h3>
-        <p>计划靠泊时间 | 实际靠泊时间</p>
-        <p>实际开工时间</p>
-        <p class="ui-li-aside">状态</p>
-    </li>
-    <li>
-        <h3>VESSELNAME</h3>
-        <p>VBT_PDPTDT | VBT_ADOTDT</p>
-        <p>VOT_AWKENTM | WKLATER</p>
-        <p class="ui-li-aside">状态</p>
-    </li>
-    <li>
-        <h3>船名</h3>
-        <p>计划离泊时间 | 实际离泊时间</p>
-        <p>完工时间 | 完工情况</p>
-        <p class="ui-li-aside">状态</p>
-    </li>
+    @foreach (Shsict.InternalWeb.Models.VesselBerth item in Model)
+    {
+        <li>
+            <h3>@item.VSL_CNNAME</h3>
+            <p>计划靠泊：@item.VBT_PBTHDT </p>
+            <p>实际靠泊：@item.VBT_ABTHDT</p>
+            <p>实际开工：@item.VOT_AWKSTTM</p>
+            <p class="ui-li-aside">@item.VBT_STATUS</p>
+        </li>        
+    }
 </ul>

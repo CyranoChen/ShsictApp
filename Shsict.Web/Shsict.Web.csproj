@@ -469,7 +469,7 @@
       <Project>{5641e8d3-3c77-486d-910c-eb2918007405}</Project>
       <Name>Shsict.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shsict.Schduler\Shsict.Scheduler.csproj">
+    <ProjectReference Include="..\Shsict.Scheduler\Shsict.Scheduler.csproj">
       <Project>{204287f7-ff83-4f9e-be1b-ea68bd89be73}</Project>
       <Name>Shsict.Scheduler</Name>
     </ProjectReference>

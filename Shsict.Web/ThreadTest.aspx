@@ -8,9 +8,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:Button ID="btnTest" runat="server" Text="Thread Start" OnClick="btnTest_Click" />
-    </div>
+        <div>
+            <asp:Button ID="btnStart" runat="server" Text="Thread Start" OnClick="btnStart_Click" />
+            <asp:Button ID="btnStop" runat="server" Text="Thread Stop" OnClick="btnStop_Click" />
+        </div>
+        <div>
+            <asp:Label ID="lblThreadStatus" runat="server"></asp:Label>
+        </div>
     </form>
 </body>
 </html>

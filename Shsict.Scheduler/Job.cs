@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Shsict.Scheduler
 {
@@ -44,11 +45,15 @@ namespace Shsict.Scheduler
         }
 
         public string ScheduleType { get; set; }
-        public int SleepInterval { get; set; }
+        public int DueTimeInterval { get; set; }
+        public int PeriodInterval { get; set; }
 
-        public void Execute()
+        //public Timer JobTimer = null;
+
+        public Timer Execute()
         {
-            IJobInstance.Execute();
+            return new Timer(new TimerCallback(IJobInstance.Execute), null, DueTimeInterval, PeriodInterval);
+            //IJobInstance.Execute(sender);
         }
     }
 }

@@ -4,6 +4,6 @@ namespace Shsict.Scheduler
 {
     public interface IJob
     {
-        void Execute(); 
+        void Execute(object sender); 
     }
 }

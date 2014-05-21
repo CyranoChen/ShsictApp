@@ -1,11 +1,12 @@
-﻿using Shsict.Scheduler;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
+using Shsict.Scheduler;
 
 namespace Shsict.Web
 {
@@ -16,17 +17,43 @@ namespace Shsict.Web
 
         }
 
-        protected void btnTest_Click(object sender, EventArgs e)
+        protected void btnStart_Click(object sender, EventArgs e)
         {
-            List<Job> lstJobs = new List<Job>();
-            lstJobs.Add(new SampleJob());
-            lstJobs.Add(new SampleJob2());
+            try
+            {
+                SchedulerManager.Start();
 
-            SchedulerManager scheduler = new SchedulerManager(lstJobs);
+                lblThreadStatus.Text = string.Format("Total: {0} Jobs Started", SchedulerManager.CurrentJobsList.Count);
+                btnStart.Visible = false;
+                btnStop.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                lblThreadStatus.Text = ex.Message;
+                btnStart.Visible = true;
+                btnStop.Visible = true;
+            }
+        }
 
-            Thread myThread = new Thread(new ThreadStart(scheduler.Start));
+        protected void btnStop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int _jobCounts = SchedulerManager.CurrentJobsList.Count;
 
-            myThread.Start(); 
+                SchedulerManager.Stop();
+
+                lblThreadStatus.Text = string.Format("Total: {0} Jobs Stopped", _jobCounts);
+                btnStart.Visible = true;
+                btnStop.Visible = false;
+
+            }
+            catch (Exception ex)
+            {
+                lblThreadStatus.Text = ex.Message;
+                btnStart.Visible = true;
+                btnStop.Visible = true;
+            }
         }
     }
 }

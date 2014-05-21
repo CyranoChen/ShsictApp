@@ -66,7 +66,7 @@
                         });
 
                     } else {
-                        $.get("Handler/RefreshCacheHandler.ashx", { condition: "suspend" }, function (data, status, xhr) {
+                        $.get("Handler/RefreshCacheHandler.ashx", { condition: "abort" }, function (data, status, xhr) {
                             if (status == "success" && data != null) {
                                 viewMsg = "ThreadState: " + data;
                                 _btnRefreshCache.text("开始更新");

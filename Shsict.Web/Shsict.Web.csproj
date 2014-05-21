@@ -298,6 +298,13 @@
       <DependentUpon>MessagePushService.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\Routing.cs" />
+    <Compile Include="ThreadTest.aspx.cs">
+      <DependentUpon>ThreadTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ThreadTest.aspx.designer.cs">
+      <DependentUpon>ThreadTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Truck_ImportExport_Detail.aspx.cs">
       <DependentUpon>Truck_ImportExport_Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -415,6 +422,7 @@
     <Content Include="scripts\waypoints.js" />
     <Content Include="scripts\waypoints.min.js" />
     <Content Include="Service\MessagePushService.svc" />
+    <Content Include="ThreadTest.aspx" />
     <Content Include="Truck_ImportExport_Detail.aspx" />
     <Content Include="Truck_ImportExport_List.aspx" />
     <Content Include="UploadFiles\Source\icon\icon_1.png" />
@@ -460,6 +468,10 @@
     <ProjectReference Include="..\Shsict.Entity\Shsict.Entity.csproj">
       <Project>{5641e8d3-3c77-486d-910c-eb2918007405}</Project>
       <Name>Shsict.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shsict.Schduler\Shsict.Scheduler.csproj">
+      <Project>{204287f7-ff83-4f9e-be1b-ea68bd89be73}</Project>
+      <Name>Shsict.Scheduler</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

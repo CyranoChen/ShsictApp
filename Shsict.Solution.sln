@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.AutoRefresh", "Shsic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.InternalWeb", "Shsict.InternalWeb\Shsict.InternalWeb.csproj", "{7D092D63-4A24-487F-B76B-25963C61E63B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.Scheduler", "Shsict.Schduler\Shsict.Scheduler.csproj", "{204287F7-FF83-4F9E-BE1B-EA68BD89BE73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7D092D63-4A24-487F-B76B-25963C61E63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D092D63-4A24-487F-B76B-25963C61E63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D092D63-4A24-487F-B76B-25963C61E63B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{204287F7-FF83-4F9E-BE1B-EA68BD89BE73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{204287F7-FF83-4F9E-BE1B-EA68BD89BE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{204287F7-FF83-4F9E-BE1B-EA68BD89BE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{204287F7-FF83-4F9E-BE1B-EA68BD89BE73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

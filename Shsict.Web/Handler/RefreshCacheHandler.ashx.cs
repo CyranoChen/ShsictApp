@@ -23,33 +23,20 @@ namespace Shsict.Web
                     {
                         try
                         {
-                            if (CacheRefresh.thdRefreshCach == null)
-                            {
-                                responseText = CacheRefresh.Start().ToString();
-                            }
-                            else
-                            {
-                                responseText = CacheRefresh.Resume().ToString();
-
-                            }
+                            CacheRefresh.Start();
+                            responseText = CacheRefresh.thdRefreshCach.ThreadState.ToString();
                         }
                         catch (Exception ex) { responseText = "Start Exception:" + ex.Message; }
                     }
 
-                    else if (context.Request.QueryString["condition"].Equals("suspend"))
+                    else if (context.Request.QueryString["condition"].Equals("abort"))
                     {
                         try
                         {
-                            if (CacheRefresh.thdRefreshCach != null)
-                            {
-                                responseText = CacheRefresh.Suspend().ToString();
-                            }
-                            else
-                            {
-                                responseText = "error";
-                            }
+                            CacheRefresh.Abort();
+                            responseText = CacheRefresh.thdRefreshCach.ThreadState.ToString();
                         }
-                        catch (Exception ex) { responseText = "Suspend Exception:" + ex.Message; }
+                        catch (Exception ex) { responseText = "Abort Exception:" + ex.Message; }
                     }
                     else if (context.Request.QueryString["condition"].Equals("status"))
                     {
@@ -59,8 +46,7 @@ namespace Shsict.Web
                         }
                         else
                         {
-                            responseText = "Has not open";
-                        
+                            responseText = "Has not open";               
                         }
                     }
                 }

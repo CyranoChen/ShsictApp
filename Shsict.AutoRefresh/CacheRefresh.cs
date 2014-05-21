@@ -14,7 +14,7 @@ namespace Shsict.AutoRefresh
         private static ThreadStart thdStartRefreshCach;
         public static Thread thdRefreshCach;
 
-        public static ThreadState Start()
+        public static void Start()
         {
             try
             {
@@ -37,55 +37,66 @@ namespace Shsict.AutoRefresh
 
 
                 emRefreshCach.EventsList = elRefreshCach;
-                thdStartRefreshCach = new ThreadStart(StartRefreshCach);
+                thdStartRefreshCach = new ThreadStart(emRefreshCach.Execute);
                 thdRefreshCach = new Thread(thdStartRefreshCach);
 
-                if (thdRefreshCach.ThreadState.Equals(ThreadState.Unstarted))
+                while (true)
                 {
                     thdRefreshCach.Start();
+
+                    Thread.Sleep(EventManager.TimerMinutesInterval * 1000 * 60); //每10秒钟执行一次
                 }
 
-                return thdRefreshCach.ThreadState;
+                //return thdRefreshCach.ThreadState;
             }
             catch
             {
-                return thdRefreshCach.ThreadState;
+                if (thdRefreshCach.IsAlive)
+                    thdRefreshCach.Abort();
+
+                throw new Exception(thdRefreshCach.ThreadState.ToString());
             }
         }
 
-        public static ThreadState Suspend()
+        public static void Abort()
         {
-            try
-            {
-                if (!thdRefreshCach.ThreadState.Equals(ThreadState.Stopped))
-                {
-                    thdRefreshCach.Suspend();
-                }
-
-                return thdRefreshCach.ThreadState;
-            }
-            catch
-            {
-                return thdRefreshCach.ThreadState;
-            }
+            if (thdRefreshCach.IsAlive)
+                thdRefreshCach.Abort();
         }
 
-        public static ThreadState Resume()
-        {
-            try
-            {
-                if (thdRefreshCach.ThreadState.Equals(ThreadState.Suspended))
-                {
-                    thdRefreshCach.Resume();
-                }
+        //public static ThreadState Suspend()
+        //{
+        //    try
+        //    {
+        //        if (!thdRefreshCach.ThreadState.Equals(ThreadState.Stopped))
+        //        {
+        //            thdRefreshCach.Suspend();
+        //        }
 
-                return thdRefreshCach.ThreadState;
-            }
-            catch
-            {
-                return thdRefreshCach.ThreadState;
-            }
-        }
+        //        return thdRefreshCach.ThreadState;
+        //    }
+        //    catch
+        //    {
+        //        return thdRefreshCach.ThreadState;
+        //    }
+        //}
+
+        //public static ThreadState Resume()
+        //{
+        //    try
+        //    {
+        //        if (thdRefreshCach.ThreadState.Equals(ThreadState.Suspended))
+        //        {
+        //            thdRefreshCach.Resume();
+        //        }
+
+        //        return thdRefreshCach.ThreadState;
+        //    }
+        //    catch
+        //    {
+        //        return thdRefreshCach.ThreadState;
+        //    }
+        //}
 
         private static void StartRefreshCach()
         {

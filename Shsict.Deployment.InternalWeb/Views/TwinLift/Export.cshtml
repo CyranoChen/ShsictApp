@@ -17,14 +17,14 @@
         });
     </script>
 
-    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
-        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+      <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+        data-transition="slidedown" href="/Portal" data-icon="arrow-l"
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
 
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
                @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-            <button data-icon="grid">date</button>
+   
             <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Import">
             <label for="radio-choice-c">进口</label>
             <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Export" checked="checked">
@@ -33,13 +33,13 @@
 
     </div>
 }
-<ul data-role="listview">
+<ul data-role="listview" class="bigfont">
     @foreach (Shsict.InternalWeb.Models.TwinLift item in Model)
     {
         <li>
             <a href="#">
                 <h3>@item.VESSELNAME</h3>
-                <p>总箱量：@item.TOTALCNT |进口： @item.IEFG</p>
+                <p>总箱量：@item.TOTALCNT | 进口： @item.IEFG</p>
                 <p class="ui-li-aside">双吊具效率</p>
             </a>
         </li>  

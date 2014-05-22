@@ -13,8 +13,8 @@
         });
     </script>
 
-    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
-        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+       <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+        data-transition="slidedown" href="/Portal" data-icon="arrow-l"
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
         <fieldset data-type="horizontal" data-mini="true">
@@ -39,7 +39,7 @@
                 if (item.SHIFT.Trim() == "1")
                 {   <td>@item.SHIFTPLAN</td>
                 <td>@item.SHIFTACTUAL</td>
-                <td>@item.SHIFTCOMPLETERATE</td>      
+                <td>@item.MySHIFTCOMPLETERATE</td>      
                 }
             }
         </tr>
@@ -49,7 +49,7 @@
 <table data-role="table" data-mode="reflow" class=" table-stroke">
     <thead>
         <tr>
-            <th data-priority="persist">计划 TEU</th>
+            <th data-priority="persist">计划TEU</th>
             <th data-priority="2">实际TEU</th>
             <th data-priority="3">计划完成率</th>
         </tr>
@@ -62,7 +62,7 @@
                 {
                 <td>@item.SHIFTPLAN</td>
                 <td>@item.SHIFTACTUAL</td>
-                <td>@item.SHIFTCOMPLETERATE</td>
+                <td>@item.MySHIFTCOMPLETERATE</td>
                 }
             }
         </tr>
@@ -85,7 +85,7 @@
                 { 
                 <td>@item.SHIFTPLAN</td>
                 <td>@item.SHIFTACTUAL</td>
-                <td>@item.SHIFTCOMPLETERATE</td>
+                <td>@item.MySHIFTCOMPLETERATE</td>
                 }
             }
         </tr>

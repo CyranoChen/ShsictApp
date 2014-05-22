@@ -9,6 +9,12 @@ namespace Shsict.Web
             IMaster master = this.Master as IMaster;
 
             master.setHeaderBtnVisible(false);
+
+            string ipAddress = Request.ServerVariables["REMOTE_ADDR"];
+
+            string ipSrc;
+
+            ipSrc = Request.UrlReferrer.ToString();
         }
     }
 }

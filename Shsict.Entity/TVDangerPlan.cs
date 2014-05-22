@@ -180,7 +180,7 @@ namespace Shsict.Entity
 
             private static Dictionary<string, TVDangerPlan> TVDangerPlanCache = new Dictionary<string, TVDangerPlan>();
             private static Dictionary<string, List<TVDangerPlan>> TVDangerPlanCacheUsername = new Dictionary<string, List<TVDangerPlan>>();
-            private static List<TVDangerPlan> TVDangerPlanList;
+            //private static List<TVDangerPlan> TVDangerPlanList;
         }
 
         #region members and propertis

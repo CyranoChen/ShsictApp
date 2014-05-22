@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,10 +42,20 @@
   <ItemGroup>
     <Compile Include="IJob.cs" />
     <Compile Include="Job.cs" />
-    <Compile Include="Jobs\SampleJob2.cs" />
-    <Compile Include="Jobs\SampleJob.cs" />
+    <Compile Include="Jobs\ContainerCacheRefreshEvent.cs" />
+    <Compile Include="Jobs\FavouriteCacheRefreshEvent.cs" />
+    <Compile Include="Jobs\NoticeCacheRefreshEvent.cs" />
+    <Compile Include="Jobs\TruckCacheRefreshEvent.cs" />
+    <Compile Include="Jobs\TVDangerPlanRefreshEvent.cs" />
+    <Compile Include="Jobs\VesselCacheRefreshEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchedulerManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shsict.Entity\Shsict.Entity.csproj">
+      <Project>{5641e8d3-3c77-486d-910c-eb2918007405}</Project>
+      <Name>Shsict.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

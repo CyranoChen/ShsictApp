@@ -24,62 +24,7 @@
             InitCache("TVDangerContainer");
             InitCache("TVDangerPlan");
 
-   
-            var $pnlMain = $("div.main");
-            var viewMsg = "";
-            var _btnRefreshCache = $("#btnRefreshCache");
-
-          
-                $.get("Handler/RefreshCacheHandler.ashx", { condition: "status" }, function (data, status, xhr) {
-                    if (status == "success" && data != null) {
-                        viewMsg = "ThreadState: " + data;
-                        if (data.trim() == "Running" || data.trim() == "WaitSleepJoin") {
-                            _btnRefreshCache.text("结束更新");
-                        }
-                        else {
-                            _btnRefreshCache.text("开始更新");
-
-                        }
-                    } else {
-                        alert("调用接口失败(DefaultHandler.ashx)");
-                    }
-
-                    $pnlMain.find("ul").append($pnlMain.find("li").first().clone().text(viewMsg));
-                });
-
-            
-
-
-            $("#btnRefreshCache").click(function () {
   
-                
-                    if (_btnRefreshCache.text().trim().indexOf("开始更新") > -1) {
-                        $.get("Handler/RefreshCacheHandler.ashx", { condition: "start" }, function (data, status, xhr) {
-                            if (status == "success" && data != null) {
-                                viewMsg = "ThreadState: " + data;
-                                _btnRefreshCache.text("结束更新");
-                            } else {
-                                alert("调用接口失败(DefaultHandler.ashx)");
-                            }
-
-                            $pnlMain.find("ul").append($pnlMain.find("li").first().clone().text(viewMsg));
-                        });
-
-                    } else {
-                        $.get("Handler/RefreshCacheHandler.ashx", { condition: "abort" }, function (data, status, xhr) {
-                            if (status == "success" && data != null) {
-                                viewMsg = "ThreadState: " + data;
-                                _btnRefreshCache.text("开始更新");
-                            } else {
-                                alert("调用接口失败(DefaultHandler.ashx)");
-                            }
-
-                            $pnlMain.find("ul").append($pnlMain.find("li").first().clone().text(viewMsg));
-                        });
-
-                    }
-                
-            });
         });
 
         function InitCache(objName) {
@@ -108,7 +53,7 @@
 </head>
 <body class="loading">
     <form id="form1" runat="server">      
-        <button id="btnRefreshCache" style="float: right;" onclick="return false;">开始更新</button>
+       <%-- <button id="btnRefreshCache" style="float: right;" onclick="return false;">开始更新</button>--%>
         <div class="main" onclick="window.location.href='Portal.aspx'" style="cursor: pointer">
             <ul>
                 <li>Server Cache Initialing...</li>

@@ -1,5 +1,4 @@
 ﻿using System;
-using Shsict.AutoRefresh;
 
 namespace Shsict.Web
 {
@@ -15,7 +14,8 @@ namespace Shsict.Web
                 Response.Redirect("Portal.aspx");
             }
             Session["mode"] = "pc";
-
+           
+          
         }
     }
 }

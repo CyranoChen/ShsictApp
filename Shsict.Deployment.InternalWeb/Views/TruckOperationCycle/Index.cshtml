@@ -23,11 +23,11 @@
     </script>
 
 
-    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
-        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+   <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+        data-transition="slidedown" href="/Portal" data-icon="arrow-l"
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
-        <form style="float: right">
+  
             <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                 @{ string MyTime = "25min";}
                  @if( @Html.ViewContext.RouteData.Values["id"]!=null)
@@ -41,14 +41,15 @@
                 <a  id="plus"  href ="#" data-role="button" data-icon="plus" data-iconpos="notext">Arrow up</a>
                 <a id="minus" href="#" data-role="button" data-icon="minus" data-iconpos="notext">Arrow down</a>
             </fieldset>
-        </form>
+      
     </div>
 }
 <ul data-role="listview">
     @foreach (Shsict.InternalWeb.Models.TruckOperationCycle item in Model)
             {
         <li>
-            <h3>@item.TRUCKNO &nbsp;&nbsp;@item.COMPLETETRUCKNUM | @item.AVEPERIOD</h3>
+            <h3>@item.TRUCKNO</h3>
+              <p>完成车次数：@item.COMPLETETRUCKNUM | @item.AVEPERIOD</p>
             <span class="ui-li-count">@item.CURRENTINSTRUCTION</span>
         </li>
            }

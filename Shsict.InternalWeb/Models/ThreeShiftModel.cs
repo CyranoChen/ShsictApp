@@ -23,6 +23,11 @@ namespace Shsict.InternalWeb.Models
                 SHIFTACTUAL = dr["SHIFTACTUAL"].ToString();
                 SHIFTCOMPLETERATE = dr["round(SHIFTCOMPLETERATE,5)"].ToString();
 
+                if (SHIFTCOMPLETERATE != null)
+                {
+                    MySHIFTCOMPLETERATE = double.Parse(SHIFTCOMPLETERATE).ToString("0.##%");
+                }
+
                 MyDate = SHIFTDATE.ToString("yyyy-MM-dd");
             }
             else
@@ -44,6 +49,8 @@ namespace Shsict.InternalWeb.Models
         public string SHIFTCOMPLETERATE { get; set; }
 
         public string MyDate { get; set; }
+
+        public string MySHIFTCOMPLETERATE { get; set; }
 
         #endregion
 

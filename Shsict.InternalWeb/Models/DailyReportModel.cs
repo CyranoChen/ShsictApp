@@ -41,6 +41,19 @@ namespace Shsict.InternalWeb.Models
                 ANNUAL_COMPLETERATE = dr["round(ANNUAL_COMPLETERATE,5)"].ToString();
                 ANNUAL_PLANCONTAINER = dr["round(ANNUAL_PLANCONTAINER,5)"].ToString();
 
+                if (LASTALLDAY_COMPLETERATE != null)
+                {
+                    MyLASTALLDAY_COMPLETERATE = double.Parse(LASTALLDAY_COMPLETERATE).ToString("0.##%");
+                }
+                if (MONTHLY_COMPLETERATE != null)
+                {
+                    MyMONTHLY_COMPLETERATE = double.Parse(MONTHLY_COMPLETERATE).ToString("0.##%");
+                }
+                if (ANNUAL_COMPLETERATE != null)
+                {
+                    MyANNUAL_COMPLETERATE = double.Parse(ANNUAL_COMPLETERATE).ToString("0.##%");
+                }
+                
                 MyDate = REPORT_DATE.ToString("yyyy-MM-dd");
             }
             else
@@ -89,9 +102,13 @@ namespace Shsict.InternalWeb.Models
 
         public string ANNUAL_PLANCONTAINER { get; set; }
 
+        public string MyLASTALLDAY_COMPLETERATE { get; set; }
+
+        public string MyMONTHLY_COMPLETERATE { get; set; }
+
+        public string MyANNUAL_COMPLETERATE { get; set; }
+
         public string MyDate { get; set; }
-
-
 
         #endregion
 

@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.Entity", "Shsict.Ent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.Web", "Shsict.Web\Shsict.Web.csproj", "{E089B6DF-06AA-40C5-910A-1C84C1B3A38E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.AutoRefresh", "Shsict.AutoRefresh\Shsict.AutoRefresh.csproj", "{4785201B-3AC4-4011-97FF-0E923C6ED82C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.InternalWeb", "Shsict.InternalWeb\Shsict.InternalWeb.csproj", "{7D092D63-4A24-487F-B76B-25963C61E63B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.Scheduler", "Shsict.Scheduler\Shsict.Scheduler.csproj", "{204287F7-FF83-4F9E-BE1B-EA68BD89BE73}"
@@ -33,10 +31,6 @@ Global
 		{E089B6DF-06AA-40C5-910A-1C84C1B3A38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E089B6DF-06AA-40C5-910A-1C84C1B3A38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E089B6DF-06AA-40C5-910A-1C84C1B3A38E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4785201B-3AC4-4011-97FF-0E923C6ED82C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4785201B-3AC4-4011-97FF-0E923C6ED82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4785201B-3AC4-4011-97FF-0E923C6ED82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4785201B-3AC4-4011-97FF-0E923C6ED82C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D092D63-4A24-487F-B76B-25963C61E63B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D092D63-4A24-487F-B76B-25963C61E63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D092D63-4A24-487F-B76B-25963C61E63B}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
 @section Header{
- <a id="but_back" data-role="button" data-inline="true" data-rel="back"
-        data-transition="slidedown" href="#page1" data-icon="arrow-l"
-        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true"> Back </a> 
+ <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+        data-transition="slidedown" href="/Portal" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
 }
  <div class="ui-body">
       @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)

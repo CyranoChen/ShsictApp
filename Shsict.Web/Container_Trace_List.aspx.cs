@@ -12,6 +12,7 @@ namespace Shsict.Web
         {
             IMaster master = this.Master as IMaster;
             master.setHeaderBtnBack(false);
+
         }
 
     }

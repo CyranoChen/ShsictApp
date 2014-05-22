@@ -10,11 +10,20 @@ namespace Shsict.Scheduler
         {
             try
             {
-                Job j1 = new SampleJob();
-                Job j2 = new SampleJob2();
+                Job j1 = new ContainerCacheRefreshEvent();
+                Job j2 = new FavouriteCacheRefreshEvent();
+                Job j3 = new NoticeCacheRefreshEvent();
+                Job j4 = new TruckCacheRefreshEvent();
+                Job j5 = new TVDangerPlanRefreshEvent();
+                Job j6 = new VesselCacheRefreshEvent();
 
                 CurrentJobsList.Add(j1.ScheduleType, j1.Execute());
                 CurrentJobsList.Add(j2.ScheduleType, j2.Execute());
+                CurrentJobsList.Add(j3.ScheduleType, j3.Execute());
+                CurrentJobsList.Add(j4.ScheduleType, j4.Execute());
+                CurrentJobsList.Add(j5.ScheduleType, j5.Execute());
+                CurrentJobsList.Add(j6.ScheduleType, j6.Execute());
+
             }
             catch (Exception ex)
             {

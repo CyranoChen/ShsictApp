@@ -17,8 +17,8 @@
             });
         });
     </script>
-    <a id="but_back" data-role="button" data-inline="true" data-rel="back"
-        data-transition="slidedown" href="#page1" data-icon="arrow-l"
+     <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+        data-transition="slidedown" href="/Portal" data-icon="arrow-l"
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
         <fieldset data-type="horizontal" data-mini="true">
@@ -27,9 +27,11 @@
     </div>
 }
 
- <div class="ui-body ui-body-d" style="padding:0 10px; margin-bottom:-1px;">
-      <h6>总箱位: @Html.DisplayFor(a => a[0].YD_YARD_SLOT_TOTAL)</h6>
+  <div class="ui-body ui-body-d clearfix zyl-tj">
+      <h4 class="fl">总箱位:</h4><h1 class="fr">@Html.DisplayFor(a => a[0].YD_YARD_SLOT_TOTAL)</h1>
     </div>
+
+
     <ul data-role="listview" class=" zyl"> 
          @{int i = 1;   }  
          @foreach (Shsict.InternalWeb.Models.YardDensity item in Model)

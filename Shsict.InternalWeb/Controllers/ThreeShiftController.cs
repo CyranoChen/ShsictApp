@@ -28,7 +28,7 @@ namespace Shsict.InternalWeb.Controllers
                 ThreeShift FirShifts = new ThreeShift();
                 FirShifts.SHIFT = "1";
                 FirShifts.SHIFTACTUAL = noData;
-                FirShifts.SHIFTCOMPLETERATE = noData;
+                FirShifts.MySHIFTCOMPLETERATE = noData;
                 FirShifts.SHIFTPLAN = noData;
                 FirShifts.SHIFTDATE = DateTime.Parse(id);
                 FirShifts.MyDate = id;
@@ -41,7 +41,7 @@ namespace Shsict.InternalWeb.Controllers
                 ThreeShift SenShifts = new ThreeShift();
                 SenShifts.SHIFT = "2";
                 SenShifts.SHIFTACTUAL = noData;
-                SenShifts.SHIFTCOMPLETERATE = noData;
+                SenShifts.MySHIFTCOMPLETERATE = noData;
                 SenShifts.SHIFTPLAN = noData;
                 SenShifts.SHIFTDATE = DateTime.Parse(id);
                 SenShifts.MyDate = id;
@@ -53,7 +53,7 @@ namespace Shsict.InternalWeb.Controllers
                 ThreeShift TirShifts = new ThreeShift();
                 TirShifts.SHIFT = "3";
                 TirShifts.SHIFTACTUAL = noData;
-                TirShifts.SHIFTCOMPLETERATE = noData;
+                TirShifts.MySHIFTCOMPLETERATE = noData;
                 TirShifts.SHIFTPLAN = noData;
                 TirShifts.SHIFTDATE = DateTime.Parse(id);
                 TirShifts.MyDate = id;

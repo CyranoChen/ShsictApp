@@ -187,7 +187,7 @@ html, body {
 }
 
     .loading .main {
-        background: url(images/loading-640-960.png) left top no-repeat;
+        background: url(images/loading-1136.jpg) left top no-repeat;
         background-size: 100%;
         /*width: 640px;*/
         height: 960px;
@@ -229,7 +229,7 @@ a:link, a:visited, a:hover, a:active {
 }
 /*AD*/
 .banner2 {
-    background: url(images/name2.png) left top no-repeat;
+    background: url(images/name2.jpg) left top no-repeat;
     background-size: 100% 100px;
     height: 100px;
     width: 111%;
@@ -237,19 +237,19 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .banner3 {
-    background: url(images/name.png) left top no-repeat;
+    background: url(images/name.jpg) left top no-repeat;
 }
 
 .banner4 {
-    background: url(images/name4.png) left top no-repeat;
+    background: url(images/name4.jpg) left top no-repeat;
 }
 
 .banner5 {
-    background: url(images/name3.png) left top no-repeat;
+    background: url(images/name3.jpg) left top no-repeat;
 }
 
 .banner6 {
-    background: url(images/name5.png) left top no-repeat;
+    background: url(images/name5.jpg) left top no-repeat;
 }
 
     .banner5 h3, .banner6 h3 {

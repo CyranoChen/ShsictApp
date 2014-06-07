@@ -24,6 +24,7 @@ namespace Shsict.InternalWeb.Models
                 ERRORTIME = dr["ERRORTIME"].ToString();
                 ISSEND = dr["ISSEND"].ToString();
                 MECHANICALNO = dr["MECHANICALNO"].ToString();
+                
             }
             else
             {
@@ -46,6 +47,8 @@ namespace Shsict.InternalWeb.Models
         public string ISSEND { get; set; }
 
         public string MECHANICALNO { get; set; }
+
+        public string SEARCHKEY { get; set; }
         #endregion
 
         public static List<MechanicalError> GetMechanicalErrors()

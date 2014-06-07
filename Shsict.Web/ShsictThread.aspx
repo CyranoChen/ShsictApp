@@ -14,7 +14,7 @@
         </div>
         <div>
             <asp:Label ID="lblThreadStatus" runat="server"></asp:Label>
-            <asp:Label ID="lblThread" runat="server"></asp:Label>
+              <asp:Label ID="lblThread" runat="server"></asp:Label>
         </div>
     </form>
 </body>

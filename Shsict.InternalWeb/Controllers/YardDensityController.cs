@@ -9,15 +9,16 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class YardDensityController : Controller
     {
+        [Authorize(Roles = "SC")]
         public ActionResult Index(string id)
         {
             if (id == null)
             {
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             }
 
-            var _YardDensity = Cache.YardDensityList.FindAll(t => t.YD_ID.Date.Equals(DateTime.Parse(id)));
+            var _YardDensity = Cache.YardDensityList.FindAll(t => t.YD_ID.Date.Equals(DateTime.Parse(id))).OrderBy(t => t.mySort).ToList();
 
             string noData = "暂无数据";
 
@@ -32,7 +33,7 @@ namespace Shsict.InternalWeb.Controllers
                 _YardDensity.Add(yardDensity);
             }
 
-            return View(_YardDensity.ToList());
+            return View(_YardDensity);
         }
 
         public static class Cache

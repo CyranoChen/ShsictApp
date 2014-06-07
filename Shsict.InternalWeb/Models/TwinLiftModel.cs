@@ -31,6 +31,7 @@ namespace Shsict.InternalWeb.Models
                 OPERATECNT = dr["OPERATECNT"].ToString();
                 OPERATERATE = dr["OPERATERATE"].ToString();
                 REPORTDATE = DateTime.Parse(dr["REPORTDATE"].ToString());
+                EFFICIENCY = dr["EFFICIENCY"].ToString();
                 MyDate = REPORTDATE.ToString("yyyy-MM-dd");
             }
             else
@@ -61,23 +62,13 @@ namespace Shsict.InternalWeb.Models
 
         public string OPERATERATE { get; set; }
 
+        public string EFFICIENCY { get; set; }
+
         public DateTime REPORTDATE { get; set; }
 
         public string MyDate { get; set; }
 
         #endregion
-
-        //public void Select()
-        //{
-        //    DataRow dr = Shsict.DataAccess.ThreeShift.GetThreeShiftByID(SID);
-
-        //    if (dr != null)
-        //    {
-        //        InitDailyReport(dr);
-        //    }
-        //}
-
-
 
         public static List<TwinLift> GetTwinLifts()
         {
@@ -94,8 +85,5 @@ namespace Shsict.InternalWeb.Models
 
             return list;
         }
-
-
     }
-
 }

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DailyReport.cs" />
+    <Compile Include="InternalUser.cs" />
     <Compile Include="OnBerth.cs" />
     <Compile Include="OperatePlan.cs" />
     <Compile Include="SendMessage.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="TwinLift.cs" />
     <Compile Include="VesselDepart.cs" />
     <Compile Include="VesselEfficiency.cs" />
+    <Compile Include="Custom\VisitMsg.cs" />
     <Compile Include="YardDensity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

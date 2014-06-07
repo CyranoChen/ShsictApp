@@ -4,32 +4,67 @@
     ViewBag.Title = "双吊具作业情况";
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
-@section Header{  <a id="but_back" data-role="button" data-inline="true" data-rel="back"
-    data-transition="slidedown" href="#page1" data-icon="arrow-l"
-    class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+@section Header{
+    <script type="text/javascript">
+        $(function () {
+            $('input:jqmData(role="datebox")').mobiscroll(opt);
+            $("#SearchBox").change(function () {
+                window.location.href = "/TwinLift/Index/" + $("#SearchBox").val();
+            });
+        });
+    </script>
 
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+        data-transition="slidedown" href="/Portal" data-icon="arrow-l"
+        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
-      
-          <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-                <button data-icon="grid">date</button>
-                <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Import">
-                <label for="radio-choice-c">进口</label>
-                <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Export" checked="checked">
-                <label for="radio-choice-e">出口</label>
-            </fieldset>
-     
+        @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
+
     </div>
 }
-<ul data-role="listview">
-    @foreach (Shsict.InternalWeb.Models.TwinLift item in Model)
-    {
+<ul data-role="listview" class="bigfont">
+    @{   var query = from tl in Model
+                     orderby tl.VESSELNAME descending
+                     group tl by new { tl.VESSELNAME } into vName
+                     select new
+                     {
+                         vName = vName.Key.VESSELNAME
+                     };
+
+         foreach (var nameList in query)
+         {
+             var hrefTo = nameList.vName + "+" + Model[0].MyDate;
+
+             if (nameList.vName != "暂无数据")
+             {            
         <li>
-            <a href="#">
-                <h3>@item.VESSELNAME</h3>
-                <p>总箱量：@item.TOTALCNT |进口： @item.IEFG</p>
-                <p class="ui-li-aside">双吊具效率</p>
+            <a href="/TwinLift/Detail/@hrefTo" target="_top">
+                <h3>@nameList.vName</h3>
+
+                @foreach (Shsict.InternalWeb.Models.TwinLift item in Model)
+                {
+                    if (@item.VESSELNAME == @nameList.vName && @item.IEFG == "I")
+                    {
+                    <p>进口： 总箱量：@item.TOTALCNT | 效率：@item.EFFICIENCY </p>
+                    }
+                }
+                @foreach (Shsict.InternalWeb.Models.TwinLift item in Model)
+                {
+                    if (@item.VESSELNAME == @nameList.vName && @item.IEFG == "E")
+                    {
+                    <p>出口： 总箱量：@item.TOTALCNT | 效率：@item.EFFICIENCY</p>
+                    }
+                }
             </a>
-        </li>  
+        </li>  }
+             else
+             {
+        <li>
+            <h3>暂无数据</h3>
+        </li>
+             }
+         }
     }
 </ul>
+
 

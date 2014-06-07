@@ -14,7 +14,7 @@ namespace Shsict.DataAccess
     {
         public static DataTable GetTwinLifts()
         {
-            string sql = @"SELECT SCD_ID ,VESSELNAME ,IEFG ,TOTALCNT ,CANSTGOPTCNT  ,CANSTGOPTRATE ,STORAGECNT ,STORAGERATE ,OPERATECNT ,OPERATERATE  ,REPORTDATE   
+            string sql = @"SELECT SCD_ID ,VESSELNAME ,IEFG ,TOTALCNT ,CANSTGOPTCNT  ,CANSTGOPTRATE ,STORAGECNT ,STORAGERATE ,OPERATECNT ,OPERATERATE, EFFICIENCY  ,REPORTDATE   
                             FROM  SSICT_DAILYREPORT_TWINLIFT ";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql);
@@ -31,7 +31,7 @@ namespace Shsict.DataAccess
 
         public static DataTable GetTwinLiftByDate(DateTime reportDate)
         {
-            string sql = @"SELECT SCD_ID ,VESSELNAME ,IEFG ,TOTALCNT ,CANSTGOPTCNT  ,CANSTGOPTRATE ,STORAGECNT ,STORAGERATE ,OPERATECNT ,OPERATERATE  ,REPORTDATE   
+            string sql = @"SELECT SCD_ID ,VESSELNAME ,IEFG ,TOTALCNT ,CANSTGOPTCNT  ,CANSTGOPTRATE ,STORAGECNT ,STORAGERATE ,OPERATECNT ,OPERATERATE ,EFFICIENCY ,REPORTDATE   
                             FROM  SSICT_DAILYREPORT_TWINLIFT  WHERE REPORTDATE=to_date(:reportDate,'yyyy-mm-dd')";
 
             OracleParameter[] para = new OracleParameter[1];

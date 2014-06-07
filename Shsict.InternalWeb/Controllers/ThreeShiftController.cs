@@ -11,11 +11,12 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class ThreeShiftController : Controller
     {
+                [Authorize(Roles = "ZY")]
         public ActionResult Index(string id)
         {
             if (id == null)
             {
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             }
 
@@ -81,11 +82,11 @@ namespace Shsict.InternalWeb.Controllers
             {
 
                 ThreeShiftList = ThreeShift.GetContainerMains();
-               
+
             }
 
             public static List<ThreeShift> ThreeShiftList;
-           
+
         }
 
     }

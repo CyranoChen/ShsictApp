@@ -1,7 +1,7 @@
 ﻿@model List<Shsict.InternalWeb.Models.VesselDepart>
 
 @{
-    ViewBag.Title = "靠离泊";
+    ViewBag.Title = "靠离泊情况";
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
 
@@ -24,12 +24,15 @@
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
          @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
+          <div style="float:left">
             <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">        
                 <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Berth">
                 <label for="radio-choice-c">靠泊</label>
                 <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Depart" checked="checked">
                 <label for="radio-choice-e">离泊</label>
             </fieldset>
+                    </div>
+        <div class="fr clearfix zdl"><h6>准点率:</h6><h2>@Model[0].punctualityRate.ToString("0.00")%</h2></div> 
 
     </div>
 }
@@ -41,7 +44,7 @@
             <h3>@item.VSL_CNNAME</h3>
             <p>计划离泊：@item.VBT_PDPTDT </p>
             <p>实际离泊：@item.VBT_ADPTDT</p>
-            <p>完工时间：.VOT_AWKENTM</p>
+            <p>完工时间：@item.VOT_AWKENTM</p>
             <p class="ui-li-aside">@item.VBT_STATUS</p>
         </li>        
     }

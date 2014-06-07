@@ -11,19 +11,20 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class VesselEfficiencyController : Controller
     {
+            [Authorize(Roles = "SC")]
         public ActionResult Index(string id)
         {
             if (id == null)
             {
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             }
 
             var _VesselEfficiency = Cache.VesselEfficiencyList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
-            
+
             string noData = "暂无数据";
 
-            if (_VesselEfficiency.Count==0)
+            if (_VesselEfficiency.Count == 0)
             {
                 VesselEfficiency vesselEfficiency = new VesselEfficiency();
 
@@ -32,7 +33,6 @@ namespace Shsict.InternalWeb.Controllers
                 vesselEfficiency.MyDate = id;
 
                 _VesselEfficiency.Add(vesselEfficiency);
-
             }
 
             return View(_VesselEfficiency.ToList());
@@ -54,11 +54,11 @@ namespace Shsict.InternalWeb.Controllers
             {
 
                 VesselEfficiencyList = VesselEfficiency.GetVesselEfficiencys();
-               
+
             }
 
             public static List<VesselEfficiency> VesselEfficiencyList;
-           
+
         }
 
     }

@@ -11,15 +11,17 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class DailyReportController : Controller
     {
+        [Authorize(Roles = "ZY")]
         public ActionResult Index()
         {
             return RedirectToAction("Day");
         }
 
+        [Authorize(Roles = "ZY")]
         public ActionResult Day(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             var _DailyReports = Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
@@ -36,7 +38,7 @@ namespace Shsict.InternalWeb.Controllers
 
             return View(_DailyReports);
         }
-
+        [Authorize(Roles = "ZY")]
         public ActionResult Month(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -58,7 +60,7 @@ namespace Shsict.InternalWeb.Controllers
 
             return View(_DailyReports);
         }
-
+        [Authorize(Roles = "ZY")]
         public ActionResult Year(string id)
         {
             if (string.IsNullOrEmpty(id))

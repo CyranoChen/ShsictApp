@@ -1,0 +1,62 @@
+﻿@model List<Shsict.InternalWeb.Models.MechanicalError>
+
+@{
+    ViewBag.Title = "未完成维修的机械及故障时间";
+    Layout = "~/Views/Shared/_LayoutPad.cshtml";
+}
+@* <div class="ui-body">
+         @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
+            {
+ <div style="margin:15px auto; border-radius:8px; box-shadow:0 1px 5px rgba(0,0,0,0.3); padding:5px 10px; background-color:#fff;">
+        <h3 style="line-height:30px; font-weight:normal; height:30px;">JOBNO工号</h3>
+        <div style="font-size:11px; border-bottom:#e8e8e8 1px solid;">
+             <p>@item.SENDMESSAGE</p>
+            <p>发送时间：@item.SENDTIME</p>
+            <p>故障时间：@item.ERRORTIME</p>
+            <h4>机械号：@item.MECHANICALNO</h4>
+        </div>
+        <a href="#" style="font-size:11px; ">查看详细</a> </div>
+
+         }
+
+         </div>*@
+<script type="text/javascript">
+    $(function () {
+        $("#SearchBox").change(function () {
+            window.location.href = "/PadMechanicalError/Index/" + $("#SearchBox").val();
+        });
+
+    });
+</script>
+<div class="ui-body">
+    <div class="ui-bar ui-bar-c">
+        <h4>出勤人员资质情况</h4>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+            @Html.TextBoxFor(a => a[0].SEARCHKEY, new { id = "SearchBox", data_role = "datebox" })
+
+        </fieldset>
+    </div>
+    <div class="ui-body-d">
+        <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
+            <thead>
+                <tr>
+                    <th>机械号</th>
+                    <th>发送时间</th>
+                    <th>故障时间</th>
+                    <th>发送内容</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
+                {
+                    <tr>
+                        <th>@item.MECHANICALNO</th>
+                        <td>@item.SENDTIME</td>
+                        <td>@item.ERRORTIME</td>
+                        <td>@item.SENDMESSAGE</td>
+                    </tr>        
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

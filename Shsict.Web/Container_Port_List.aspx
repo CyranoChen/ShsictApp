@@ -66,7 +66,7 @@
                             $itemp.html(itemHtmlp);
 
                             var $itemContant = $item.find("p").next();
-                            var itemHtmlContant = String.format("进港时间：{0}", timeStamp2String(entry.SendPackingListTime));
+                            var itemHtmlContant = String.format("进港时间：{0}", timeStamp2String(entry.ArrivalContainerTime));
 
                             $itemContant.html(itemHtmlContant);
 

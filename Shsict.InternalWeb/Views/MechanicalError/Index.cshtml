@@ -5,11 +5,22 @@
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
 @section Header{
- <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+    <script type="text/javascript">
+        $(function () {
+            $("#SearchBox").change(function () {
+                window.location.href = "/MechanicalError/Index/" + $("#SearchBox").val();
+            });
+        });
+    </script>
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
         data-transition="slidedown" href="/Portal" data-icon="arrow-l"
         class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        @Html.TextBoxFor(a => a[0].SEARCHKEY, new { id = "SearchBox", data_role = "datebox" })
+    </div>
 }
- <div class="ui-body">
+@* <div class="ui-body">
       @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
             {
       <div style="margin:15px auto; border-radius:8px; box-shadow:0 1px 5px rgba(0,0,0,0.3); padding:5px 10px; background-color:#fff;">
@@ -26,4 +37,18 @@
       }
       <div>
       </div>
-    </div>
+    </div>*@
+
+<ul data-role="listview">
+    @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
+    {
+        <li>
+            <h3>@item.MECHANICALNO</h3>
+            <p>发送内容：@item.SENDMESSAGE </p>
+            <p>发送时间：@item.SENDTIME </p>
+            <p>故障时间：@item.ERRORTIME </p>
+
+
+        </li>        
+    }
+</ul>

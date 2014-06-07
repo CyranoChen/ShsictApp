@@ -30,6 +30,32 @@ namespace Shsict.InternalWeb.Models
 
                 MyDate = YD_ID.ToString("yyyy-MM-dd");
                 MyYD_PCT=YD_PCT.ToString("0.##%");
+
+                switch (YD_CNTR_STATUS)
+                {
+                    case "出口箱":
+                        mySort = 1;
+                        break;
+                    case "进口重箱":
+                        mySort = 2;
+                        break;
+                    case "空箱":
+                        mySort = 3;
+                        break;
+                    case "中转箱":
+                        mySort = 4;
+                        break;
+                    case "未占用箱位":
+                        mySort = 5;
+                        break;
+                    case "总占用箱位":
+                        mySort = 6;
+                        break;
+                    default:
+                         mySort = 7;
+                        break;
+                }
+             
             }
             else
             {
@@ -55,6 +81,8 @@ namespace Shsict.InternalWeb.Models
         public string MyDate { get; set; }
 
         public string MyYD_PCT { get; set; }
+
+        public int mySort { get; set; }
         
         #endregion
 

@@ -46,14 +46,10 @@ namespace Shsict.InternalWeb.Models
 
                 ISLATER = dr["ISLATER"].ToString();
 
-                if (!string.IsNullOrEmpty(dr["WKLATER"].ToString()))
-                {
-                    WKLATER = DateTime.Parse(dr["WKLATER"].ToString());
-                }
-                else
-                {
-                    WKLATER = null;
-                }
+                VOT_AWKENTM = dr["VOT_AWKENTM"].ToString();
+
+
+                WKLATER = dr["WKLATER"].ToString();
 
 
                 MyDate = REPORT_DATE.ToString("yyyy-MM-dd");
@@ -79,21 +75,15 @@ namespace Shsict.InternalWeb.Models
 
         public string ISLATER { get; set; }
 
-        public DateTime? WKLATER { get; set; }
+        public string VOT_AWKENTM { get; set; }
+
+        public string WKLATER { get; set; }
 
         public string MyDate { get; set; }
 
+        public double punctualityRate { get; set; }
+
         #endregion
-
-        //public void Select()
-        //{
-        //    DataRow dr = Shsict.DataAccess.ThreeShift.GetThreeShiftByID(SID);
-
-        //    if (dr != null)
-        //    {
-        //        InitDailyReport(dr);
-        //    }
-        //}
 
         public static List<VesselDepart> GetVesselDeparts()
         {

@@ -56,6 +56,9 @@
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -117,7 +120,16 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MechanicalErrorController.cs" />
     <Compile Include="Controllers\OperatePlanController.cs" />
+    <Compile Include="Controllers\PadDailyReportController.cs" />
+    <Compile Include="Controllers\PadMechanicalErrorController.cs" />
+    <Compile Include="Controllers\PadOperatePlanController.cs" />
+    <Compile Include="Controllers\PadThreeShiftController.cs" />
+    <Compile Include="Controllers\PadTruckOperationCycleController.cs" />
+    <Compile Include="Controllers\PadTwinLiftController.cs" />
+    <Compile Include="Controllers\PadVesselAmountController.cs" />
+    <Compile Include="Controllers\PadVesselBerthController.cs" />
     <Compile Include="Controllers\PadVesselEfficiencyController.cs" />
+    <Compile Include="Controllers\PadYardDensityController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Controllers\ThreeShiftController.cs" />
     <Compile Include="Controllers\TruckOperationCycleController.cs" />
@@ -130,6 +142,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DailyReportModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MechanicalErrorModel.cs" />
     <Compile Include="Models\OperatePlanModel.cs" />
     <Compile Include="Models\ThreeShiftModel.cs" />
@@ -366,9 +379,14 @@
     <Content Include="Content\images\icons-svg\user-white.svg" />
     <Content Include="Content\images\icons-svg\video-black.svg" />
     <Content Include="Content\images\icons-svg\video-white.svg" />
+    <Content Include="Content\images\loading-1-1136.jpg" />
+    <Content Include="Content\images\loading-1-640.jpg" />
+    <Content Include="Content\images\loading-1.jpg" />
     <Content Include="Content\themes\PadScreen.css" />
     <Content Include="Content\themes\Screen.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\exporting.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\images\ajax-loader.gif" />
     <Content Include="Scripts\images\icons-18-black.png" />
     <Content Include="Scripts\images\icons-18-white.png" />
@@ -384,6 +402,8 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery.mobile-1.3.2.min.js" />
     <Content Include="Scripts\Time\mobiscroll.custom-2.5.0.min.css" />
+    <Content Include="Scripts\Time\mobiscroll.custom-2.6.2.min.css" />
+    <Content Include="Scripts\Time\mobiscroll.custom-2.6.2.min.js" />
     <Content Include="Scripts\Time\mobiscroll.js" />
     <Content Include="Scripts\Time\PluginDatetime.js" />
     <Content Include="Scripts\Time\wp_icons.png" />
@@ -408,11 +428,8 @@
     <Content Include="Views\VesselAmount\Barge.cshtml" />
     <Content Include="Views\VesselBerth\Berth.cshtml" />
     <Content Include="Views\VesselBerth\Depart.cshtml" />
-    <Content Include="Views\TwinLift\Import.cshtml" />
-    <Content Include="Views\TwinLift\Export.cshtml" />
     <Content Include="Views\PadVesselEfficiency\Index.cshtml" />
     <Content Include="Views\OperatePlan\DayShift.cshtml" />
-    <Content Include="Views\OperatePlan\Index.cshtml" />
     <Content Include="Views\OperatePlan\NightShift.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
   </ItemGroup>
@@ -440,16 +457,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TwinLift\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\VesselEfficiency\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\VesselBerth\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\VesselAmount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\TruckOperationCycle\Index.cshtml" />
@@ -461,16 +469,61 @@
     <Content Include="Views\MechanicalError\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\DailyReport\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Scripts\Jquery.mobile\jquery.mobile-1.3.2.min.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\shsict.pubxml" />
+    <Content Include="Views\PadDailyReport\Day.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadDailyReport\Month.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadDailyReport\Year.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadOperatePlan\DayShift.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadOperatePlan\NightShift.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadThreeShift\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadYardDensity\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadTwinLift\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadVesselBerth\Berth.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadVesselBerth\Depart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadVesselAmount\Barge.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadVesselAmount\Vessel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadTruckOperationCycle\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadMechanicalError\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Shsict.pubxml" />
+    <Content Include="Views\TwinLift\Index.cshtml" />
+    <Content Include="Views\TruckOperationCycle\SortByTruck.cshtml" />
+    <Content Include="Views\TruckOperationCycle\SortByCompTruck.cshtml" />
+    <Content Include="Views\TruckOperationCycle\SortByAvgTruck.cshtml" />
+    <Content Include="Views\TwinLift\Detail.cshtml" />
+    <Content Include="Views\PadYardDensity\Charts.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -488,7 +541,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6069</DevelopmentServerPort>
+          <DevelopmentServerPort>16158</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:10657/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

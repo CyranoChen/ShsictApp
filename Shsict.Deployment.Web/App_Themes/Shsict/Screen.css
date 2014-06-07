@@ -222,11 +222,93 @@ html, body {
     position: absolute;
     bottom: 0;
     width: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
 }
+
+    .icon-springboard a {
+        padding-top: 65px;
+        display: block;
+    }
 
 a:link, a:visited, a:hover, a:active {
     text-decoration: none;
 }
+
+.i_1 {
+    background-image: url(images/icon_1.png);
+}
+
+    .i_1:hover {
+        background-image: url(images/icon_1_1.png);
+    }
+
+.i_2 {
+    background-image: url(images/icon_2.png);
+}
+
+    .i_2:hover {
+        background-image: url(images/icon_2_1.png);
+    }
+
+.i_3 {
+    background-image: url(images/icon_3.png);
+}
+
+    .i_3:hover {
+        background-image: url(images/icon_3_1.png);
+    }
+
+.i_4 {
+    background-image: url(images/icon_4.png);
+}
+
+    .i_4:hover {
+        background-image: url(images/icon_04_1.png);
+    }
+
+.i_5 {
+    background-image: url(images/icon_5.png);
+}
+
+    .i_5:hover {
+        background-image: url(images/icon_5_1.png);
+    }
+
+.i_6 {
+    background-image: url(images/icon_6.png);
+}
+
+    .i_6:hover {
+        background-image: url(images/icon_6_1.png);
+    }
+
+.i_7 {
+    background-image: url(images/icon_7.png);
+}
+
+    .i_7:hover {
+        background-image: url(images/icon_7_1.png);
+    }
+
+.i_8 {
+    background-image: url(images/icon_8.png);
+}
+
+    .i_8:hover {
+        background-image: url(images/icon_8_1.png);
+    }
+
+.i_9 {
+    background-image: url(images/icon_9.png);
+}
+
+    .i_9:hover {
+        background-image: url(images/icon_9_1.png);
+    }
+
+
 /*AD*/
 .banner2 {
     background: url(images/name2.jpg) left top no-repeat;
@@ -389,7 +471,6 @@ a:link, a:visited, a:hover, a:active {
 .ui-listview .ui-li.ui-btn {
     background-image: none;
     border-color: #ccc;
-
 }
 
 .ui-field-contain {
@@ -706,10 +787,10 @@ h3.tit, .ui-li-desc span.going {
 .h30 {
     height: 30px;
 }
-.table-stroke td.multiField span.f16 {
-    font-size:15px;
-}
 
+.table-stroke td.multiField span.f16 {
+    font-size: 15px;
+}
 
 
 @media screen and (max-device-width: 400px) {

@@ -40,6 +40,10 @@ html, .ui-mobile, .ui-mobile body {
 .ui-content .ui-collapsible-set {
 	padding: 5px 5px 15px 5px;
 }
+.ui-content .ui-collapsible-content {
+	padding: 0;
+}
+
 .nav-glyphish-example {
 	font-size: 11px;
 }
@@ -121,53 +125,6 @@ html, .ui-mobile, .ui-mobile body {
 	content: "";
 	clear: both;
 }
-/*.gallery{
-	float: left;
-	width:100%;
-}
-
-
-.gallery-entries{ 
-	list-style:none;
-	padding:0;
-	float: left;
-}
-.gallery-entries .gallery-item{
-	float: left;
-	margin-right:1%;
-	margin-left:3%;
-	margin-bottom:2%;
-}
-.gallery-entries .gallery-item img{
-	-webkit-box-shadow: #999 0 3px 5px;
-	-moz-box-shadow: #999 0 3px 5px;
-	box-shadow: #999 0 3px 5px;
-	border: 1px solid #fff;
-	max-width:100%;
-	width: 80px;
-	height: 80px;
-}
-
-
-.gallery-entries .gallery-item a{
-	font-weight:normal;
-	text-decoration:none;
-}
-
-.gallery-entries .gallery-item a h3{
-	width:80px;
-	white-space:nowrap;
-	font-size:0.5em;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	text-align:center;
-}
-
-.gallery-entries .gallery-item  a:hover h3, .gallery-entries .gallery-item  a:active h3{
-	text-decoration:underline;
-}*/
-
-/* center icons */  
 
 .ui-grid-a {
 	text-align: center;
@@ -347,105 +304,6 @@ h3.tit {
 .detail-list b.ui-table-cell-label {
 	min-width: 32px;
 	border-right:#FC0 1px solid;
-}
-.yn{
-	background: url(images/icon-voyage.png) 10px center no-repeat;
-}
-.i-e{
-	background: url(images/icon-export.png) 10px center no-repeat;
-}
-.arrive-a-t{
-	background: url(images/icon-arrive-actual.png) 10px center no-repeat;
-}
-.arrive-p-t{
-	background: url(images/icon-Arrive-Plan.png) 10px center no-repeat;
-}
-.departure-a-t{
-	background: url(images/icon-Departure-Actual.png) 10px center no-repeat;
-}
-.departure-p-t{
-	background: url(images/icon-Departure-Plan.png) 10px center no-repeat;
-}
-.berth-p{
-	background: url(images/icon-Berth-Plan.png) 10px center no-repeat;
-}
-.berth-a{
-	background: url(images/icon-Berth-Actual.png) 10px center no-repeat;
-}
-.customs-c{
-	background: url(images/icon-IsCustomsClosing.png) 10px center no-repeat;
-}
-.csi{
-	background: url(images/icon-CSI.png) 10px center no-repeat;
-}
-.container-b-t{
-	background: url(images/icon-Container-Begin.png) 10px center no-repeat;
-}
-.container-d-t{
-	background: url(images/icon-Container-Deadline.png) 10px center no-repeat;
-}
-.agency{
-	background: url(images/icon-Agency.png) 10px center no-repeat;
-}
-.port-ID{
-	background: url(images/icon-Port-ID.png) 10px center no-repeat;
-}
-.container-No{
-	background: url(images/icon-Container-No.png) 10px center no-repeat;
-}
-.arrive-t{
-	background: url(images/icon-Arrive-Time.png) 10px center no-repeat;
-}
-.arrive-type{
-	background: url(images/icon-Arrive-Type.png) 10px center no-repeat;
-}
-.departure-t{
-	background: url(images/icon-Departure-Time.png) 10px center no-repeat;
-}
-.departure-type{
-	background: url(images/icon-Departure-Type.png) 10px center no-repeat;
-}
-.customs-clearance{
-	background: url(images/icon-Customs-Clearance.png) 10px center no-repeat;
-}
-.vessel-ID{
-	background: url(images/icon-Vessel-ID.png) 10px center no-repeat;
-}
-.arrival-c-t{
-	background: url(images/icon-ArrivalContainer-Time.png) 10px center no-repeat;
-}
-.customs-c-t{
-	background: url(images/icon-CustomsClearance-Time.png) 10px center no-repeat;
-}
-.stowage-t{
-	background: url(images/icon-Stowage-Time.png) 10px center no-repeat;
-}
-.vessel-t{
-	background: url(images/icon-Vessel-Time.png) 10px center no-repeat;
-}
-.plan-t{
-	background: url(images/icon-Plan-Time.png) 10px center no-repeat;
-}
-.plan-a-t{
-	background: url(images/icon-PlanAccepted-Time.png) 10px center no-repeat;
-}
-.plan-arrange-t{
-	background: url(images/icon-PlanAarrange-Time.png) 10px center no-repeat;
-}
-.lading-NO{
-	background: url(images/icon-BillOfLading-Num.png) 10px center no-repeat;
-}
-.arrival-port-t{
-	background: url(images/icon-ArrivalPort-Time.png) 10px center no-repeat;
-}
-.send-p-t{
-	background: url(images/icon-SendPackingList-Time.png) 10px center no-repeat;
-}
-.arrive-y-t{
-	background: url(images/icon-ArriveYard-Time.png) 10px center no-repeat;
-}
-.departure-y-t{
-	background: url(images/icon-DepartureYard-Time.png) 10px center no-repeat;
 }
 
 
@@ -646,4 +504,67 @@ h3.tit {
 
 .ui-collapsible-content th{
 	padding-left:8px;
+}
+
+.index-nw .ui-content .ui-collapsible-set, ui-panel{
+	padding:0;
+}
+.index-nw .ui-collapsible-heading .ui-btn{
+	height:90px;
+	color:#fff;
+}
+.index-nw .ui-collapsible-heading .ui-btn:hover{
+	color:#fff;
+}
+.index-nw .bg1 .ui-btn{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #b3c34e), color-stop(1, #81981d));
+	border-top:#dae2a9 1px solid;
+}
+.index-nw .bg1 .ui-btn:hover{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #81981d), color-stop(1, #b3c34e));
+}
+.index-nw .bg2 .ui-btn{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #70cad6), color-stop(1, #37a2b5));
+	border-top:#b9e5eb 1px solid;
+}
+.index-nw .bg2 .ui-btn:hover{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #37a2b5), color-stop(1, #70cad6));
+}
+.index-nw .bg3 .ui-btn{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f0ba4e), color-stop(1, #e28b1d));
+	border-top:#f8dda8 1px solid;
+}
+.index-nw .bg3 .ui-btn:hover{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e28b1d), color-stop(1, #f0ba4e));
+}
+.index-nw .bg4 .ui-btn{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c8a1cd), color-stop(1, #a06aa7));
+	border-top:#e5d1e7 1px solid;
+}
+.index-nw .bg4 .ui-btn:hover{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #a06aa7), color-stop(1, #c8a1cd));
+}
+.index-nw .bg5 .ui-btn{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #72b9f0), color-stop(1, #398ae2));
+	border-top:#baddf8 1px solid;
+}
+.index-nw .bg5 .ui-btn:hover{
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #398ae2), color-stop(1, #72b9f0));
+}
+.index-nw h2 a{
+	line-height:3em;
+}
+.index-nw h2 span{
+	text-shadow:none;
+	font-size:.8em;
+	font-weight:normal;
+}
+.p3-15{
+	padding:15px 15px 0 15px;
+}
+.p3-10{
+	padding:8px 17px 0 15px;
+}
+.plr15 {
+    padding: 0 15px;
 }

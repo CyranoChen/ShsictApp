@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 using Shsict.Scheduler;
 
@@ -12,12 +17,12 @@ namespace Shsict.Web
 
             if (SchedulerManager.CurrentJobsList != null)
             {
-                if (SchedulerManager.CurrentJobsList.Count > 0)
+                if (SchedulerManager.CurrentJobsList.Count >0)
                 {
                     btnStart.Enabled = false;
                     foreach (KeyValuePair<string, System.Threading.Timer> item in SchedulerManager.CurrentJobsList)
                     {
-                        lblThread.Text = lblThread.Text + "\r\n" + item.Key + "Has Open";
+                        lblThread.Text = lblThread.Text + "\r\n" + item.Key+"Has Open";
                     }
                 }
             }

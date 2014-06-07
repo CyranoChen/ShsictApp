@@ -40,9 +40,10 @@ namespace Shsict.InternalWeb.Models
         public double AVEPERIOD { get; set; }
 
         public string CURRENTINSTRUCTION { get; set; }
+
+        public int Sort { get; set; }
       
         #endregion
-
 
         public static List<TruckOperationCycle> GetTruckOperationCycles()
         {

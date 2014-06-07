@@ -9,24 +9,37 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class MechanicalErrorController : Controller
     {
-        //
-        // GET: /MechanicalError/
-
-        public ActionResult Index()
+          [Authorize(Roles = "JX")]
+        public ActionResult Index(string id)
         {
-            var _MechanicalError = Cache.MechanicalErrorList;
+            List<MechanicalError> _MechanicalError;
+
+            if (id != null)
+            {
+                _MechanicalError = Cache.MechanicalErrorList.FindAll(t => t.MECHANICALNO.ToUpper().Contains(id.ToUpper()));
+
+            }
+            else
+            {
+                _MechanicalError = Cache.MechanicalErrorList;
+            }
+
             string noData = "暂无数据";
 
-            if (_MechanicalError == null)
+            if (_MechanicalError == null || _MechanicalError.Count == 0)
             {
                 MechanicalError mechanicalError = new MechanicalError();
 
-                mechanicalError.JobNo = noData;
-               
-                _MechanicalError.Add(mechanicalError);                        
+                mechanicalError.MECHANICALNO = noData;
+
+                _MechanicalError.Add(mechanicalError);
             }
+
+
+            _MechanicalError[0].SEARCHKEY = id;
             return View(_MechanicalError.ToList());
         }
+
         public static class Cache
         {
             static Cache()

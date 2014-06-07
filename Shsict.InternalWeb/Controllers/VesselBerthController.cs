@@ -11,11 +11,13 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class VesselBerthController : Controller
     {
+                  [Authorize(Roles = "SC")]
         public ActionResult Index()
         {
             return RedirectToAction("Berth");
         }
 
+            [Authorize(Roles = "SC")]
         public ActionResult Berth(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -32,20 +34,26 @@ namespace Shsict.InternalWeb.Controllers
                 vesselBerth.VSL_CNNAME = noData;
                 vesselBerth.REPORT_DATE = DateTime.Parse(id);
                 vesselBerth.MyDate = id;
+                vesselBerth.punctualityRate = 100;
 
                 _VesselBerth.Add(vesselBerth);
 
             }
+            else
+            {
+                double count = (from v in _VesselBerth where v.VBT_STATUS == "准" select v.VBT_STATUS).Count();
+       
+                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count*100;
+            }
 
             return View(_VesselBerth.ToList());
-
         }
 
+            [Authorize(Roles = "SC")]
         public ActionResult Depart(string id)
         {
             if (string.IsNullOrEmpty(id))
                 id = DateTime.Now.ToString("yyyy-MM-dd");
-
 
             var _VesselBerth = Cache.VesselDepartList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
@@ -58,9 +66,15 @@ namespace Shsict.InternalWeb.Controllers
                 vesselDepart.VSL_CNNAME = noData;
                 vesselDepart.REPORT_DATE = DateTime.Parse(id);
                 vesselDepart.MyDate = id;
+                vesselDepart.punctualityRate = 100;
 
                 _VesselBerth.Add(vesselDepart);
+            }
+            else
+            {
+                double count = (from v in _VesselBerth where v.VBT_STATUS == "准" select v.VBT_STATUS).Count();
 
+                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;           
             }
 
             return View(_VesselBerth.ToList());

@@ -83,6 +83,8 @@ namespace Shsict.InternalWeb.Models
 
         public string MyDate { get; set; }
 
+        public double punctualityRate { get; set; }
+
         #endregion
 
         //public void Select()

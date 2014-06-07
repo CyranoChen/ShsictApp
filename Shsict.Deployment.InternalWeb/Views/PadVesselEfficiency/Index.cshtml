@@ -1,82 +1,45 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model List<Shsict.InternalWeb.Models.VesselEfficiency>
+
+@{
+    ViewBag.Title = "船舶效率";
     Layout = "~/Views/Shared/_LayoutPad.cshtml";
 }
+<script type="text/javascript">
+    $(function () {
+        $('input:jqmData(role="datebox")').mobiscroll(opt);
+        $("#SearchBox").change(function () {
+            window.location.href = "/PadVesselEfficiency/Index/" + $("#SearchBox").val();
+        });
+    });
+</script>
 
 <div class="ui-body">
-    <div data-role="collapsible" class="ui-corner-all custom-corners ui-shadow" data-collapsed="false">
-        <h4>驳船作业</h4>
+    <div class="ui-bar ui-bar-c">
+        <h4>船舶效率</h4>
+        @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
+    </div>
+    <div class="ui-body-d">
         <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
             <thead>
-                <tr class="th-groups">
-                    <th></th>
-                    <th colspan="3">上昼夜</th>
-                    <th colspan="3">第一班</th>
-                    <th colspan="3">本月</th>
-                    <th colspan="3">本年</th>
-                </tr>
                 <tr>
-                    <th>驳船</th>
-                    <th>计划箱量</th>
-                    <th>实际箱量</th>
-                    <th>穿梭巴士</th>
-                    <th>计划箱量</th>
-                    <th>实际箱量</th>
-                    <th>穿梭巴士</th>
-                    <th>计划箱量</th>
-                    <th>实际箱量</th>
-                    <th>穿梭巴士</th>
-                    <th>计划箱量</th>
-                    <th>实际箱量</th>
-                    <th>穿梭巴士</th>
+                    <th>船名</th>
+                    <th>净台时量</th>
+                    <th>前三月平均效率</th>
+                    <th>计划毛效率</th>
+                    <th>毛台时量</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th>2442</th>
-                    <td>2,898</td>
-                    <td>739</td>
-                    <td>-5.8%</td>
-                    <td>3,647</td>
-                    <td>1,354</td>
-                    <td>+5.8%</td>
-                    <td>4,981</td>
-                    <td>2,246</td>
-                    <td>+13.4%</td>
-                    <td>3,457</td>
-                    <td>1,259</td>
-                    <td>-3.9%</td>
-                </tr>
-                <tr>
-                    <th>1133</th>
-                    <td>2,898</td>
-                    <td>739</td>
-                    <td>-5.8%</td>
-                    <td>3,647</td>
-                    <td>1,354</td>
-                    <td>+5.8%</td>
-                    <td>4,981</td>
-                    <td>2,246</td>
-                    <td>+13.4%</td>
-                    <td>3,457</td>
-                    <td>1,259</td>
-                    <td>-3.9%</td>
-                </tr>
-                <tr>
-                    <th>NYC</th>
-                    <td>2,898</td>
-                    <td>739</td>
-                    <td>-5.8%</td>
-                    <td>3,647</td>
-                    <td>1,354</td>
-                    <td>+5.8%</td>
-                    <td>4,981</td>
-                    <td>2,246</td>
-                    <td>+13.4%</td>
-                    <td>3,457</td>
-                    <td>1,259</td>
-                    <td>-3.9%</td>
-                </tr>
+                @foreach (Shsict.InternalWeb.Models.VesselEfficiency item in Model)
+                {
+                    <tr>
+                        <th>@item.VSL_CNNAME</th>
+                        <td>@item.QCNETTM</td>
+                        <td>@item.AVGEFF</td>
+                        <td>@item.ABTHNO</td>
+                        <td>@item.QCOPTM</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

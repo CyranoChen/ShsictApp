@@ -17,7 +17,7 @@
 <div class="ui-body">
     <div class="ui-bar ui-bar-c">
         <h4>出勤人员资质情况</h4>
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false">
             @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
             <input type="radio" name="radio-choice-b" id="radio-choice-c" value="DayShift" checked="checked">
             <label for="radio-choice-c">日班</label>
@@ -34,7 +34,9 @@
                     <th>桥边</th>
                     <th>喊勾</th>
                     <th>辅助工</th>
-
+                    <th>其他</th>
+                    <th>总人数</th>
+                    <th>出勤差异</th>
                 </tr>
             </thead>
             <tbody>

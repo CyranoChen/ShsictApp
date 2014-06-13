@@ -39,8 +39,8 @@
                             if (status == "success" && data != null) {
                                 if (data == "True") {
                                     $("#btnFavorite").find("span.ui-btn-text").text("已关注");
-                                    $("#btnFavorite").addClass("ui-btn-up-e").button();
-                                    $("#btnFavorite").removeClass("ui-btn-up-b").button();
+                                    $("#btnFavorite").addClass("fav2").button();
+                                    $("#btnFavorite").removeClass("fav").button();
 
                                     $("#btnFavorite").click(function () {
                                         if ($.cookie('uid') != null) {
@@ -48,9 +48,10 @@
                                                 if (status == "success" && data != null) {
                                                     if (data == "True") {
                                                         $("#btnFavorite").find("span.ui-btn-text").text("关注");
-                                                        $("#btnFavorite").addClass("ui-btn-up-b").button();
-                                                        $("#btnFavorite").removeClass("ui-btn-up-e").button();
+                                                        $("#btnFavorite").addClass("fav").button();
+                                                        $("#btnFavorite").removeClass("fav2").button();
                                                         $("#popupInfo p").text("已从收藏夹删除");
+                                                        location.reload();
                                                     }
                                                     else {
                                                         $("#popupInfo p").text("失败，错误信息：" + data);
@@ -76,9 +77,10 @@
                                                 if (status == "success" && data != null) {
                                                     if (data == "success") {
                                                         $("#btnFavorite").find("span.ui-btn-text").text("已关注");
-                                                        $("#btnFavorite").addClass("ui-btn-up-e").button();
-                                                        $("#btnFavorite").removeClass("ui-btn-up-b").button();
+                                                        $("#btnFavorite").addClass("fav2").button();
+                                                        $("#btnFavorite").removeClass("fav").button();
                                                         $("#popupInfo p").text("已添加到收藏夹");
+                                                        location.reload();
                                                     }
                                                     else {
                                                         $("#popupInfo p").text("失败，错误信息：" + data);
@@ -113,15 +115,16 @@
                 <h6>
                     <asp:Label ID="lbltitle" runat="server" CssClass="toptitle"></asp:Label>
                 </h6>
-                <asp:HyperLink ID="btnBack" runat="server" CssClass="ui-btn-left but_back"></asp:HyperLink>
-                <asp:HyperLink ID="btnRefreshCount" runat="server">0</asp:HyperLink>
 
-                <a id="btnFavorite" href="#popupInfo" style="display: none;" data-role="button" data-iconpos="notext" data-theme="b" data-icon="star" data-rel="popup" data-transition="pop" data-position-to="window"></a>
+                <asp:HyperLink ID="btnBack" runat="server" CssClass="back"></asp:HyperLink>
+                <asp:HyperLink ID="btnRefreshCount" runat="server" CssClass="refresh">0</asp:HyperLink>
+
+                <a id="btnFavorite" href="#popupInfo" style="display: none;" data-iconpos="notext" data-theme="b" class="fav" data-rel="popup" data-transition="pop" data-position-to="window"></a>
 
 
-                <asp:LinkButton ID="btnRefreshNotice" runat="server" OnClick="btnRefreshNotice_Click">刷新</asp:LinkButton>
+                <asp:LinkButton ID="btnRefreshNotice" runat="server" OnClick="btnRefreshNotice_Click" CssClass="refresh">刷新</asp:LinkButton>
 
-                <asp:LinkButton ID="btnRefreshFavourite" runat="server" OnClick="btnRefreshFavourite_Click">刷新</asp:LinkButton>
+                <asp:LinkButton ID="btnRefreshFavourite" runat="server" OnClick="btnRefreshFavourite_Click" CssClass="refresh">刷新</asp:LinkButton>
 
 
 
@@ -138,7 +141,7 @@
             <asp:Label ID="lblObjectID" runat="server" CssClass="ObjectID"></asp:Label>
 
             <asp:Label ID="lblObjectType" runat="server" CssClass="ObjectType"></asp:Label>
-        
+
             <uc2:ShsictFooter runat="server" ID="ctrlFooter" />
         </div>
     </form>

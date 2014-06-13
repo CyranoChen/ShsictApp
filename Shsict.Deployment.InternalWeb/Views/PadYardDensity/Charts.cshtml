@@ -163,10 +163,10 @@
 
 <div class="ui-bar ui-bar-c">
     <h4>双吊具作业情况</h4>
-   
+           <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false" class="fr">
         @Html.TextBoxFor(a => a[1].MyDate, new { id = "SearchBox", data_role = "datebox" })
-        <a href="/PadYardDensity/Index/@Model[1].MyDate" target="_top">树形界面</a>
-   
+        <a href="/PadYardDensity/Index/@Model[1].MyDate" target="_top" class="grid"></a>
+   </fieldset>
 </div>
 <div class="ui-body-d">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

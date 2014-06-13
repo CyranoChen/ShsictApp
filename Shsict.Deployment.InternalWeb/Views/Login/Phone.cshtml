@@ -56,8 +56,10 @@
                         url: "/Login/LogOff",
                         type: "post",
                         success: function (msg) {
-                            if (msg == "success")
+                            if (msg == "success") {
+                                window.location.href = "/Login/Phone";
                                 $("#errorMsg").text("登出成功");
+                            }
                             else
                                 $("#errorMsg").css("display", "block");
                             $("#errorMsg").text("登出失败");
@@ -90,7 +92,7 @@
                         @Html.PasswordFor(m => m.SUR_PASSWORD, new { name = "pass", type = "password", id = "pw", placeholder = "password", data_theme = "b" })
                         @Html.ValidationMessageFor(m => m.SUR_PASSWORD)
                         <button type="submit" class="ui-btn ui-corner-all ui-shadow" id="loginBtn">登录</button>
-                        <button type="submit" class="ui-btn ui-corner-all ui-shadow" id="LogOff">注销</button>
+                        <button type="submit" class="ui-btn ui-corner-all ui-shadow" id="LogOffBtn">注销</button>
                     </div>
                    
                     @Html.ValidationSummary(true)                  

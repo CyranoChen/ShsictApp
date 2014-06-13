@@ -17,13 +17,13 @@ namespace Shsict.InternalWeb.Controllers
             return RedirectToAction("Berth");
         }
 
-                [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Berth(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
-            var _VesselBerth = Cache.VesselBerthList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
+            var _VesselBerth = VesselBerthController.Cache.VesselBerthList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
             string noData = "暂无数据";
 
@@ -34,23 +34,29 @@ namespace Shsict.InternalWeb.Controllers
                 vesselBerth.VSL_CNNAME = noData;
                 vesselBerth.REPORT_DATE = DateTime.Parse(id);
                 vesselBerth.MyDate = id;
-
+                vesselBerth.punctualityRate = 100;
                 _VesselBerth.Add(vesselBerth);
 
+            }
+            else
+            {
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") select v.VBT_STATUS).Count();
+
+                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;
             }
 
             return View(_VesselBerth.ToList());
 
         }
 
-                [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Depart(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
 
-            var _VesselBerth = Cache.VesselDepartList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
+            var _VesselBerth = VesselBerthController.Cache.VesselDepartList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
             string noData = "暂无数据";
 
@@ -61,36 +67,20 @@ namespace Shsict.InternalWeb.Controllers
                 vesselDepart.VSL_CNNAME = noData;
                 vesselDepart.REPORT_DATE = DateTime.Parse(id);
                 vesselDepart.MyDate = id;
-
+                vesselDepart.punctualityRate = 100;
                 _VesselBerth.Add(vesselDepart);
 
             }
+            else
+            {
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") select v.VBT_STATUS).Count();
+
+                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;
+            }
+
 
             return View(_VesselBerth.ToList());
 
-        }
-
-
-        public static class Cache
-        {
-            static Cache()
-            {
-                InitCache();
-            }
-
-            public static void RefreshCache()
-            {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-                VesselBerthList = VesselBerth.GetVesselBerths();
-                VesselDepartList = VesselDepart.GetVesselDeparts();
-            }
-
-            public static List<VesselBerth> VesselBerthList;
-            public static List<VesselDepart> VesselDepartList;
         }
 
     }

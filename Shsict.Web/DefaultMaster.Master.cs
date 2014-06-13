@@ -32,13 +32,13 @@ namespace Shsict.Web
 
             //Button Back
             btnBack.Visible = BtnBackVisible;
-            btnBack.Attributes["data-role"] = "button";
-            btnBack.Attributes["data-inline"] = "true";
+            //btnBack.Attributes["data-role"] = "button";
+            //btnBack.Attributes["data-inline"] = "true";
 
-            btnBack.Attributes["data-transition"] = "slidedown";
-            btnBack.Attributes["data-icon"] = "arrow-l";
-            btnBack.Attributes["data-iconpos"] = "notext";
-            btnBack.Attributes["data-mini"] = "true";
+            //btnBack.Attributes["data-transition"] = "slidedown";
+            //btnBack.Attributes["data-icon"] = "arrow-l";
+            //btnBack.Attributes["data-iconpos"] = "notext";
+            //btnBack.Attributes["data-mini"] = "true";
 
             if (IsBtnBack)
             {
@@ -56,18 +56,18 @@ namespace Shsict.Web
 
             btnRefreshFavourite.Visible = BtnRefreshFavouriteVisible;
 
-            btnRefreshCount.Attributes["data-role"] = "button";
-            btnRefreshCount.Attributes["data-icon"] = "refresh";
+            //btnRefreshCount.Attributes["data-role"] = "button";
+            //btnRefreshCount.Attributes["data-icon"] = "refresh";
             //btnRefreshCount.Attributes["data-iconpos"] = "notext";
 
             btnRefreshCount.Visible = BtnRefreshCountVisible;
 
             btnRefreshNotice.Attributes["data-role"] = "button";
             btnRefreshNotice.Attributes["data-iconpos"] = "notext";
-            btnRefreshNotice.Attributes["data-icon"] = "refresh";
+            //btnRefreshNotice.Attributes["data-icon"] = "refresh";
             btnRefreshFavourite.Attributes["data-role"] = "button";
             btnRefreshFavourite.Attributes["data-iconpos"] = "notext";
-            btnRefreshFavourite.Attributes["data-icon"] = "refresh";
+            //btnRefreshFavourite.Attributes["data-icon"] = "refresh";
             #endregion
 
             //Hide Lable ObjectContent && ObjectID

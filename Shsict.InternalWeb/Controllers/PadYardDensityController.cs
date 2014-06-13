@@ -9,7 +9,7 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class PadYardDensityController : Controller
     {
-                [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Index(string id)
         {
             if (id == null)
@@ -18,7 +18,7 @@ namespace Shsict.InternalWeb.Controllers
 
             }
 
-            var _YardDensity = Cache.YardDensityList.FindAll(t => t.YD_ID.Date.Equals(DateTime.Parse(id))).OrderBy(t => t.mySort).ToList();
+            var _YardDensity = YardDensityController.Cache.YardDensityList.FindAll(t => t.YD_ID.Date.Equals(DateTime.Parse(id))).OrderBy(t => t.mySort).ToList();
 
             string noData = "暂无数据";
 
@@ -35,7 +35,7 @@ namespace Shsict.InternalWeb.Controllers
 
             return View(_YardDensity.ToList());
         }
-                [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Charts(string id)
         {
             if (id == null)
@@ -44,21 +44,9 @@ namespace Shsict.InternalWeb.Controllers
 
             }
 
-            var _YardDensity = Cache.YardDensityList.FindAll(t => t.YD_ID.Date.Equals(DateTime.Parse(id)));
+            var _YardDensity = YardDensityController.Cache.YardDensityList.FindAll(t => t.YD_ID.Date.Equals(DateTime.Parse(id)));
 
             string noData = "暂无数据";
-
-            //if (_YardDensity.Count == 0)
-            //{
-            //    YardDensity yardDensity = new YardDensity();
-
-            //    yardDensity.YD_CNTR_STATUS = noData;
-            //    yardDensity.YD_ID = DateTime.Parse(id);
-            //    yardDensity.MyDate = id;
-            //    yardDensity.mySort = 0;
-
-            //    _YardDensity.Add(yardDensity);
-            //}
 
             Dictionary<int, YardDensity> myYardDensity = new Dictionary<int, YardDensity>();
 
@@ -70,14 +58,14 @@ namespace Shsict.InternalWeb.Controllers
                 }
             }
 
-
             YardDensity yardDensity = new YardDensity();
             yardDensity.YD_CNTR_STATUS = noData;
             yardDensity.YD_ID = DateTime.Parse(id);
             yardDensity.MyDate = id;
             yardDensity.mySort = 0;
             yardDensity.YD_SAC_SUM = yardDensity.YD_YARD_SLOT_SUM = yardDensity.YD_YARD_SLOT_TOTAL = "0";
-            yardDensity.YD_PCT=0;
+            yardDensity.YD_PCT = 0;
+
             for (int i = 1; i <= 7; i++)
             {
                 if (!myYardDensity.ContainsKey(i))
@@ -87,29 +75,6 @@ namespace Shsict.InternalWeb.Controllers
             }
 
             return View(myYardDensity);
-        }
-        
-        public static class Cache
-        {
-            static Cache()
-            {
-                InitCache();
-            }
-
-            public static void RefreshCache()
-            {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-
-                YardDensityList = YardDensity.GetYardDensitys();
-
-            }
-
-            public static List<YardDensity> YardDensityList;
-
         }
 
     }

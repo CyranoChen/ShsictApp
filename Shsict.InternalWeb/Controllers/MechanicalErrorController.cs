@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using Shsict.InternalWeb.Models;
+using System.Web.Security;
 namespace Shsict.InternalWeb.Controllers
 {
     public class MechanicalErrorController : Controller
@@ -13,15 +14,17 @@ namespace Shsict.InternalWeb.Controllers
         public ActionResult Index(string id)
         {
             List<MechanicalError> _MechanicalError;
+            string user = this.HttpContext.Request.RequestContext.HttpContext.User.Identity.Name;
 
             if (id != null)
             {
-                _MechanicalError = Cache.MechanicalErrorList.FindAll(t => t.MECHANICALNO.ToUpper().Contains(id.ToUpper()));
+                _MechanicalError = Cache.MechanicalErrorList.FindAll(t => t.MECHANICALNO.ToUpper().Contains(id.ToUpper()) && t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
 
             }
             else
             {
-                _MechanicalError = Cache.MechanicalErrorList;
+                _MechanicalError = Cache.MechanicalErrorList.FindAll(t => t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
+            
             }
 
             string noData = "暂无数据";
@@ -39,6 +42,19 @@ namespace Shsict.InternalWeb.Controllers
             _MechanicalError[0].SEARCHKEY = id;
             return View(_MechanicalError.ToList());
         }
+          public void Update(string id)
+          {
+              if (id != null)
+              {
+                  MechanicalError.UpdateMechanicalError(id.Trim());
+                  MechanicalErrorController.Cache.RefreshCache();
+                  Response.Write("success");
+              }
+              else
+              {
+                  Response.Write("error");
+              }
+          }
 
         public static class Cache
         {

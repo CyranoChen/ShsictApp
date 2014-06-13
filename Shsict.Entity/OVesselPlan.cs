@@ -98,6 +98,9 @@ namespace Shsict.Entity
                     case "离港":
                         Status = "O";
                         break;
+                    case "离泊":
+                        Status = "O";
+                        break;
                     case "计划":
                         Status = "P";
                         break;

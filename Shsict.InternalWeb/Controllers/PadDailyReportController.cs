@@ -23,7 +23,7 @@ namespace Shsict.InternalWeb.Controllers
             if (string.IsNullOrEmpty(id))
                 id = DateTime.Now.ToString("yyyy-MM-dd");
 
-            var _DailyReports = Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
+            var _DailyReports = DailyReportController.Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
 
             if (_DailyReports == null)
@@ -46,7 +46,7 @@ namespace Shsict.InternalWeb.Controllers
                 id = DateTime.Now.ToString("yyyy-MM-dd");
 
 
-            var _DailyReports = Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
+            var _DailyReports =DailyReportController.Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
 
             if (_DailyReports == null)
@@ -68,7 +68,7 @@ namespace Shsict.InternalWeb.Controllers
             if (string.IsNullOrEmpty(id))
                 id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
-            var _DailyReports = Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
+            var _DailyReports = DailyReportController.Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
             if (_DailyReports == null)
             {
@@ -110,29 +110,5 @@ namespace Shsict.InternalWeb.Controllers
             return _DailyReports;
 
         }
-
-        public static class Cache
-        {
-            static Cache()
-            {
-                InitCache();
-            }
-
-            public static void RefreshCache()
-            {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-
-                DailyReportList = DailyReport.GetContainerMains();
-
-            }
-
-            public static List<DailyReport> DailyReportList;
-
-        }
-
     }
 }

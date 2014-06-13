@@ -108,7 +108,6 @@ namespace Shsict.InternalWeb.Controllers
             return _DailyReports;
 
         }
-
         public static class Cache
         {
             static Cache()
@@ -131,6 +130,6 @@ namespace Shsict.InternalWeb.Controllers
             public static List<DailyReport> DailyReportList;
 
         }
-
     }
+  
 }

@@ -11,34 +11,9 @@ namespace Shsict.InternalWeb.Controllers
     public class TruckOperationCycleController : Controller
     {
         [Authorize(Roles = "ZYL")]
-        public ActionResult Index(string id = "25")
+        public ActionResult Index()
         {
-            int i = 25;
-
-            List<TruckOperationCycle> _TruckOperationCycles;
-
-            if (int.TryParse(id, out  i))
-            {
-                _TruckOperationCycles = Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= i);
-            }
-            else
-            {
-                _TruckOperationCycles = Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= 25);
-
-            }
-
-            if (_TruckOperationCycles == null)
-            {
-                string noData = "暂无数据";
-
-                TruckOperationCycle truckOperationCycle = new TruckOperationCycle();
-                truckOperationCycle.COMPLETETRUCKNUM = noData;
-
-                _TruckOperationCycles.Add(truckOperationCycle);
-
-            }
-
-            return View(_TruckOperationCycles.ToList());
+            return RedirectToAction("SortByTruck");
         }
 
         [Authorize(Roles = "ZYL")]

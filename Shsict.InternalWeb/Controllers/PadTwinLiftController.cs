@@ -11,13 +11,13 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class PadTwinLiftController : Controller
     {
-           [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Index(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
-            List<TwinLift> _twinLift = Cache.TwinLiftList.FindAll(t => t.REPORTDATE.Equals(DateTime.Parse(id)));
+            List<TwinLift> _twinLift = TwinLiftController.Cache.TwinLiftList.FindAll(t => t.REPORTDATE.Equals(DateTime.Parse(id)));
 
             string noData = "暂无数据";
 
@@ -34,31 +34,6 @@ namespace Shsict.InternalWeb.Controllers
 
             _twinLift[0].MyDate = id;
             return View(_twinLift.ToList());
-        }
-
-       
-
-        public static class Cache
-        {
-            static Cache()
-            {
-                InitCache();
-            }
-
-            public static void RefreshCache()
-            {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-
-                TwinLiftList = TwinLift.GetTwinLifts();
-
-            }
-
-            public static List<TwinLift> TwinLiftList;
-
         }
 
     }

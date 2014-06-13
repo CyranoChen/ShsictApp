@@ -90,10 +90,10 @@
                     <div class=" ui-corner-all ui-shadow con">
                         <h3>用户登录</h3>
                         <label for="lblun" class="ui-hidden-accessible">Username:</label>
-                        <asp:TextBox ID="tbun" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbun" runat="server" data-theme="b"></asp:TextBox>
 
                         <label for="lblpw" class="ui-hidden-accessible">Password:</label>
-                        <input type="password" id="tbpass" />
+                        <input type="password" id="tbpass" data-theme="b" />
 
                         <button id="btnLogin" data-role="button" data-inline="true" onclick="return false;">登录</button>
                         <button id="btnLogout" data-role="button" data-inline="true" onclick="return false;">登出 </button>

@@ -66,6 +66,11 @@ namespace Shsict.InternalWeb.Models
 
             return list;
         }
+        public static void UpdateMechanicalError(string id)
+        {
+            Shsict.DataAccess.SendMessage.UpdateSendMessages(id);
+           
+        }
 
     }
 

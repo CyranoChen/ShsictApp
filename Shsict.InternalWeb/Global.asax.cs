@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shsict.InternalWeb.Scheduler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -35,8 +36,11 @@ namespace Shsict.InternalWeb
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+
+            SchedulerManager.Start();
         }
-     
-         
+
+
     }
 }

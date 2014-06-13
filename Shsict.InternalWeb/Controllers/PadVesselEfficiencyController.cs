@@ -20,7 +20,7 @@ namespace Shsict.InternalWeb.Controllers
 
             }
 
-            var _VesselEfficiency = Cache.VesselEfficiencyList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
+            var _VesselEfficiency = VesselEfficiencyController.Cache.VesselEfficiencyList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
             string noData = "暂无数据";
 
@@ -39,28 +39,7 @@ namespace Shsict.InternalWeb.Controllers
             return View(_VesselEfficiency.ToList());
         }
 
-        public static class Cache
-        {
-            static Cache()
-            {
-                InitCache();
-            }
 
-            public static void RefreshCache()
-            {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-
-                VesselEfficiencyList = VesselEfficiency.GetVesselEfficiencys();
-
-            }
-
-            public static List<VesselEfficiency> VesselEfficiencyList;
-
-        }
 
     }
 }

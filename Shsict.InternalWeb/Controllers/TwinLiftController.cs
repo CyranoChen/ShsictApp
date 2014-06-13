@@ -15,7 +15,7 @@ namespace Shsict.InternalWeb.Controllers
         public ActionResult Index(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             List<TwinLift> _twinLift = Cache.TwinLiftList.FindAll(t => t.REPORTDATE.Equals(DateTime.Parse(id)));
 
@@ -42,11 +42,11 @@ namespace Shsict.InternalWeb.Controllers
 
             if (!string.IsNullOrEmpty(id))
             {
-                int count = id.IndexOf(" ");
+                int count = id.IndexOf("$");
                 string vName = id.Substring(0, count);
-                string Date = id.Substring(count, id.Length - count);
+                string Date = id.Substring(count+1, id.Length - count-1);
 
-               _twinLift = Cache.TwinLiftList.FindAll(t => t.REPORTDATE.Equals(DateTime.Parse(Date)) && t.VESSELNAME.Equals(vName));
+               _twinLift = Cache.TwinLiftList.FindAll(t => t.REPORTDATE.Equals(DateTime.Parse(Date)) && t.VESSELNAME.Trim().Equals(vName));
                
                 string noData = "暂无数据";
 

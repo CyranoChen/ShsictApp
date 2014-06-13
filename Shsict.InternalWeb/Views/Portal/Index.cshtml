@@ -15,7 +15,7 @@
             $("ul.ui-listview").find("li div.colorbg").each(function () {
                 $(this).css("width", $(this).prev("div.textcontainer").find("p.ui-li-aside").text());
             });
-
+            //$("#aa").click(function () { alert("aa"); });
         });
 </script>
 </head>
@@ -31,7 +31,7 @@
                 {
                     if (item == "ZY")
                     { 
-                    <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+                    <div id="aa" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
                         <h2 class="bg1">
                             <div>昼夜生产情况</div>
                             <span class="r">昼夜生产实绩、昼夜计划量计划。</span>
@@ -54,7 +54,7 @@
                     <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
                         <h2 class="bg2">
                             <div>生产汇报</div>
-                            <span class="r">对生产会汇报相关内容，如船舶效率、堆场利用率、双吊具作业效率等在移动端生成汇报信息。</span></h2>
+                            <span class="r">对生产会汇报相关内容。</span></h2>
                         <ul data-role="listview" class="p3-15">
                             <li class="p35"><a href="/VesselEfficiency" target="_top">
                                 <img src="~/Content/images/icon-chuanxiaolv.png" alt="xiaolv1">船舶效率</a></li>
@@ -85,38 +85,38 @@
                     </div>
                     }
                 }
-                 @foreach (string item in Model)
-                 {
-                     if (item == "JX")
-                     { 
-                <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
-                    <h2 class="bg4">
-                        <div>机械设备</div>
-                        <span class="r">对机械设备故障的修复时间监控，包括修复的计划、进度的查看，修复倒计时提醒。
-                        </span></h2>
-                    <ul data-role="listview" class="p3-15">
-                        <li class="p35"><a href="/MechanicalError" target="_top">
-                            <img src="~/Content/images/icon-weixiu.png" alt="BMW">未完成维修的机械及故障时间</a></li>
-                    </ul>
-                </div>
-                     }
-                 }
-                 @foreach (string item in Model)
-                 {
-                     if (item == "CQ")
-                     { 
-                <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
-                    <h2 class="bg5">
-                        <div>出勤人员资质情况</div>
-                        <span class="r">昼夜出勤人员的远程手机实时编制与推送。</span></h2>
-                    <ul data-role="listview" class="p3-15">
-                        <li class="p35"><a href="/OperatePlan" target="_top">
-                            <img src="~/Content/images/icon-people.png" alt="ryzz">各承包队出勤人员资质信息查询</a></li>
-                    </ul>
+                @foreach (string item in Model)
+                {
+                    if (item == "JX")
+                    { 
+                    <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+                        <h2 class="bg4">
+                            <div>机械设备</div>
+                            <span class="r">对机械设备故障的修复时间监控。
+                            </span></h2>
+                        <ul data-role="listview" class="p3-15">
+                            <li class="p35"><a href="/MechanicalError" target="_top">
+                                <img src="~/Content/images/icon-weixiu.png" alt="BMW">未完成维修的机械及故障时间</a></li>
+                        </ul>
+                    </div>
+                    }
+                }
+                @foreach (string item in Model)
+                {
+                    if (item == "CQ")
+                    { 
+                    <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+                        <h2 class="bg5">
+                            <div>出勤人员资质情况</div>
+                            <span class="r">昼夜出勤人员的远程手机实时编制与推送。</span></h2>
+                        <ul data-role="listview" class="p3-15">
+                            <li class="p35"><a href="/OperatePlan" target="_top">
+                                <img src="~/Content/images/icon-people.png" alt="ryzz">各承包队出勤人员资质信息查询</a></li>
+                        </ul>
 
-                </div>
-                     }
-                 }
+                    </div>
+                    }
+                }
             </div>
         </div>
     </div>

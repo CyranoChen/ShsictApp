@@ -20,7 +20,7 @@ namespace Shsict.InternalWeb.Controllers
 
             }
 
-            var _threeShifts = Cache.ThreeShiftList.FindAll(t => t.SHIFTDATE.Equals(DateTime.Parse(id)));
+            var _threeShifts =ThreeShiftController.Cache.ThreeShiftList.FindAll(t => t.SHIFTDATE.Equals(DateTime.Parse(id)));
 
             string noData = "暂无数据";
 
@@ -65,29 +65,5 @@ namespace Shsict.InternalWeb.Controllers
 
             return View(_threeShifts.ToList());
         }
-
-        public static class Cache
-        {
-            static Cache()
-            {
-                InitCache();
-            }
-
-            public static void RefreshCache()
-            {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-
-                ThreeShiftList = ThreeShift.GetContainerMains();
-               
-            }
-
-            public static List<ThreeShift> ThreeShiftList;
-           
-        }
-
     }
 }

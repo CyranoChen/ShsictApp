@@ -25,7 +25,18 @@
         $("#SearchBox").change(function () {
             window.location.href = "/PadMechanicalError/Index/" + $("#SearchBox").val();
         });
+        $(".sendMsg").click(function () {
+            $.ajax({
+                url: "/MechanicalError/Update/" + $(this).find("#sendMsgId").text(),
+                type: "get",
+                success: function (msg) {
+                    alert("已接收数据");
+                },
+                error: function (msg) {
 
+                }
+            });
+        });
     });
 </script>
 <div class="ui-body">
@@ -37,9 +48,10 @@
         </fieldset>
     </div>
     <div class="ui-body-d">
-        <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
+        <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke M-repair">
             <thead>
                 <tr>
+                    <th>&nbsp</th>
                     <th>机械号</th>
                     <th>发送时间</th>
                     <th>故障时间</th>
@@ -49,7 +61,15 @@
             <tbody>
                 @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
                 {
-                    <tr>
+                    <tr class="sendMsg">
+                        <th style="display: none" id="sendMsgId">@item.ID</th>
+                        @if (@item.ISSEND.Trim().ToUpper() == "Y")
+                        {   <th class="unread"></th>
+                        }
+                        else
+                        { 
+                            <th class="read"></th>
+                        }
                         <th>@item.MECHANICALNO</th>
                         <td>@item.SENDTIME</td>
                         <td>@item.ERRORTIME</td>

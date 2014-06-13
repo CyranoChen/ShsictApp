@@ -9,19 +9,21 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class PadMechanicalErrorController : Controller
     {
-         [Authorize(Roles = "JX")]
+        [Authorize(Roles = "JX")]
         public ActionResult Index(string id)
         {
             List<MechanicalError> _MechanicalError;
+            string user = this.HttpContext.Request.RequestContext.HttpContext.User.Identity.Name;
 
             if (id != null)
             {
-                _MechanicalError = Cache.MechanicalErrorList.FindAll(t => t.MECHANICALNO.ToUpper().Contains(id.ToUpper()));
+                _MechanicalError = MechanicalErrorController.Cache.MechanicalErrorList.FindAll(t => t.MECHANICALNO.ToUpper().Contains(id.ToUpper()) && t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
 
             }
             else
             {
-                _MechanicalError = Cache.MechanicalErrorList;
+                _MechanicalError = MechanicalErrorController.Cache.MechanicalErrorList.FindAll(t => t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
+
             }
 
             string noData = "暂无数据";
@@ -39,27 +41,5 @@ namespace Shsict.InternalWeb.Controllers
             return View(_MechanicalError.ToList());
         }
 
-        public static class Cache
-        {
-            static Cache()
-            {
-                InitCache();
-            }
-
-            public static void RefreshCache()
-            {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-
-                MechanicalErrorList = MechanicalError.GetMechanicalErrors();
-
-            }
-
-            public static List<MechanicalError> MechanicalErrorList;
-
-        }
     }
 }

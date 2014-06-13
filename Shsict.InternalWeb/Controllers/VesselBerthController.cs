@@ -21,7 +21,7 @@ namespace Shsict.InternalWeb.Controllers
         public ActionResult Berth(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             var _VesselBerth = Cache.VesselBerthList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
@@ -41,7 +41,7 @@ namespace Shsict.InternalWeb.Controllers
             }
             else
             {
-                double count = (from v in _VesselBerth where v.VBT_STATUS == "准" select v.VBT_STATUS).Count();
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains( "准") select v.VBT_STATUS).Count();
        
                 _VesselBerth[0].punctualityRate = count / _VesselBerth.Count*100;
             }
@@ -53,7 +53,7 @@ namespace Shsict.InternalWeb.Controllers
         public ActionResult Depart(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             var _VesselBerth = Cache.VesselDepartList.FindAll(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
@@ -72,7 +72,7 @@ namespace Shsict.InternalWeb.Controllers
             }
             else
             {
-                double count = (from v in _VesselBerth where v.VBT_STATUS == "准" select v.VBT_STATUS).Count();
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") select v.VBT_STATUS).Count();
 
                 _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;           
             }

@@ -10,13 +10,43 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class LoginController : Controller
     {
+        public static string ToUrl;
+
         public ActionResult Index(string returnUrl)
+        {
+            if (returnUrl == null)
+            {
+                returnUrl = ToUrl;
+            }
+            else
+            {
+                ViewBag.ReturnUrl = returnUrl;
+            }
+
+            if (returnUrl.IndexOf("Pad") > 0)
+            {
+                return RedirectToAction("Pad");
+
+            }
+            else
+            {
+                return RedirectToAction("Phone");
+            }
+
+        }
+
+        public ActionResult Phone(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
 
             return View();
         }
+        public ActionResult Pad(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
 
+            return View();
+        }
         [HttpPost]
         public void LogOn(FormCollection collection, LoginModel model)
         {
@@ -62,10 +92,10 @@ namespace Shsict.InternalWeb.Controllers
                             }
                             if (permissions.IndexOf(',') > 0)
                             {
-                              permissions= permissions.Substring(0, permissions.Length - 1);
+                                permissions = permissions.Substring(0, permissions.Length - 1);
                             }
                         }
-
+                        Response.SetCookie(new HttpCookie("uid", collection[0]));
                         FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
                               1,
                               collection[0],
@@ -84,12 +114,12 @@ namespace Shsict.InternalWeb.Controllers
                     }
                     else
                     {
-                        Response.Write("The user password provided is incorrect");
+                        Response.Write("密码错误");
                     }
                 }
                 else
                 {
-                    Response.Write("The user name is not exeist");
+                    Response.Write("该用户不存在");
                 }
             }
             else
@@ -100,8 +130,20 @@ namespace Shsict.InternalWeb.Controllers
 
         public void LogOff()
         {
+            Response.Cookies.Remove("uid");
+            ToUrl = "phone";
             FormsAuthentication.SignOut();
             Response.Write("success");
         }
+        public void PadLogOff()
+        {
+            Response.Cookies.Remove("uid");
+            ToUrl = "Pad";
+            FormsAuthentication.SignOut();
+            Response.Write("success");
+        }
+
+
+
     }
 }

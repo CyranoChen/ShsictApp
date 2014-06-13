@@ -10,8 +10,14 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class PadTruckOperationCycleController : Controller
     {
-           [Authorize(Roles = "ZYL")]
-        public ActionResult Index(string id = "25")
+        [Authorize(Roles = "ZYL")]
+        public ActionResult Index()
+        {
+            return RedirectToAction("SortByTruck");
+        }
+
+        [Authorize(Roles = "ZYL")]
+        public ActionResult SortByTruck(string id = "25")
         {
             int i = 25;
 
@@ -19,11 +25,11 @@ namespace Shsict.InternalWeb.Controllers
 
             if (int.TryParse(id, out  i))
             {
-                _TruckOperationCycles = Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= i);
+                _TruckOperationCycles = TruckOperationCycleController.Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= i);
             }
             else
             {
-                _TruckOperationCycles = Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= 25);
+                _TruckOperationCycles = TruckOperationCycleController.Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= 25);
 
             }
 
@@ -38,31 +44,71 @@ namespace Shsict.InternalWeb.Controllers
 
             }
 
-            return View(_TruckOperationCycles.ToList());
+            return View(_TruckOperationCycles.OrderBy(t => t.TRUCKNO).ToList());
         }
 
-        public static class Cache
+        [Authorize(Roles = "ZYL")]
+        public ActionResult SortByCompTruck(string id = "25")
         {
-            static Cache()
+            int i = 25;
+
+            List<TruckOperationCycle> _TruckOperationCycles;
+
+            if (int.TryParse(id, out  i))
             {
-                InitCache();
+                _TruckOperationCycles = TruckOperationCycleController.Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= i);
             }
-
-            public static void RefreshCache()
+            else
             {
-                InitCache();
-            }
-
-            private static void InitCache()
-            {
-
-                TruckOperationCycleList = TruckOperationCycle.GetTruckOperationCycles();
+                _TruckOperationCycles = TruckOperationCycleController.Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= 25);
 
             }
 
-            public static List<TruckOperationCycle> TruckOperationCycleList;
+            if (_TruckOperationCycles == null)
+            {
+                string noData = "暂无数据";
 
+                TruckOperationCycle truckOperationCycle = new TruckOperationCycle();
+                truckOperationCycle.COMPLETETRUCKNUM = noData;
+
+                _TruckOperationCycles.Add(truckOperationCycle);
+
+            }
+
+            return View(_TruckOperationCycles.OrderBy(t => t.COMPLETETRUCKNUM).ToList());
         }
+
+        [Authorize(Roles = "ZYL")]
+        public ActionResult SortByAvgTruck(string id = "25")
+        {
+            int i = 25;
+
+            List<TruckOperationCycle> _TruckOperationCycles;
+
+            if (int.TryParse(id, out  i))
+            {
+                _TruckOperationCycles = TruckOperationCycleController.Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= i);
+            }
+            else
+            {
+                _TruckOperationCycles = TruckOperationCycleController.Cache.TruckOperationCycleList.FindAll(t => t.AVEPERIOD >= 25);
+
+            }
+
+            if (_TruckOperationCycles == null)
+            {
+                string noData = "暂无数据";
+
+                TruckOperationCycle truckOperationCycle = new TruckOperationCycle();
+                truckOperationCycle.COMPLETETRUCKNUM = noData;
+
+                _TruckOperationCycles.Add(truckOperationCycle);
+
+            }
+
+            return View(_TruckOperationCycles.OrderBy(t => t.AVEPERIOD).ToList());
+        }
+
 
     }
 }

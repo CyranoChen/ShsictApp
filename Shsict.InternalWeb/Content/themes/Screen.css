@@ -833,3 +833,46 @@ ul.zyl li .colorbg {
     float: left;
     margin: 0 4px;
 }
+
+.ui-header > .ui-btn-left {
+    top: 2px;
+}
+
+.ui-header .ui-btn-up-b {
+    border: none;
+    background: none;
+}
+
+.ui-header > .ui-btn-hover-b, .ui-header > .ui-btn-down-b {
+    border: none;
+    background: none;
+}
+
+.ui-header > .ui-shadow {
+    box-shadow: none;
+}
+
+.ui-header a .ui-btn-inner {
+    border-top: none;
+}
+
+.ui-header a {
+    margin: 0 5px;
+    height: 29px;
+}
+
+    .ui-header a.refresh {
+        background: url(../images/refresh.png) center no-repeat;
+    }
+
+        .ui-header a.refresh:hover {
+            background: url(../images/refresh2.png) center no-repeat;
+        }
+
+    .ui-header a.back {
+        background: url(../images/arrow.png) center no-repeat;
+    }
+
+        .ui-header a.back:hover {
+            background: url(../images/arrow2.png) center no-repeat;
+        }

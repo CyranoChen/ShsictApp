@@ -15,11 +15,16 @@
             $("ul.ui-listview").find("li div.colorbg").each(function () {
                 $(this).css("width", $(this).prev("div.textcontainer").find("p.ui-li-aside").text());
             });
+            $(".refresh").click(function () {
+
+                location.reload();
+            });
         });
     </script>
-     <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
-        data-transition="slidedown" href="/Portal" data-icon="arrow-l"
-        class="ui-btn-left but_back" data-iconpos="notext" data-mini="true">Back </a>
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+        data-transition="slidedown" href="/Portal"
+        class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back </a>
+    <a class="refresh"></a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
         <fieldset data-type="horizontal" data-mini="true">
             @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
@@ -42,7 +47,8 @@
       <li>
         <div class="textcontainer">
           <h3>@item.YD_CNTR_STATUS </h3>
-          <p>在场箱量：@item.YD_SAC_SUM | 适用箱位：@item.YD_YARD_SLOT_SUM</p>
+          <p>在场箱量：@item.YD_SAC_SUM</p>
+          <p> 适用箱位：@item.YD_YARD_SLOT_SUM</p>
           <p class="ui-li-aside">@item.MyYD_PCT</p>
         </div>
         <div class="colorbg @Myclass clearfix"></div>

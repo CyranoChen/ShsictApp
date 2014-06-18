@@ -14,7 +14,7 @@ namespace Shsict.Web
             IMaster master = this.Master as IMaster;
 
             master.setHeaderBtnVisible(false);
-            master.setRefreshNoticeBtn(true);
+            //master.setRefreshNoticeBtn(true);
 
             if (!IsPostBack)
             {
@@ -42,8 +42,6 @@ namespace Shsict.Web
             {
                 ClientScript.RegisterClientScriptBlock(typeof(string), "failed", string.Format("alert('{0}');", ex.Message.ToString()), true);
             }
-
-
         }
 
         protected void rptNotice_ItemDataBound(object sender, RepeaterItemEventArgs e)

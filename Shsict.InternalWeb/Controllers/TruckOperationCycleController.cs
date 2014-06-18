@@ -35,10 +35,10 @@ namespace Shsict.InternalWeb.Controllers
 
             if (_TruckOperationCycles == null)
             {
-                string noData = "暂无数据";
+                //string noData = "暂无数据";
 
                 TruckOperationCycle truckOperationCycle = new TruckOperationCycle();
-                truckOperationCycle.COMPLETETRUCKNUM = noData;
+                truckOperationCycle.COMPLETETRUCKNUM = 0;
 
                 _TruckOperationCycles.Add(truckOperationCycle);
 
@@ -66,10 +66,10 @@ namespace Shsict.InternalWeb.Controllers
 
             if (_TruckOperationCycles == null)
             {
-                string noData = "暂无数据";
+                //string noData = "暂无数据";
 
                 TruckOperationCycle truckOperationCycle = new TruckOperationCycle();
-                truckOperationCycle.COMPLETETRUCKNUM = noData;
+                truckOperationCycle.COMPLETETRUCKNUM = 0;
 
                 _TruckOperationCycles.Add(truckOperationCycle);
 
@@ -97,10 +97,10 @@ namespace Shsict.InternalWeb.Controllers
 
             if (_TruckOperationCycles == null)
             {
-                string noData = "暂无数据";
+                //string noData = "暂无数据";
 
                 TruckOperationCycle truckOperationCycle = new TruckOperationCycle();
-                truckOperationCycle.COMPLETETRUCKNUM = noData;
+                truckOperationCycle.COMPLETETRUCKNUM = 0;
 
                 _TruckOperationCycles.Add(truckOperationCycle);
 

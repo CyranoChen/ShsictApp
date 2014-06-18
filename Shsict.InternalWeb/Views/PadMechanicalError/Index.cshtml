@@ -30,7 +30,8 @@
                 url: "/MechanicalError/Update/" + $(this).find("#sendMsgId").text(),
                 type: "get",
                 success: function (msg) {
-                    alert("已接收数据");
+                    alert("确认已读");
+                    window.location.href = "/PadMechanicalError/Index/" + $("#SearchBox").val();
                 },
                 error: function (msg) {
 
@@ -41,7 +42,7 @@
 </script>
 <div class="ui-body">
     <div class="ui-bar ui-bar-c">
-        <h4>出勤人员资质情况</h4>
+        <h4>未完成维修的机械及故障时间</h4>
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
             @Html.TextBoxFor(a => a[0].SEARCHKEY, new { id = "SearchBox", data_role = "datebox" })
 
@@ -51,7 +52,7 @@
         <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke M-repair">
             <thead>
                 <tr>
-                    <th>&nbsp</th>
+                    <th>是否已读</th>
                     <th>机械号</th>
                     <th>发送时间</th>
                     <th>故障时间</th>
@@ -61,20 +62,29 @@
             <tbody>
                 @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
                 {
+                    if (@item.ISSEND.Trim().ToUpper() == "Y")
+                    {           
                     <tr class="sendMsg">
                         <th style="display: none" id="sendMsgId">@item.ID</th>
-                        @if (@item.ISSEND.Trim().ToUpper() == "Y")
-                        {   <th class="unread"></th>
-                        }
-                        else
-                        { 
-                            <th class="read"></th>
-                        }
+                        <th class="unread"></th>
                         <th>@item.MECHANICALNO</th>
                         <td>@item.SENDTIME</td>
                         <td>@item.ERRORTIME</td>
                         <td>@item.SENDMESSAGE</td>
-                    </tr>        
+                    </tr>   
+                    }
+                    else
+                    { 
+                    <tr>
+                        <th style="display: none">@item.ID</th>
+                        <th class="read"></th>
+                        <th>@item.MECHANICALNO</th>
+                        <td>@item.SENDTIME</td>
+                        <td>@item.ERRORTIME</td>
+                        <td>@item.SENDMESSAGE</td>
+                    </tr>   
+
+                    }
                 }
             </tbody>
         </table>

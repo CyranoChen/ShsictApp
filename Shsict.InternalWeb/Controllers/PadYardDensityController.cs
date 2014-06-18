@@ -14,7 +14,7 @@ namespace Shsict.InternalWeb.Controllers
         {
             if (id == null)
             {
-                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                id = DateTime.Now.ToString("yyyy-MM-dd");
 
             }
 

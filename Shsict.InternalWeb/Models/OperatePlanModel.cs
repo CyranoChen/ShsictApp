@@ -21,7 +21,7 @@ namespace Shsict.InternalWeb.Models
                 SHIFT_DATE = DateTime.Parse(dr["SHIFT_DATE"].ToString());
                 SHIFT = dr["SHIFT"].ToString();
                 TEAMNAME = dr["TEAMNAME"].ToString();
-                OP_ROUTE = dr["TEAMNAME"].ToString();
+                OP_ROUTE = dr["OP_ROUTE"].ToString();
                 QB = dr["QB"].ToString();
                 HG = dr["HG"].ToString();
                 FZ = dr["FZ"].ToString();

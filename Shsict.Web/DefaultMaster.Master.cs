@@ -52,9 +52,9 @@ namespace Shsict.Web
             }
 
             //Button Refresh Notice
-            btnRefreshNotice.Visible = BtnRefreshNoticeVisible;
+            //btnRefreshNotice.Visible = BtnRefreshNoticeVisible;
 
-            btnRefreshFavourite.Visible = BtnRefreshFavouriteVisible;
+            //btnRefreshFavourite.Visible = BtnRefreshFavouriteVisible;
 
             //btnRefreshCount.Attributes["data-role"] = "button";
             //btnRefreshCount.Attributes["data-icon"] = "refresh";
@@ -62,11 +62,11 @@ namespace Shsict.Web
 
             btnRefreshCount.Visible = BtnRefreshCountVisible;
 
-            btnRefreshNotice.Attributes["data-role"] = "button";
-            btnRefreshNotice.Attributes["data-iconpos"] = "notext";
+            //btnRefreshNotice.Attributes["data-role"] = "button";
+            //btnRefreshNotice.Attributes["data-iconpos"] = "notext";
             //btnRefreshNotice.Attributes["data-icon"] = "refresh";
-            btnRefreshFavourite.Attributes["data-role"] = "button";
-            btnRefreshFavourite.Attributes["data-iconpos"] = "notext";
+            //btnRefreshFavourite.Attributes["data-role"] = "button";
+            //btnRefreshFavourite.Attributes["data-iconpos"] = "notext";
             //btnRefreshFavourite.Attributes["data-icon"] = "refresh";
             #endregion
 
@@ -128,68 +128,6 @@ namespace Shsict.Web
             //ctrlHeader.IsBtnBack = value;
             IsBtnBack = value;
 
-        }
-
-        #endregion
-
-        #region RefreshNotice Button
-
-        private bool _BtnRefreshNoticeVisible = false;
-
-        public bool BtnRefreshNoticeVisible
-        {
-            get
-            {
-                return _BtnRefreshNoticeVisible;
-            }
-
-            set
-            {
-                _BtnRefreshNoticeVisible = value;
-            }
-        }
-
-        public void setRefreshNoticeBtn(bool value)
-        {
-            //ctrlHeader.IsBtnBack = value;
-            BtnRefreshNoticeVisible = value;
-
-        }
-
-        protected void btnRefreshNotice_Click(object sender, EventArgs e)
-        {
-            Shsict.Entity.Notice.Cache.RefreshCache();
-        }
-
-        #endregion
-
-        #region RefreshFavourite Button
-
-        private bool _BtnRefreshFavouriteVisible = false;
-
-        public bool BtnRefreshFavouriteVisible
-        {
-            get
-            {
-                return _BtnRefreshFavouriteVisible;
-            }
-
-            set
-            {
-                _BtnRefreshFavouriteVisible = value;
-            }
-        }
-
-        public void setRefreshFavouriteBtn(bool value)
-        {
-            //ctrlHeader.IsBtnBack = value;
-            BtnRefreshFavouriteVisible = value;
-
-        }
-
-        protected void btnRefreshFavourite_Click(object sender, EventArgs e)
-        {
-            Shsict.Entity.MyFavourite.ReloadByUsername(_uID, "cache");
         }
 
         #endregion

@@ -103,7 +103,7 @@ namespace Shsict.Entity
             return list;
         }
 
-        private void Reload(string objContent)
+        private void OverRideObjContent(string objContent)
         {
             if (!objContent.Equals(OBJECTCONTENT, StringComparison.OrdinalIgnoreCase))
             {
@@ -114,7 +114,7 @@ namespace Shsict.Entity
             }
         }
 
-        public static void ReloadByUsername(string username, string source)
+        public static void RefreshByUser(string username, string source)
         {
             List<MyFavourite> list = MyFavourite.Cache.FavouriteList_Active.FindAll(f => f.USERNAME.Equals(username));
 
@@ -129,32 +129,32 @@ namespace Shsict.Entity
                         case "ContainerEload":
                             ContainerEload ce = ContainerEload.Cache.Load(mf.OBJECTID);
 
-                            if (ce != null) { mf.Reload(jsonSerializer.Serialize(ce)); }
+                            if (ce != null) { mf.OverRideObjContent(jsonSerializer.Serialize(ce)); }
 
                             break;
                         case "ContainerMain":
                         case "ContainerDetail":
                             ContainerMain cm = ContainerMain.Cache.Load(mf.OBJECTID);
 
-                            if (cm != null) { mf.Reload(jsonSerializer.Serialize(cm)); }
+                            if (cm != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cm)); }
 
                             break;
                         case "ContainerPlan":
                             ContainerPlan cp = ContainerPlan.Cache.Load(mf.OBJECTID);
 
-                            if (cp != null) { mf.Reload(jsonSerializer.Serialize(cp)); }
+                            if (cp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cp)); }
 
                             break;
                         case "Truck":
                             OTruck truck = OTruck.Cache.Load(mf.OBJECTID);
 
-                            if (truck != null) { mf.Reload(jsonSerializer.Serialize(truck)); }
+                            if (truck != null) { mf.OverRideObjContent(jsonSerializer.Serialize(truck)); }
 
                             break;
                         case "VesselPlan":
                             OVesselPlan vp = OVesselPlan.Cache.Load(mf.OBJECTID);
 
-                            if (vp != null) { mf.Reload(jsonSerializer.Serialize(vp)); }
+                            if (vp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(vp)); }
 
                             break;
                         default:
@@ -172,7 +172,7 @@ namespace Shsict.Entity
                             ContainerEload ce = new ContainerEload();
                             ce.ID = mf.OBJECTID;
                             ce.Select();
-                            if (ce != null) { mf.Reload(jsonSerializer.Serialize(ce)); }
+                            if (ce != null) { mf.OverRideObjContent(jsonSerializer.Serialize(ce)); }
 
                             break;
                         case "ContainerMain":
@@ -181,7 +181,7 @@ namespace Shsict.Entity
                             cm.ID = mf.OBJECTID;
                             cm.Select();
 
-                            if (cm != null) { mf.Reload(jsonSerializer.Serialize(cm)); }
+                            if (cm != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cm)); }
 
                             break;
                         case "ContainerPlan":
@@ -189,7 +189,7 @@ namespace Shsict.Entity
                             cp.ID = mf.OBJECTID;
                             cp.Select();
 
-                            if (cp != null) { mf.Reload(jsonSerializer.Serialize(cp)); }
+                            if (cp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cp)); }
 
                             break;
                         case "Truck":
@@ -197,7 +197,7 @@ namespace Shsict.Entity
                             truck.ID = mf.OBJECTID;
                             truck.Select();
 
-                            if (truck != null) { mf.Reload(jsonSerializer.Serialize(truck)); }
+                            if (truck != null) { mf.OverRideObjContent(jsonSerializer.Serialize(truck)); }
 
                             break;
                         case "VesselPlan":
@@ -205,7 +205,7 @@ namespace Shsict.Entity
                             vp.ID = mf.OBJECTID;
                             vp.Select();
 
-                            if (vp != null) { mf.Reload(jsonSerializer.Serialize(vp)); }
+                            if (vp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(vp)); }
 
                             break;
                         default:
@@ -239,32 +239,32 @@ namespace Shsict.Entity
                         case "ContainerEload":
                             ContainerEload ce = ContainerEload.Cache.Load(mf.OBJECTID);
 
-                            if (ce != null) { mf.Reload(jsonSerializer.Serialize(ce)); }
+                            if (ce != null) { mf.OverRideObjContent(jsonSerializer.Serialize(ce)); }
 
                             break;
                         case "ContainerMain":
                         case "ContainerDetail":
                             ContainerMain cm = ContainerMain.Cache.Load(mf.OBJECTID);
 
-                            if (cm != null) { mf.Reload(jsonSerializer.Serialize(cm)); }
+                            if (cm != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cm)); }
 
                             break;
                         case "ContainerPlan":
                             ContainerPlan cp = ContainerPlan.Cache.Load(mf.OBJECTID);
 
-                            if (cp != null) { mf.Reload(jsonSerializer.Serialize(cp)); }
+                            if (cp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cp)); }
 
                             break;
                         case "Truck":
                             OTruck truck = OTruck.Cache.Load(mf.OBJECTID);
 
-                            if (truck != null) { mf.Reload(jsonSerializer.Serialize(truck)); }
+                            if (truck != null) { mf.OverRideObjContent(jsonSerializer.Serialize(truck)); }
 
                             break;
                         case "VesselPlan":
                             OVesselPlan vp = OVesselPlan.Cache.Load(mf.OBJECTID);
 
-                            if (vp != null) { mf.Reload(jsonSerializer.Serialize(vp)); }
+                            if (vp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(vp)); }
 
                             break;
                         default:
@@ -282,7 +282,7 @@ namespace Shsict.Entity
                             ContainerEload ce = new ContainerEload();
                             ce.ID = mf.OBJECTID;
                             ce.Select();
-                            if (ce != null) { mf.Reload(jsonSerializer.Serialize(ce)); }
+                            if (ce != null) { mf.OverRideObjContent(jsonSerializer.Serialize(ce)); }
 
                             break;
                         case "ContainerMain":
@@ -291,7 +291,7 @@ namespace Shsict.Entity
                             cm.ID = mf.OBJECTID;
                             cm.Select();
 
-                            if (cm != null) { mf.Reload(jsonSerializer.Serialize(cm)); }
+                            if (cm != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cm)); }
 
                             break;
                         case "ContainerPlan":
@@ -299,7 +299,7 @@ namespace Shsict.Entity
                             cp.ID = mf.OBJECTID;
                             cp.Select();
 
-                            if (cp != null) { mf.Reload(jsonSerializer.Serialize(cp)); }
+                            if (cp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(cp)); }
 
                             break;
                         case "Truck":
@@ -307,7 +307,7 @@ namespace Shsict.Entity
                             truck.ID = mf.OBJECTID;
                             truck.Select();
 
-                            if (truck != null) { mf.Reload(jsonSerializer.Serialize(truck)); }
+                            if (truck != null) { mf.OverRideObjContent(jsonSerializer.Serialize(truck)); }
 
                             break;
                         case "VesselPlan":
@@ -315,7 +315,7 @@ namespace Shsict.Entity
                             vp.ID = mf.OBJECTID;
                             vp.Select();
 
-                            if (vp != null) { mf.Reload(jsonSerializer.Serialize(vp)); }
+                            if (vp != null) { mf.OverRideObjContent(jsonSerializer.Serialize(vp)); }
 
                             break;
                         default:

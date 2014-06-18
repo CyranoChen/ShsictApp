@@ -179,7 +179,7 @@ namespace Shsict.Entity
 
             private static Dictionary<string, ContainerPlan> ContainerPlanCache = new Dictionary<string, ContainerPlan>();
             private static Dictionary<string, List<ContainerPlan>> ContainerPlanCacheUsername = new Dictionary<string, List<ContainerPlan>>();
-            private static List<ContainerPlan> ContainerPlanList;
+            //private static List<ContainerPlan> ContainerPlanList;
         }
 
         #region members and propertis

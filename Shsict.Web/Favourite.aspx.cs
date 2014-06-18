@@ -1,13 +1,8 @@
-﻿using Shsict.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Web;
-using System.Web.Script.Serialization;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+
+using Shsict.Entity;
 
 namespace Shsict.Web
 {
@@ -20,15 +15,14 @@ namespace Shsict.Web
             AnonymousRedirect = true;
 
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
             IMaster master = this.Master as IMaster;
 
             master.setHeaderBtnVisible(false);
 
-            master.setRefreshFavouriteBtn(true);
+            //master.setRefreshFavouriteBtn(true);
 
             BindData();
         }
@@ -253,7 +247,6 @@ namespace Shsict.Web
 
                         break;
                 }
-
             }
         }
     }

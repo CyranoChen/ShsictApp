@@ -262,7 +262,7 @@ namespace Shsict.Entity
             private static Dictionary<string, ContainerMain> ContainerMainCache = new Dictionary<string, ContainerMain>();
             private static Dictionary<string, List<ContainerMain>> ContainerMainCacheContainerNo = new Dictionary<string, List<ContainerMain>>();
             private static Dictionary<string, List<ContainerMain>> ContainerMainCacheBillno = new Dictionary<string, List<ContainerMain>>();
-            private static List<ContainerMain> ContainerMainList;
+            //private static List<ContainerMain> ContainerMainList;
 
         }
 

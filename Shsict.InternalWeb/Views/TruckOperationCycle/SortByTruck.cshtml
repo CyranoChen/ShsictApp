@@ -11,12 +11,12 @@
             $("#plus").click(function () {
                 var myTime = parseInt($("#myTime .ui-btn-text").text()) + 5;
                 $("#myTime span.ui-btn-text").text(myTime + "min");
-                window.location.href = "/TruckOperationCycle/Index/" + myTime;
+                window.location.href = "/TruckOperationCycle/SortByTruck/" + myTime;
             });
             $("#minus").click(function () {
                 var myTime = parseInt($("#myTime .ui-btn-text").text()) - 5;
                 $("#myTime span.ui-btn-text").text(myTime + "min");
-                window.location.href = "/TruckOperationCycle/Index/" + myTime;
+                window.location.href = "/TruckOperationCycle/SortByTruck/" + myTime;
             });
             $(".Mysort").click(function () {
                 var page = $(this).attr('id');

@@ -40,7 +40,7 @@ namespace Shsict.InternalWeb.Controllers
             }
             else
             {
-                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") select v.VBT_STATUS).Count();
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") || v.VBT_STATUS.Equals("提前") select v.VBT_STATUS).Count();
 
                 _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;
             }
@@ -73,7 +73,7 @@ namespace Shsict.InternalWeb.Controllers
             }
             else
             {
-                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") select v.VBT_STATUS).Count();
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") || v.VBT_STATUS.Equals("提前") select v.VBT_STATUS).Count();
 
                 _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;
             }

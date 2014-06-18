@@ -201,6 +201,9 @@
     <Compile Include="Favourite.aspx.designer.cs">
       <DependentUpon>Favourite.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Handler\NoticeHandler.ashx.cs">
+      <DependentUpon>NoticeHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -424,6 +427,7 @@
     <Content Include="Handler\ContainerPlanDetail.ashx" />
     <Content Include="Handler\ContainerArrangeTimeList.ashx" />
     <Content Include="Handler\LoginHandler.ashx" />
+    <Content Include="Handler\NoticeHandler.ashx" />
     <None Include="Properties\PublishProfiles\Shsict.pubxml" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\jquery.cookie.js" />

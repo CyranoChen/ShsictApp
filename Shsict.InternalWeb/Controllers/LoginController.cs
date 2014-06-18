@@ -142,8 +142,5 @@ namespace Shsict.InternalWeb.Controllers
             FormsAuthentication.SignOut();
             Response.Write("success");
         }
-
-
-
     }
 }

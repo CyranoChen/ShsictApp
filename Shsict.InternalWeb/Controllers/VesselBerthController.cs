@@ -11,13 +11,13 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class VesselBerthController : Controller
     {
-                  [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Index()
         {
             return RedirectToAction("Berth");
         }
 
-            [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Berth(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -41,15 +41,15 @@ namespace Shsict.InternalWeb.Controllers
             }
             else
             {
-                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains( "准") select v.VBT_STATUS).Count();
-       
-                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count*100;
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") || v.VBT_STATUS.Equals("提前") select v.VBT_STATUS).Count();
+
+                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;
             }
 
             return View(_VesselBerth.ToList());
         }
 
-            [Authorize(Roles = "SC")]
+        [Authorize(Roles = "SC")]
         public ActionResult Depart(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -72,9 +72,9 @@ namespace Shsict.InternalWeb.Controllers
             }
             else
             {
-                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") select v.VBT_STATUS).Count();
+                double count = (from v in _VesselBerth where v.VBT_STATUS.Contains("准") || v.VBT_STATUS.Equals("提前") select v.VBT_STATUS).Count();
 
-                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;           
+                _VesselBerth[0].punctualityRate = count / _VesselBerth.Count * 100;
             }
 
             return View(_VesselBerth.ToList());

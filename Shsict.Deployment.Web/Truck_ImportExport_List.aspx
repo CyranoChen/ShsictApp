@@ -21,8 +21,7 @@
 
          
             $("#btnRefreshCount").click(QueryImpl);
-     
-
+    
         });
 
         function QueryImpl() {

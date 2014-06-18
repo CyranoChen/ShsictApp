@@ -16,7 +16,8 @@
                     url: "/MechanicalError/Update/" + $(this).find("#sendMsgId").text(),
                     type: "get",
                     success: function (msg) {
-                        alert("已接收数据");
+                        alert("确认已读");
+                        window.location.href = "/MechanicalError/Index/" + $("#SearchBox").val();
                     },
                     error: function (msg) {
 
@@ -30,7 +31,7 @@
         });
     </script>
     <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
-        data-transition="slidedown" href="/Portal" 
+        data-transition="slidedown" href="/Portal"
         class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back </a>
     <a class="refresh"></a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
@@ -59,23 +60,44 @@
 <ul data-role="listview">
     @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
     {
-        <li class="sendMsg">
+        if (@item.ISSEND.Trim().ToUpper() == "Y")
+        {   <li class="sendMsg">
             <div style="display: none" id="sendMsgId">@item.ID</div>
             <h3>@item.MECHANICALNO</h3>
 
             @if (@item.MECHANICALNO != "暂无数据")
             { 
+                
                 <p>发送内容：@item.SENDMESSAGE </p>
           
                 <p>发送时间：@item.SENDTIME </p>
            
                 <p>故障时间：@item.ERRORTIME </p>
-                
-                if (@item.ISSEND.Trim().ToUpper() == "Y")
-                { <span class="ui-li-count">未读</span>
-                }
+              
+                <span class="ui-li-count">未读</span>
+               
             }
 
-        </li>        
+        </li>    
+        }
+        else
+        {
+        <li>
+            <div style="display: none">@item.ID</div>
+            <h3>@item.MECHANICALNO</h3>
+
+            @if (@item.MECHANICALNO != "暂无数据")
+            { 
+                
+                <p>发送内容：@item.SENDMESSAGE </p>
+          
+                <p>发送时间：@item.SENDTIME </p>
+           
+                <p>故障时间：@item.ERRORTIME </p>
+                                        
+            }
+
+        </li>   
+        }
     }
 </ul>

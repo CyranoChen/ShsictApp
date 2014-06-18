@@ -21,7 +21,7 @@ namespace Shsict.InternalWeb.Models
             if (dr != null)
             {  
                 TRUCKNO = dr["TRUCKNO"].ToString();
-                COMPLETETRUCKNUM = dr["COMPLETETRUCKNUM"].ToString();
+                COMPLETETRUCKNUM = Int32.Parse(dr["COMPLETETRUCKNUM"].ToString());
                 AVEPERIOD =double.Parse( dr["AVEPERIOD"].ToString());
                 CURRENTINSTRUCTION = dr["CURRENTINSTRUCTION"].ToString();
              
@@ -35,7 +35,7 @@ namespace Shsict.InternalWeb.Models
         #region members and propertis
         public string TRUCKNO { get; set; }
 
-        public string COMPLETETRUCKNUM { get; set; }
+        public int COMPLETETRUCKNUM { get; set; }
 
         public double AVEPERIOD { get; set; }
 

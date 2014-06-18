@@ -31,11 +31,14 @@
                             type: "post",
                             data: mydata,
                             success: function (msg) {
-                                if (msg == "success")
+                                if (msg == "success") {
+                                    $("#errorMsg").css("display", "none");
                                     window.location.href = "/Portal/Index";
-                                else
+                                }
+                                else {
                                     $("#errorMsg").css("display", "block");
-                                $("#errorMsg").text(msg);
+                                    $("#errorMsg").text(msg);
+                                }
                             },
                             error: function (msg) {
                                 $("#errorMsg").css("display", "block");
@@ -43,10 +46,11 @@
                             }
                         });
                     }
-
-                    $("#errorMsg").css("display", "block");
-                    $("#errorMsg").text("用户名,密码不能为空");
-                    return false;
+                    else {
+                        $("#errorMsg").css("display", "block");
+                        $("#errorMsg").text("用户名,密码不能为空");
+                        return false;
+                    }
                 });
             });
 

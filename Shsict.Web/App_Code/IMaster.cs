@@ -9,8 +9,10 @@ namespace Shsict.Web
     {
         void setHeaderBtnVisible(bool value);
         void setHeaderBtnBack(bool value);
-        void setRefreshNoticeBtn(bool value);
-        void setRefreshFavouriteBtn(bool value);
+
+        //void setRefreshNoticeBtn(bool value);
+
+        //void setRefreshFavouriteBtn(bool value);
         void setRefreshCountBtn(bool value);
     }
 }

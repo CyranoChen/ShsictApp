@@ -4,46 +4,49 @@
     ViewBag.Title = "未完成维修的机械及故障时间";
     Layout = "~/Views/Shared/_LayoutDefault.cshtml";
 }
+
 @section Header{
     <script type="text/javascript">
         $(function () {
             $("#SearchBox").change(function () {
                 window.location.href = "/MechanicalError/Index/" + $("#SearchBox").val();
             });
-            $(".sendMsg").click(function () {
 
+            $(".refresh").click(function () {
+                location.reload();
+            });
+
+            $(".sendMsg").click(function () {
                 $.ajax({
                     url: "/MechanicalError/Update/" + $(this).find("#sendMsgId").text(),
                     type: "get",
                     success: function (msg) {
                         alert("确认已读");
+
                         window.location.href = "/MechanicalError/Index/" + $("#SearchBox").val();
                     },
                     error: function (msg) {
-
+                        alert("调用接口失败(/MechanicalError/Update/)");
                     }
                 });
-            });
-            $(".refresh").click(function () {
-
-                location.reload();
             });
         });
     </script>
     <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
-        data-transition="slidedown" href="/Portal"
-        class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back </a>
+       data-transition="slidedown" href="/Portal" class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
     <a class="refresh"></a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
         @Html.TextBoxFor(a => a[0].SEARCHKEY, new { id = "SearchBox", data_role = "datebox" })
     </div>
 }
+
+
 @* <div class="ui-body">
       @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
             {
       <div style="margin:15px auto; border-radius:8px; box-shadow:0 1px 5px rgba(0,0,0,0.3); padding:5px 10px; background-color:#fff;">
-           
-      	<h3 style="line-height:30px; font-weight:normal; height:30px;">JOBNO工号</h3>
+
+        <h3 style="line-height:30px; font-weight:normal; height:30px;">JOBNO工号</h3>
         <div style="font-size:11px; border-bottom:#e8e8e8 1px solid;">
             <p>@item.SENDMESSAGE</p>
             <p>发送时间：@item.SENDTIME</p>
@@ -60,44 +63,44 @@
 <ul data-role="listview">
     @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
     {
-        if (@item.ISSEND.Trim().ToUpper() == "Y")
-        {   <li class="sendMsg">
-            <div style="display: none" id="sendMsgId">@item.ID</div>
-            <h3>@item.MECHANICALNO</h3>
+        if (@item.MECHANICALNO != "暂无数据")
+        {
+            if (@item.ISSEND.Trim().ToUpper() == "Y")
+            {
+                <li class="sendMsg">
+                    <div style="display: none" id="sendMsgId">@item.ID</div>
+                    <h3>@item.MECHANICALNO</h3>
 
-            @if (@item.MECHANICALNO != "暂无数据")
-            { 
-                
-                <p>发送内容：@item.SENDMESSAGE </p>
-          
-                <p>发送时间：@item.SENDTIME </p>
-           
-                <p>故障时间：@item.ERRORTIME </p>
-              
-                <span class="ui-li-count">未读</span>
-               
+                    <p>发送内容：@item.SENDMESSAGE </p>
+
+                    <p>发送时间：@item.SENDTIME </p>
+
+                    <p>故障时间：@item.ERRORTIME </p>
+
+                    <span class="ui-li-count">未读</span>
+
+                </li>
             }
+            else
+            {
+                <li>
+                    <div style="display: none">@item.ID</div>
+                    <h3>@item.MECHANICALNO</h3>
 
-        </li>    
+                    <p>发送内容：@item.SENDMESSAGE </p>
+
+                    <p>发送时间：@item.SENDTIME </p>
+
+                    <p>故障时间：@item.ERRORTIME </p>
+
+                </li>
+            }
         }
         else
         {
-        <li>
-            <div style="display: none">@item.ID</div>
-            <h3>@item.MECHANICALNO</h3>
-
-            @if (@item.MECHANICALNO != "暂无数据")
-            { 
-                
-                <p>发送内容：@item.SENDMESSAGE </p>
-          
-                <p>发送时间：@item.SENDTIME </p>
-           
-                <p>故障时间：@item.ERRORTIME </p>
-                                        
-            }
-
-        </li>   
+            <li>
+                <h3>暂无数据</h3>
+            </li>
         }
     }
 </ul>

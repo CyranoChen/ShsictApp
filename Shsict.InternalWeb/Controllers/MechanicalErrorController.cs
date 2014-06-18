@@ -10,13 +10,14 @@ namespace Shsict.InternalWeb.Controllers
 {
     public class MechanicalErrorController : Controller
     {
-          [Authorize(Roles = "JX")]
+        [Authorize(Roles = "JX")]
         public ActionResult Index(string id)
         {
             List<MechanicalError> _MechanicalError;
+
             string user = this.HttpContext.Request.RequestContext.HttpContext.User.Identity.Name;
 
-            if (id != null)
+            if (!string.IsNullOrEmpty(id))
             {
                 _MechanicalError = Cache.MechanicalErrorList.FindAll(t => t.MECHANICALNO.ToUpper().Contains(id.ToUpper()) && t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
 
@@ -24,7 +25,7 @@ namespace Shsict.InternalWeb.Controllers
             else
             {
                 _MechanicalError = Cache.MechanicalErrorList.FindAll(t => t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
-            
+
             }
 
             string noData = "暂无数据";
@@ -38,23 +39,33 @@ namespace Shsict.InternalWeb.Controllers
                 _MechanicalError.Add(mechanicalError);
             }
 
-
             _MechanicalError[0].SEARCHKEY = id;
+
             return View(_MechanicalError.ToList());
         }
-          public void Update(string id)
-          {
-              if (id != null)
-              {
-                  MechanicalError.UpdateMechanicalError(id.Trim());
-                  MechanicalErrorController.Cache.RefreshCache();
-                  Response.Write("success");
-              }
-              else
-              {
-                  Response.Write("error");
-              }
-          }
+
+        public void Update(string id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(id))
+                {
+                    MechanicalError.UpdateMechanicalError(id.Trim());
+
+                    MechanicalErrorController.Cache.RefreshCache();
+
+                    Response.Write("success");
+                }
+                else
+                {
+                    Response.Write("error");
+                }
+            }
+            catch
+            {
+                Response.Write("error");
+            }
+        }
 
         public static class Cache
         {

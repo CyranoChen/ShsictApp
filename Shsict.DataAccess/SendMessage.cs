@@ -72,7 +72,7 @@ namespace Shsict.DataAccess
             string sql = @"DECLARE RS VARCHAR2(20);BEGIN RS:=SSICT_MSGFLAGUPDATE_F(:sID); END;";
 
             OracleParameter[] para = new OracleParameter[1];
-            para[0] = new OracleParameter("sID",Int64.Parse(sID));
+            para[0] = new OracleParameter("sID", Int64.Parse(sID));
 
             OracleDataTool.ExecuteNonQuery(ConnectStringOracle.GetInternalTableConnection(), sql, para);
         }

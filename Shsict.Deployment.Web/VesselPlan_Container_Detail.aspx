@@ -8,7 +8,7 @@
 
                     $("span.ObjectID").text(GetQueryString("VesselPlanID"));
 
-                    $("span.ObjectType").text("OVesselPlan");
+                    $("span.ObjectType").text("VesselPlan");
        
                     var containerBeginTime = $("td.container-b-t");
                     var beginTime = Date.parse(containerBeginTime.text().replace("进箱开始", "").trim());

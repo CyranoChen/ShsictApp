@@ -5,21 +5,21 @@
     Layout = "~/Views/Shared/_LayoutPad.cshtml";
 }
 @* <div class="ui-body">
-         @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
-            {
- <div style="margin:15px auto; border-radius:8px; box-shadow:0 1px 5px rgba(0,0,0,0.3); padding:5px 10px; background-color:#fff;">
-        <h3 style="line-height:30px; font-weight:normal; height:30px;">JOBNO工号</h3>
-        <div style="font-size:11px; border-bottom:#e8e8e8 1px solid;">
-             <p>@item.SENDMESSAGE</p>
-            <p>发送时间：@item.SENDTIME</p>
-            <p>故障时间：@item.ERRORTIME</p>
-            <h4>机械号：@item.MECHANICALNO</h4>
-        </div>
-        <a href="#" style="font-size:11px; ">查看详细</a> </div>
+            @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
+               {
+    <div style="margin:15px auto; border-radius:8px; box-shadow:0 1px 5px rgba(0,0,0,0.3); padding:5px 10px; background-color:#fff;">
+           <h3 style="line-height:30px; font-weight:normal; height:30px;">JOBNO工号</h3>
+           <div style="font-size:11px; border-bottom:#e8e8e8 1px solid;">
+                <p>@item.SENDMESSAGE</p>
+               <p>发送时间：@item.SENDTIME</p>
+               <p>故障时间：@item.ERRORTIME</p>
+               <h4>机械号：@item.MECHANICALNO</h4>
+           </div>
+           <a href="#" style="font-size:11px; ">查看详细</a> </div>
 
-         }
+            }
 
-         </div>*@
+            </div>*@
 <script type="text/javascript">
     $(function () {
         $("#SearchBox").change(function () {
@@ -34,7 +34,7 @@
                     window.location.href = "/PadMechanicalError/Index/" + $("#SearchBox").val();
                 },
                 error: function (msg) {
-
+                    alert("调用接口失败(/MechanicalError/Update/)");
                 }
             });
         });
@@ -62,28 +62,36 @@
             <tbody>
                 @foreach (Shsict.InternalWeb.Models.MechanicalError item in Model)
                 {
-                    if (@item.ISSEND.Trim().ToUpper() == "Y")
-                    {           
-                    <tr class="sendMsg">
-                        <th style="display: none" id="sendMsgId">@item.ID</th>
-                        <th class="unread"></th>
-                        <th>@item.MECHANICALNO</th>
-                        <td>@item.SENDTIME</td>
-                        <td>@item.ERRORTIME</td>
-                        <td>@item.SENDMESSAGE</td>
-                    </tr>   
+                    if (@item.MECHANICALNO != "暂无数据")
+                    {
+                        if (@item.ISSEND.Trim().ToUpper() == "Y")
+                        {
+                            <tr class="sendMsg">
+                                <th style="display: none" id="sendMsgId">@item.ID</th>
+                                <th class="unread"></th>
+                                <th>@item.MECHANICALNO</th>
+                                <td>@item.SENDTIME</td>
+                                <td>@item.ERRORTIME</td>
+                                <td>@item.SENDMESSAGE</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <th style="display: none">@item.ID</th>
+                                <th class="read"></th>
+                                <th>@item.MECHANICALNO</th>
+                                <td>@item.SENDTIME</td>
+                                <td>@item.ERRORTIME</td>
+                                <td>@item.SENDMESSAGE</td>
+                            </tr>
+                        }
                     }
                     else
-                    { 
-                    <tr>
-                        <th style="display: none">@item.ID</th>
-                        <th class="read"></th>
-                        <th>@item.MECHANICALNO</th>
-                        <td>@item.SENDTIME</td>
-                        <td>@item.ERRORTIME</td>
-                        <td>@item.SENDMESSAGE</td>
-                    </tr>   
-
+                    {
+                        <tr>
+                            <td colspan="5">暂无数据</td>
+                        </tr>
                     }
                 }
             </tbody>

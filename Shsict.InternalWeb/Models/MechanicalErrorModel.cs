@@ -68,10 +68,7 @@ namespace Shsict.InternalWeb.Models
         }
         public static void UpdateMechanicalError(string id)
         {
-            Shsict.DataAccess.SendMessage.UpdateSendMessages(id);
-           
+            Shsict.DataAccess.SendMessage.UpdateSendMessages(id);    
         }
-
     }
-
 }

@@ -44,10 +44,10 @@
                             $.get("Handler/SetFavouriteHandler.ashx", { PageUrl: _url, Method: "post", ObjectID: _objectID, ObjectType: _objectType }, function (data, status, xhr) {
                                 if (status == "success" && data != null) {
                                     if (data == "success") {
-                                        $popupMsg.show().find("p").text("已添加关注");
-
                                         $btnFav.prop("title", "取消关注");
                                         $btnFav.addClass("fav2").removeClass("fav").button();
+
+                                        $popupMsg.show().find("p").text("已添加关注");
 
                                     } else if (data == "nologin") {
                                         window.location.href = "/login.aspx?nexturl=" + _url;
@@ -64,10 +64,10 @@
                             $.get("Handler/SetFavouriteHandler.ashx", { PageUrl: _url, Method: "dele" }, function (data, status, xhr) {
                                 if (status == "success" && data != null) {
                                     if (data == "success") {
-                                        $popupMsg.show().find("p").text("已取消关注");
-
                                         $btnFav.prop("title", "关注");
                                         $btnFav.addClass("fav").removeClass("fav2").button();
+
+                                        $popupMsg.show().find("p").text("已取消关注");
 
                                     } else if (data == "nologin") {
                                         window.location.href = "/login.aspx?nexturl=" + _url;

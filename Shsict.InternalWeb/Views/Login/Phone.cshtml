@@ -1,6 +1,6 @@
 ﻿@model Shsict.InternalWeb.Models.LoginModel
 @{
-    ViewBag.Title = "登录";
+    ViewBag.Title = "盛东公司信息管理平台 登录";
 }
 
 <!DOCTYPE html>
@@ -20,59 +20,56 @@
     <script type="text/javascript">
         $(function () {
             $("#loginBtn").click(function () {
-                $('#loginForm').submit(function () {
-                    var userName = $("#un").val();
-                    var passWord = $("#pw").val();
-                    var mydata = "SUR_USERACCOUNT=" + userName + "&SUR_PASSWORD=" + passWord;
+                var userName = $("#un").val();
+                var passWord = $("#pw").val();
+                var mydata = "SUR_USERACCOUNT=" + userName + "&SUR_PASSWORD=" + passWord;
 
-                    if (userName != "" && passWord != "") {
-                        $.ajax({
-                            url: "/Login/LogOn",
-                            type: "post",
-                            data: mydata,
-                            success: function (msg) {
-                                if (msg == "success") {
-                                    $("#errorMsg").css("display", "none");
-                                    window.location.href = "/Portal/Index";
-                                }
-                                else {
-                                    $("#errorMsg").css("display", "block");
-                                    $("#errorMsg").text(msg);
-                                }
-                            },
-                            error: function (msg) {
+                if (userName != "" && passWord != "") {
+                    $.ajax({
+                        url: "/Login/LogOn",
+                        type: "post",
+                        data: mydata,
+                        success: function (msg) {
+                            if (msg == "success") {
+                                $("#errorMsg").css("display", "none");
+
+                                window.location.href = "/Portal/Index";
+                            }
+                            else {
                                 $("#errorMsg").css("display", "block");
                                 $("#errorMsg").text(msg);
                             }
-                        });
-                    }
-                    else {
-                        $("#errorMsg").css("display", "block");
-                        $("#errorMsg").text("用户名,密码不能为空");
-                        return false;
-                    }
-                });
-            });
-
-            $("#LogOffBtn").click(function () {
-                $('#loginForm').submit(function () {
-                    $.ajax({
-                        url: "/Login/LogOff",
-                        type: "post",
-                        success: function (msg) {
-                            if (msg == "success") {
-                                window.location.href = "/Login/Phone";
-                                $("#errorMsg").text("登出成功");
-                            }
-                            else
-                                $("#errorMsg").css("display", "block");
-                            $("#errorMsg").text("登出失败");
                         },
                         error: function (msg) {
                             $("#errorMsg").css("display", "block");
-                            $("#errorMsg").text("登出失败");
+                            $("#errorMsg").text(msg);
                         }
                     });
+                }
+                else {
+                    $("#errorMsg").css("display", "block");
+                    $("#errorMsg").text("提示：用户名与密码不能为空");
+                    return false;
+                }
+            });
+
+            $("#LogOffBtn").click(function () {
+                $.ajax({
+                    url: "/Login/LogOff",
+                    type: "post",
+                    success: function (msg) {
+                        if (msg == "success") {
+                            window.location.href = "/Login/Phone";
+                            $("#errorMsg").text("提示：注销成功");
+                        }
+                        else
+                            $("#errorMsg").css("display", "block");
+                        $("#errorMsg").text("提示：注销失败");
+                    },
+                    error: function (msg) {
+                        $("#errorMsg").css("display", "block");
+                        $("#errorMsg").text("提示：注销失败");
+                    }
                 });
             });
         });
@@ -85,7 +82,7 @@
         <div class="login">
             <section id="loginForm">
                 @using (Html.BeginForm("index", "Login", FormMethod.Post, new { id = "loginForm", ReturnUrl = ViewBag.ReturnUrl }))
-                {             
+                {
                     <div class=" con">
                         <h3>&nbsp;</h3>
                         <label for="un" class="ui-hidden-accessible">Username:</label>
@@ -95,11 +92,11 @@
                         <label for="pw" class="ui-hidden-accessible">Password:</label>
                         @Html.PasswordFor(m => m.SUR_PASSWORD, new { name = "pass", type = "password", id = "pw", placeholder = "password", data_theme = "b" })
                         @Html.ValidationMessageFor(m => m.SUR_PASSWORD)
-                        <button type="submit" class="ui-btn ui-corner-all ui-shadow" id="loginBtn">登录</button>
-                        <button type="submit" class="ui-btn ui-corner-all ui-shadow" id="LogOffBtn">注销</button>
+                        <button type="button" class="ui-btn ui-corner-all ui-shadow" id="loginBtn">登录</button>
+                        <button type="button" class="ui-btn ui-corner-all ui-shadow" id="LogOffBtn">注销</button>
                     </div>
-                   
-                    @Html.ValidationSummary(true)                  
+
+                    @Html.ValidationSummary(true)
                 }
             </section>
             <div id="errorMsg" class="ui-corner-all ui-shadow alert" style="display: none"></div>

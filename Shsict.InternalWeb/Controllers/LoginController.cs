@@ -1,7 +1,6 @@
 ﻿using Shsict.InternalWeb.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -26,13 +25,11 @@ namespace Shsict.InternalWeb.Controllers
             if (returnUrl.IndexOf("Pad") > 0)
             {
                 return RedirectToAction("Pad");
-
             }
             else
             {
                 return RedirectToAction("Phone");
             }
-
         }
 
         public ActionResult Phone(string returnUrl)
@@ -47,6 +44,7 @@ namespace Shsict.InternalWeb.Controllers
 
             return View();
         }
+
         [HttpPost]
         public void LogOn(FormCollection collection, LoginModel model)
         {
@@ -114,12 +112,12 @@ namespace Shsict.InternalWeb.Controllers
                     }
                     else
                     {
-                        Response.Write("密码错误");
+                        Response.Write("提示：用户名与密码不匹配");
                     }
                 }
                 else
                 {
-                    Response.Write("该用户不存在");
+                    Response.Write("提示：用户名不存在，请检查");
                 }
             }
             else
@@ -135,6 +133,7 @@ namespace Shsict.InternalWeb.Controllers
             FormsAuthentication.SignOut();
             Response.Write("success");
         }
+
         public void PadLogOff()
         {
             Response.Cookies.Remove("uid");

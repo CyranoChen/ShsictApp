@@ -135,6 +135,7 @@
     <Compile Include="Controllers\PadYardDensityController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Controllers\ShsictDefaultController.cs" />
+    <Compile Include="Controllers\ShsictThreadController.cs" />
     <Compile Include="Controllers\ThreeShiftController.cs" />
     <Compile Include="Controllers\TruckOperationCycleController.cs" />
     <Compile Include="Controllers\TwinLiftController.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Models\DailyReportModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MechanicalErrorModel.cs" />
+    <Compile Include="Models\MechanicalModel.cs" />
     <Compile Include="Models\OperatePlanModel.cs" />
     <Compile Include="Models\ThreeShiftModel.cs" />
     <Compile Include="Models\TruckOperationCycleModel.cs" />
@@ -158,13 +160,9 @@
     <Compile Include="Models\VesselEfficiencyModel.cs" />
     <Compile Include="Models\YardDensityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scheduler\Jobs\AttendanceCacheRefreshEvent.cs" />
-    <Compile Include="Scheduler\Jobs\ProductionReportCacheRefreshEvent.cs" />
+    <Compile Include="Scheduler\Jobs\CacheRefreshEventInter.cs" />
     <Compile Include="Scheduler\Ijob.cs" />
     <Compile Include="Scheduler\Job.cs" />
-    <Compile Include="Scheduler\Jobs\DailyReporterCacheRefreshEvent.cs" />
-    <Compile Include="Scheduler\Jobs\OperationCacheRefreshEvent.cs" />
-    <Compile Include="Scheduler\Jobs\MechanicalCacheRefreshEvent.cs" />
     <Compile Include="Scheduler\SchedulerManager.cs" />
     <Compile Include="Services\ISendMessageService.cs" />
     <Compile Include="Services\Routing.cs" />
@@ -547,7 +545,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\TwinLift\Index.cshtml" />
-    <Content Include="Views\TruckOperationCycle\SortByTruck.cshtml" />
+    <Content Include="Views\TruckOperationCycle\SortByCurrent.cshtml" />
     <Content Include="Views\TruckOperationCycle\SortByCompTruck.cshtml" />
     <Content Include="Views\TruckOperationCycle\SortByAvgTruck.cshtml" />
     <Content Include="Views\TwinLift\Detail.cshtml" />
@@ -557,7 +555,43 @@
     <Content Include="Views\Portal\Pad.cshtml" />
     <Content Include="Views\PadTruckOperationCycle\SortByAvgTruck.cshtml" />
     <Content Include="Views\PadTruckOperationCycle\SortByCompTruck.cshtml" />
-    <Content Include="Views\PadTruckOperationCycle\SortByTruck.cshtml" />
+    <Content Include="Views\PadTruckOperationCycle\SortByCurrent.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Browsers\ios.browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadTruckOperationCycle\SortByAvgTruckDesc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadTruckOperationCycle\SortByCompTruckDesc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadTruckOperationCycle\SortByCurrentDesc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TruckOperationCycle\SortByAvgTruckDesc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TruckOperationCycle\SortByCompTruckDesc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TruckOperationCycle\SortByCurrentDesc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShsictThread\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TruckOperationCycle\SortByToloc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TruckOperationCycle\SortByTolocDesc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadTruckOperationCycle\SortByToloc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PadTruckOperationCycle\SortByTolocDesc.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -575,9 +609,10 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>16158</DevelopmentServerPort>
+          <DevelopmentServerPort>1462</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:10657/</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

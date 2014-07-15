@@ -40,7 +40,7 @@ namespace Shsict.InternalWeb.Scheduler
                 catch (Exception ex)
                 {
 
-                    LogEvent.logErroMsg("DailyReporter&&ThreeShift Refresh  Cache  Get Time Error EX:" + ex.Message);
+                    LogEvent.logErro(ex);
                 }
                 finally
                 {

@@ -14,7 +14,7 @@ namespace Shsict.DataAccess
     {
         public static DataRow GetSendMessageByID(string sID)
         {
-            string sql = @"SELECT  ID, JobNo, SENDMESSAGE, SENDTIME, ERRORTIME, ISSEND, MECHANICALNO 
+            string sql = @"SELECT  ID, JobNo, SENDMESSAGE, SENDTIME, ERRORTIME, ISSEND, MECHANICALNO, FAULTSTATUS,BEGINTIME,FINISHTIME
                             FROM SSICT_SENDMSG_VW WHERE (ID = :tID)";
 
             OracleParameter[] para = new OracleParameter[1];
@@ -34,8 +34,8 @@ namespace Shsict.DataAccess
 
         public static DataTable GetSendMessages()
         {
-            string sql = @"SELECT  ID, JobNo, SENDMESSAGE, SENDTIME, ERRORTIME, ISSEND, MECHANICALNO 
-                            FROM SSICT_SENDMSG_VW  Order By ISSEND desc";
+            string sql = @"SELECT  ID, JobNo, SENDMESSAGE, SENDTIME, ERRORTIME, ISSEND, MECHANICALNO, FAULTSTATUS,BEGINTIME,FINISHTIME 
+                            FROM SSICT_SENDMSG_VW  Order By ISSEND desc ,BEGINTIME desc";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql);
 
@@ -51,9 +51,9 @@ namespace Shsict.DataAccess
 
         public static DataTable GetFaultMessages()
         {
-            string sql = @"SELECT ID ,EMPID ,SHIFTGROUP ,MACNO ,MSGCONTENT ,BEGINTIME ,ENDTIME ,DELAY ,
-                           FAULTID ,FG ,SEND ,UPDATEREASON ,UPDATETIME ,SMSSENDTIME ,SMSSENDFLAG  
-                            FROM SM_FAULT_MSGREMIND ";
+            string sql = @"SELECT MECHANICALNO ,SENDMESSAGE ,FaultStatus ,EngERRORTIME ,OptERRORTIME ,REPORTTIME ,RECEIVETIME ,
+                           REPAIRTIME ,CONFIRMREPAIRTIME 
+                           FROM SSICT_FAULTLIST_VW ";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql);
 

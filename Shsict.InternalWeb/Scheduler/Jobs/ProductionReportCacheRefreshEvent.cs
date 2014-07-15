@@ -46,7 +46,7 @@ namespace Shsict.InternalWeb.Scheduler
                 catch (Exception ex)
                 {
 
-                    LogEvent.logErroMsg("ProductionReport Refresh  Cache  Get Time Error EX:" + ex.Message);
+                    LogEvent.logErro(ex);
                 }
                 finally
                 {

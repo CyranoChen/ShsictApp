@@ -37,6 +37,24 @@
                 $(".refresh").click(function () {
                     location.reload();
                 });
+               
+
+                $("#ShsictMenu .ui-collapsible-heading-toggle").click(function () {
+                    var menu_num = $(this).parent().parent().attr("id").replace("menu", "")
+                    $.ajax({
+                        url: "/Portal/SaveMenu/" + menu_num,
+                        type: "get",
+                        success: function (msg) {
+                            if (msg != "success") {
+                                alert("error2");
+                            }
+                        },
+                        error: function (msg) {
+                            alert("error");
+                        }
+                    });
+
+                });
             });
         </script>
         @{ var id = Request.RequestContext.HttpContext.User.Identity as FormsIdentity; ;
@@ -45,15 +63,26 @@
            {
                string[] roles = id.Ticket.UserData.Split(',');
 
-           
+               string[] str;
 
-            <div data-role="panel" data-position-fixed="true" data-display="push" id="nav-panel" data-theme="d">
-                <div data-role="collapsibleset" class="p-15" data-inset="false">
+               if (Session["myMenu"] != null)
+               {
+                   str = Session["myMenu"].ToString().Split(',');
+               }
+               else
+               {
+
+                   str = new string[5] { "true", "true", "true", "true", "true" };
+
+               }
+
+            <div  data-role="panel" data-position-fixed="true" data-display="push" id="nav-panel" data-theme="d">
+                <div id="ShsictMenu" data-role="collapsibleset" class="p-15" data-inset="false">
                     @foreach (string item in roles)
                     {
                         if (item == "ZY")
                         { 
-                        <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                        <div id="menu1" data-collapsed="@str[0]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
                             <h2>
                                 <div>昼夜生产情况</div>
                                 <span>&nbsp</span></h2>
@@ -70,14 +99,14 @@
                     {
                         if (item == "SC")
                         { 
-                        <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                        <div id="menu2" data-collapsed="@str[1]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
                             <h2>
                                 <div>生产汇报</div>
                                 <span>&nbsp</span></h2>
                             <ul data-role="listview" class="p3-10">
                                 <li class="p35"><a href="/PadVesselEfficiency" target="_top">
                                     <img src="~/Content/images/icon-chuanxiaolv.png" alt="xiaolv1">船舶效率</a></li>
-                                <li class="p35"><a href="/PadYardDensity" target="_top">
+                                <li class="p35"><a href="/PadYardDensity/Charts" target="_top">
                                     <img src="~/Content/images/icon-xiaolv2.png" alt="xiaolv2">堆场利用率</a></li>
                                 <li class="p35"><a href="/PadTwinLift" target="_top">
                                     <img src="~/Content/images/icon-xiaolv3.png" alt="xiaolv3">双吊具作业情况</a></li>
@@ -91,7 +120,7 @@
                     {
                         if (item == "ZYL")
                         { 
-                        <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                        <div id="menu3" data-collapsed="@str[2]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
                             <h2>
                                 <div>作业路情况</div>
                                 <span>&nbsp</span></h2>
@@ -108,9 +137,9 @@
                     {
                         if (item == "JX")
                         { 
-                        <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                        <div id="menu4" data-collapsed="@str[3]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
                             <h2>
-                                <div>机械设备</div>
+                                <div>机械故障维修情况</div>
                                 <span>&nbsp</span></h2>
                             <ul data-role="listview" class="p3-15">
                                 <li class="p35"><a href="/PadMechanicalError" target="_top">
@@ -123,9 +152,9 @@
                     {
                         if (item == "CQ")
                         { 
-                        <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                        <div id="menu5" data-collapsed="@str[4]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
                             <h2>
-                                <div>出勤人员资质情况</div>
+                                <div>承包队出勤情况</div>
                                 <span>&nbsp</span></h2>
                             <ul data-role="listview" class="p3-10">
                                 <li class="p35"><a href="/PadOperatePlan" target="_top">

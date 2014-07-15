@@ -49,14 +49,14 @@
                     {
                         if (@item.VESSELNAME == @nameList.vName && @item.IEFG == "I")
                         {
-                            <p>进口： 总箱量：@item.TOTALCNT | 效率：@item.EFFICIENCY%</p>
+                            <p>进口： 总箱量：@item.TOTALCNT | 效率：@item.EFFICIENCY</p>
                         }
                     }
                     @foreach (Shsict.InternalWeb.Models.TwinLift item in Model)
                     {
                         if (@item.VESSELNAME == @nameList.vName && @item.IEFG == "E")
                         {
-                            <p>出口： 总箱量：@item.TOTALCNT | 效率：@item.EFFICIENCY%</p>
+                            <p>出口： 总箱量：@item.TOTALCNT | 效率：@item.EFFICIENCY</p>
                         }
                     }
                 </a>

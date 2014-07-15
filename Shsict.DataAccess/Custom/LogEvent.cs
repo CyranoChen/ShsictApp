@@ -31,7 +31,7 @@ namespace Shsict.DataAccess
                 return ds.Tables[0].Rows[0];
             }
         }
-        public static void InsertLogEvent(string logID, string eventType, string message, string errorStackTrace, DateTime eventDate)
+        public static void InsertLogEvent(string eventType, string message, string errorStackTrace, DateTime eventDate)
         {
             string sql = @"INSERT INTO MOBILEAPP_LOGEVENT
                             (LOGID, EventType, Message, ErrorStackTrace, EventDate )

@@ -31,7 +31,7 @@ namespace Shsict.Scheduler
                 }
                 catch (Exception ex)
                 {
-                    LogEvent.logErroMsg("Notice Refresh  Cache  Get Time Error Ex:" + ex.Message);
+                    LogEvent.logErro(ex);
                 }
                 finally
                 {

@@ -158,6 +158,7 @@
     <Content Include="Container_ArrangeTime_Detail.aspx" />
     <Content Include="Container_ArrangeTime_List.aspx" />
     <Content Include="Favourite.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Container_Acceptance_Detail.aspx" />
     <Content Include="Container_Acceptance_List.aspx" />
@@ -184,6 +185,9 @@
     </Compile>
     <Compile Include="Container_ArrangeTime_List.aspx.designer.cs">
       <DependentUpon>Container_ArrangeTime_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handler\ContainerAcceptanceList.ashx.cs">
       <DependentUpon>ContainerAcceptanceList.ashx</DependentUpon>

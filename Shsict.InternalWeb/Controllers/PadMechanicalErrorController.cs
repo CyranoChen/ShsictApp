@@ -12,32 +12,61 @@ namespace Shsict.InternalWeb.Controllers
         [Authorize(Roles = "JX")]
         public ActionResult Index(string id)
         {
-            List<MechanicalError> _MechanicalError;
+            List<Mechanical> _MechanicalError;
             string user = this.HttpContext.Request.RequestContext.HttpContext.User.Identity.Name;
-
-            if (id != null)
+            if (id == null)
             {
-                _MechanicalError = MechanicalErrorController.Cache.MechanicalErrorList.FindAll(t => t.MECHANICALNO.ToUpper().Contains(id.ToUpper()) && t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + "$";
+
+            }
+
+            string _MyTime = id.Substring(0, id.LastIndexOf("$"));
+            _MechanicalError = MechanicalErrorController.Cache.MechanicalList.FindAll(t => t.REPORTTIME.Date.Equals(DateTime.Parse(_MyTime))).ToList();
+
+            string data = "";
+
+            if (id.Length != id.IndexOf("$") + 1)
+                data = id.Substring(id.IndexOf("$") + 1, id.Length - id.IndexOf("$") - 1);
+
+
+
+            if (!string.IsNullOrEmpty(data))
+            {
+                _MechanicalError = _MechanicalError.FindAll(t => t.MECHANICALNO.ToUpper().Contains(data.ToUpper())).OrderByDescending(t => t.REPORTTIME).ToList();
 
             }
             else
             {
-                _MechanicalError = MechanicalErrorController.Cache.MechanicalErrorList.FindAll(t => t.JobNo.Equals(user)).OrderByDescending(t => t.ERRORTIME).ToList();
+                _MechanicalError = _MechanicalError.OrderByDescending(t => t.REPORTTIME).ToList();
 
             }
+
+
 
             string noData = "暂无数据";
 
             if (_MechanicalError == null || _MechanicalError.Count == 0)
             {
-                MechanicalError mechanicalError = new MechanicalError();
+                Mechanical mechanicalError = new Mechanical();
 
                 mechanicalError.MECHANICALNO = noData;
 
                 _MechanicalError.Add(mechanicalError);
             }
 
-            _MechanicalError[0].SEARCHKEY = id;
+            _MechanicalError[0].SEARCHKEY = data;
+            _MechanicalError[0].MyDate = _MyTime;
+
+            foreach (MechanicalError item in MechanicalErrorController.Cache.MechanicalErrorList)
+            {
+                if (item.JobNo.Equals(user)&& item.ISSEND.ToUpper().Trim().Equals("Y"))
+                {
+                    MechanicalError.UpdateMechanicalError(item.ID);
+                }
+            }
+
+            MechanicalErrorController.Cache.RefreshCache();
+
             return View(_MechanicalError.ToList());
         }
 

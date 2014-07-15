@@ -126,6 +126,7 @@ namespace Shsict.InternalWeb.Controllers
             }
         }
 
+      
         public void LogOff()
         {
             Response.Cookies.Remove("uid");
@@ -133,7 +134,7 @@ namespace Shsict.InternalWeb.Controllers
             FormsAuthentication.SignOut();
             Response.Write("success");
         }
-
+    
         public void PadLogOff()
         {
             Response.Cookies.Remove("uid");

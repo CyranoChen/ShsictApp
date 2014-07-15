@@ -15,7 +15,22 @@
             $("ul.ui-listview").find("li div.colorbg").each(function () {
                 $(this).css("width", $(this).prev("div.textcontainer").find("p.ui-li-aside").text());
             });
-            //$("#aa").click(function () { alert("aa"); });
+            $("#ShsictMenu .ui-collapsible-heading-toggle").click(function () {
+                var menu_num = $(this).parent().parent().attr("id").replace("menu", "")
+                $.ajax({
+                    url: "/Portal/SaveMenu/" + menu_num,
+                    type: "get",
+                    success: function (msg) {
+                        if (msg != "success") {
+                            alert("error2");
+                        }
+                    },
+                    error: function (msg) {
+                        alert("error");
+                    }
+                });
+
+            });
         });
 </script>
 </head>
@@ -26,12 +41,28 @@
             <b></b>
         </div>
         <div data-role="content">
-            <div data-role="collapsibleset" class="p-15" data-theme="a" data-inset="false">
-                @foreach (string item in Model)
-                {
-                    if (item == "ZY")
-                    { 
-                    <div id="aa" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+            <div id="ShsictMenu" data-role="collapsibleset" class="p-15" data-theme="a" data-inset="false">
+                @{
+                    string[] str;
+
+                    if (ViewBag.myMenu != null)
+                    {
+                        str = ViewBag.myMenu.Split(',');
+                    }
+                    else
+                    {
+
+                        str = new string[5] { "true", "true", "true", "true", "true" };
+
+                    }
+
+                    foreach (string item in Model)
+                    {
+                        if (item == "ZY")
+                        { 
+                           
+                    <div id="menu1" data-role="collapsible" data-collapsed="@str[0]" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+
                         <h2 class="bg1">
                             <div>昼夜生产情况</div>
                             <span class="r">昼夜生产实绩、昼夜计划量计划。</span>
@@ -45,16 +76,16 @@
                                 <img src="~/Content/images/icon-gb123.png" alt="gongban">第一、二、三工班吞吐量</a></li>
                         </ul>
                     </div>
+                        }
                     }
-                }
-                @foreach (string item in Model)
-                {
-                    if (item == "SC")
-                    { 
-                    <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+                    foreach (string item in Model)
+                    {
+                        if (item == "SC")
+                        { 
+                    <div id="menu2" data-role="collapsible" data-collapsed="@str[1]" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
                         <h2 class="bg2">
                             <div>生产汇报</div>
-                            <span class="r">对生产会汇报相关内容。</span></h2>
+                            <span class="r">生产会汇报相关内容。</span></h2>
                         <ul data-role="listview" class="p3-15">
                             <li class="p35"><a href="/VesselEfficiency" target="_top">
                                 <img src="~/Content/images/icon-chuanxiaolv.png" alt="xiaolv1">船舶效率</a></li>
@@ -66,13 +97,13 @@
                                 <img src="~/Content/images/icon-xiaolv4.png" alt="xiaolv4">靠离泊情况</a></li>
                         </ul>
                     </div>
+                        }
                     }
-                }
-                @foreach (string item in Model)
-                {
-                    if (item == "ZYL")
-                    { 
-                    <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+                    foreach (string item in Model)
+                    {
+                        if (item == "ZYL")
+                        { 
+                    <div id="menu3" data-role="collapsible" data-collapsed="@str[2]" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
                         <h2 class="bg3">
                             <div>作业路情况</div>
                             <span class="r">针对各类作业路效率、单车周期预警阀值预警。</span></h2>
@@ -83,15 +114,15 @@
                                 <img src="~/Content/images/icon-zyl2.png" alt="zyl2">单车运行周期</a></li>
                         </ul>
                     </div>
+                        }
                     }
-                }
-                @foreach (string item in Model)
-                {
-                    if (item == "JX")
-                    { 
-                    <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+                    foreach (string item in Model)
+                    {
+                        if (item == "JX")
+                        { 
+                    <div id="menu4" data-role="collapsible" data-collapsed="@str[3]" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
                         <h2 class="bg4">
-                            <div>机械设备</div>
+                            <div>机械故障维修情况</div>
                             <span class="r">对机械设备故障的修复时间监控。
                             </span></h2>
                         <ul data-role="listview" class="p3-15">
@@ -99,25 +130,27 @@
                                 <img src="~/Content/images/icon-weixiu.png" alt="BMW">未完成维修的机械及故障时间</a></li>
                         </ul>
                     </div>
+                        }
                     }
-                }
-                @foreach (string item in Model)
-                {
-                    if (item == "CQ")
-                    { 
-                    <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
+                    foreach (string item in Model)
+                    {
+                        if (item == "CQ")
+                        { 
+                    <div id="menu5" data-role="collapsible" data-collapsed="@str[4]" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false">
                         <h2 class="bg5">
-                            <div>出勤人员资质情况</div>
-                            <span class="r">昼夜出勤人员的远程手机实时编制与推送。</span></h2>
+                            <div>承包队出勤情况</div>
+                            <span class="r">各承包队出勤人员资质信息</span></h2>
                         <ul data-role="listview" class="p3-15">
                             <li class="p35"><a href="/OperatePlan" target="_top">
                                 <img src="~/Content/images/icon-people.png" alt="ryzz">各承包队出勤人员资质信息查询</a></li>
                         </ul>
 
                     </div>
+                        }
                     }
                 }
             </div>
+
         </div>
     </div>
 </body>

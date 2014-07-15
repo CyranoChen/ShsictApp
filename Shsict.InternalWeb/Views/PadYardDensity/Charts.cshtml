@@ -61,7 +61,7 @@
                             enabled: true,
                             color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                             style: {
-                                textShadow: '0 0 3px black, 0 0 3px black'
+                                textShadow: '0 0 3px black'
                             }
                         }
                     }
@@ -162,7 +162,7 @@
 <script src="~/Scripts/exporting.js"></script>
 
 <div class="ui-bar ui-bar-c">
-    <h4>双吊具作业情况</h4>
+    <h4>堆存密度情况</h4>
            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false" class="fr">
         @Html.TextBoxFor(a => a[1].MyDate, new { id = "SearchBox", data_role = "datebox" })
         <a href="/PadYardDensity/Index/@Model[1].MyDate" target="_top" class="grid"></a>

@@ -23,7 +23,7 @@ namespace Shsict.InternalWeb.Controllers
             if (string.IsNullOrEmpty(id))
                 id = DateTime.Now.ToString("yyyy-MM-dd");
 
-            var _OperatePlan = Cache.OperatePlanList.FindAll(t => t.SHIFT.Trim().Equals("日") && t.SHIFT_DATE.Equals(DateTime.Parse(id)));
+            var _OperatePlan = Cache.OperatePlanList.FindAll(t => t.SHIFT.Trim().Equals("日班") && t.SHIFT_DATE.Equals(DateTime.Parse(id)));
 
             string noData = "暂无数据";
 
@@ -44,7 +44,7 @@ namespace Shsict.InternalWeb.Controllers
             if (string.IsNullOrEmpty(id))
                 id = DateTime.Now.ToString("yyyy-MM-dd");
 
-            var _OperatePlan = Cache.OperatePlanList.FindAll(t => t.SHIFT.Trim().Equals("夜") && t.SHIFT_DATE.Equals(DateTime.Parse(id)));
+            var _OperatePlan = Cache.OperatePlanList.FindAll(t => t.SHIFT.Trim().Equals("夜班") && t.SHIFT_DATE.Equals(DateTime.Parse(id)));
             string noData = "暂无数据";
             if (_OperatePlan.Count == 0)
             {

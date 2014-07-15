@@ -1,8 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.Threading;
-using Shsict.Entity;
 using System.Configuration;
+using System.Threading;
+
+using Shsict.Entity;
 
 namespace Shsict.Scheduler
 {
@@ -44,7 +44,7 @@ namespace Shsict.Scheduler
                 catch (Exception ex)
                 {
 
-                    LogEvent.logErroMsg("Container Refresh  Cache  Get Time Error EX:" + ex.Message);
+                    LogEvent.logErro(ex);
                 }
                 finally
                 {

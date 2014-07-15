@@ -797,7 +797,7 @@ ul.zyl li .colorbg {
 .loading-nw .login {
     width: 80%;
     margin: 0 auto;
-    padding-top: 70%;
+    padding-top: 50%;
 }
 
     .loading-nw .login .con {
@@ -876,3 +876,9 @@ ul.zyl li .colorbg {
         .ui-header a.back:hover {
             background: url(../images/arrow2.png) center no-repeat;
         }
+
+#sortCycle.ui-mini .ui-btn-inner {
+    font-size: 11px;
+    padding-left:4px;
+    text-align:left;
+}

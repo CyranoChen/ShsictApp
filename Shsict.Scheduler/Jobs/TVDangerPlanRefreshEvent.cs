@@ -26,17 +26,17 @@ namespace Shsict.Scheduler
             {
                 try
                 {
-                   
-                TVDangerPlan.Cache.RefreshCache();
-                LogEvent.logSuccess("TVDangerPlan Refresh Cache Success");
 
-                TVDangerContainer.Cache.RefreshCache();
-                LogEvent.logSuccess("TVDangerContainer Refresh Cache Success");
+                    TVDangerPlan.Cache.RefreshCache();
+                    LogEvent.logSuccess("TVDangerPlan Refresh Cache Success");
+
+                    TVDangerContainer.Cache.RefreshCache();
+                    LogEvent.logSuccess("TVDangerContainer Refresh Cache Success");
 
                 }
                 catch (Exception ex)
                 {
-                    LogEvent.logErroMsg("TVDangerPlan&TVDangerContainer Refresh  Cache  Get Time Error Ex:"+ex.Message);
+                    LogEvent.logErro(ex);
                 }
                 finally
                 {

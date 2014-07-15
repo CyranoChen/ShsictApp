@@ -26,14 +26,14 @@ namespace Shsict.Scheduler
             {
                 try
                 {
-                   
-                OTruck.Cache.RefreshCache();
-                LogEvent.logSuccess("Truck Refresh Cache Success");
+
+                    OTruck.Cache.RefreshCache();
+                    LogEvent.logSuccess("Truck Refresh Cache Success");
 
                 }
                 catch (Exception ex)
                 {
-                    LogEvent.logErroMsg("Truck Refresh  Cache  Get Time Error Ex:"+ex.Message);
+                    LogEvent.logErro(ex);
                 }
                 finally
                 {

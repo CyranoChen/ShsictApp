@@ -11,7 +11,7 @@ namespace Shsict.Scheduler
         public VesselCacheRefreshEvent()
         {
             ScheduleType = "Shsict.Scheduler.IVesselCacheRefreshEvent";
-            DueTimeInterval = 60*1000*2;
+            DueTimeInterval = 60 * 1000 * 2;
             string VesselRefreshRateStr = ConfigurationManager.AppSettings.GetValues("VesselRefreshRate")[0].ToString();
             PeriodInterval = 60 * 1000 * Int32.Parse(VesselRefreshRateStr);
         }
@@ -27,14 +27,14 @@ namespace Shsict.Scheduler
                 try
                 {
                     OVesselPlan.Cache.RefreshCache();
-                LogEvent.logSuccess("VesselPlan Refresh Cache Success");
-                
-                PortOfCall.Cache.RefreshCache();
-                LogEvent.logSuccess("PortOfCall Refresh Cache Success");
+                    LogEvent.logSuccess("VesselPlan Refresh Cache Success");
+
+                    PortOfCall.Cache.RefreshCache();
+                    LogEvent.logSuccess("PortOfCall Refresh Cache Success");
                 }
                 catch (Exception ex)
                 {
-                     LogEvent.logErroMsg("VesselPlan&PortOfCall Refresh Refresh  Cache  Get Time Error Ex:"+ex.Message);
+                    LogEvent.logErro(ex);
                 }
                 finally
                 {

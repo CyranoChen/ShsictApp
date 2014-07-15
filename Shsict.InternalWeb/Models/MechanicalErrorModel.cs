@@ -24,7 +24,25 @@ namespace Shsict.InternalWeb.Models
                 ERRORTIME = dr["ERRORTIME"].ToString();
                 ISSEND = dr["ISSEND"].ToString();
                 MECHANICALNO = dr["MECHANICALNO"].ToString();
-                
+                FAULTSTATUS = dr["FAULTSTATUS"].ToString();
+
+
+                if (!string.IsNullOrEmpty(dr["BEGINTIME"].ToString()))
+                {
+                    BEGINTIME = DateTime.Parse(dr["BEGINTIME"].ToString());
+                }
+                else
+                {
+                    BEGINTIME = null;
+                }
+                if (!string.IsNullOrEmpty(dr["FINISHTIME"].ToString()))
+                {
+                    FINISHTIME = DateTime.Parse(dr["FINISHTIME"].ToString());
+                }
+                else
+                {
+                    FINISHTIME = null;
+                }
             }
             else
             {
@@ -49,6 +67,12 @@ namespace Shsict.InternalWeb.Models
         public string MECHANICALNO { get; set; }
 
         public string SEARCHKEY { get; set; }
+
+        public string FAULTSTATUS { get; set; }
+
+        public DateTime? BEGINTIME { get; set; }
+
+        public DateTime? FINISHTIME { get; set; }
         #endregion
 
         public static List<MechanicalError> GetMechanicalErrors()
@@ -70,5 +94,7 @@ namespace Shsict.InternalWeb.Models
         {
             Shsict.DataAccess.SendMessage.UpdateSendMessages(id);    
         }
+
+     
     }
 }

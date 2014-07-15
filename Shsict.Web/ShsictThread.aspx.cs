@@ -32,6 +32,7 @@ namespace Shsict.Web
         {
             try
             {
+          
                 SchedulerManager.Start();
 
                 lblThreadStatus.Text = string.Format("Total: {0} Jobs Started", SchedulerManager.CurrentJobsList.Count);

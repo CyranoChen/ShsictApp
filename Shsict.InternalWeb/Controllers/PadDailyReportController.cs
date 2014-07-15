@@ -21,7 +21,7 @@ namespace Shsict.InternalWeb.Controllers
         public ActionResult Day(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
             var _DailyReports = DailyReportController.Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));
 
@@ -43,7 +43,7 @@ namespace Shsict.InternalWeb.Controllers
         public ActionResult Month(string id)
         {
             if (string.IsNullOrEmpty(id))
-                id = DateTime.Now.ToString("yyyy-MM-dd");
+                id = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
 
 
             var _DailyReports =DailyReportController.Cache.DailyReportList.Find(t => t.REPORT_DATE.Equals(DateTime.Parse(id)));

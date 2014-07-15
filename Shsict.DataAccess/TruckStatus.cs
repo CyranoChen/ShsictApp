@@ -14,7 +14,7 @@ namespace Shsict.DataAccess
     {
         public static DataTable GetTruckStatus()
         {
-            string sql = @"SELECT    TRUCKNO ,COMPLETETRUCKNUM ,AVEPERIOD ,CURRENTINSTRUCTION 
+            string sql = @"SELECT    TRUCKNO ,COMPLETETRUCKNUM ,AVEPERIOD ,CURRENTINSTRUCTION ,TOLOC1,TOLOC2,STATUS,STOPFG
                             FROM  SSICT_APP_TRUCKSTATUS";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql);

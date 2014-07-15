@@ -33,7 +33,7 @@
                             if (msg == "success") {
                                 $("#errorMsg").css("display", "none");
 
-                                window.location.href = "/Portal/Index";
+                                window.location.href = "/Portal";
                             }
                             else {
                                 $("#errorMsg").css("display", "block");
@@ -99,7 +99,7 @@
                     @Html.ValidationSummary(true)
                 }
             </section>
-            <div id="errorMsg" class="ui-corner-all ui-shadow alert" style="display: none"></div>
+            <div id="errorMsg" class="ui-corner-all ui-shadow alert" style="display: none;font-size:0.7em"></div>
         </div>
     </div>
 </body>

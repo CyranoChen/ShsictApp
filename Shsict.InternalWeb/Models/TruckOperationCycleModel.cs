@@ -19,12 +19,39 @@ namespace Shsict.InternalWeb.Models
         private void InitTruckOperationCycle(DataRow dr)
         {
             if (dr != null)
-            {  
+            {
                 TRUCKNO = dr["TRUCKNO"].ToString();
-                COMPLETETRUCKNUM = Int32.Parse(dr["COMPLETETRUCKNUM"].ToString());
-                AVEPERIOD =double.Parse( dr["AVEPERIOD"].ToString());
-                CURRENTINSTRUCTION = dr["CURRENTINSTRUCTION"].ToString();
-             
+                if (!string.IsNullOrEmpty(dr["COMPLETETRUCKNUM"].ToString()))
+                {
+                    COMPLETETRUCKNUM = Int32.Parse(dr["COMPLETETRUCKNUM"].ToString());
+                }
+                else
+                {
+                    COMPLETETRUCKNUM = 0;
+                }
+                if (!string.IsNullOrEmpty(dr["AVEPERIOD"].ToString()))
+                {
+                    AVEPERIOD = double.Parse(dr["AVEPERIOD"].ToString());
+                }
+                else
+                {
+                    AVEPERIOD = 0;
+                }
+
+                if (!string.IsNullOrEmpty(dr["CURRENTINSTRUCTION"].ToString()))
+                {
+                    CURRENTINSTRUCTION = double.Parse(dr["CURRENTINSTRUCTION"].ToString());
+                }
+                else
+                {
+                    CURRENTINSTRUCTION = 0;
+                }
+
+                TOLOC1 = dr["TOLOC1"].ToString();
+                TOLOC2 = dr["TOLOC2"].ToString();
+                STATUS = dr["STATUS"].ToString();
+                STOPFG = dr["STOPFG"].ToString();
+
             }
             else
             {
@@ -39,10 +66,20 @@ namespace Shsict.InternalWeb.Models
 
         public double AVEPERIOD { get; set; }
 
-        public string CURRENTINSTRUCTION { get; set; }
+        public double CURRENTINSTRUCTION { get; set; }
 
         public int Sort { get; set; }
-      
+
+        public string myTime { get; set; }
+
+        public string TOLOC1 { get; set; }
+
+        public string TOLOC2 { get; set; }
+
+        public string STATUS { get; set; }
+
+        public string STOPFG { get; set; }
+
         #endregion
 
         public static List<TruckOperationCycle> GetTruckOperationCycles()
@@ -60,6 +97,8 @@ namespace Shsict.InternalWeb.Models
 
             return list;
         }
+
+      
     }
 
 }

@@ -34,19 +34,19 @@
                     <tr class="twinf">
                         <th>&nbsp;</th>
                         <th>总箱量</th>
-                        <th>可作业箱量</th>
-                        <th>可作业率</th>
-                        <th>作业箱量</th>
+                        <th>可作业<br>箱量</th>
+                        <th>可作<br>业率</th>
+                        <th>作业<br>箱量</th>
                         <th>执行率</th>
-                        <th>双吊具效率</th>
+                        <th>效率</th>
                         <th>总箱量</th>
-                        <th>可配箱量</th>
+                        <th>可配<br>箱量</th>
                         <th>可配率</th>
-                        <th>实配箱量</th>
+                        <th>实配<br>箱量</th>
                         <th>实配率</th>
-                        <th>作业箱量</th>
+                        <th>作业<br>箱量</th>
                         <th>执行率</th>
-                        <th>双吊具效率</th>
+                        <th>效率</th>
                     </tr>
                 </thead>
                 @{   var query = from tl in Model
@@ -73,7 +73,7 @@
                                     <td>@import.CANSTGOPTRATE</td>
                                     <td>@import.OPERATECNT</td>
                                     <td>@import.OPERATERATE</td>
-                                    <td>@import.EFFICIENCY%</td>
+                                    <td>@import.EFFICIENCY</td>
                                 }
                                 else
                                 {
@@ -95,7 +95,7 @@
                                     <td>@export.STORAGERATE</td>
                                     <td>@export.OPERATECNT</td>
                                     <td>@export.OPERATERATE</td>
-                                    <td>@export.EFFICIENCY%</td>
+                                    <td>@export.EFFICIENCY</td>
                                 }
                                 else
                                 {

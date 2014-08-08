@@ -14,9 +14,8 @@ namespace Shsict.InternalWeb.Scheduler
         {
             ScheduleType = "Shsict.InternalWeb.Scheduler.ICacheRefreshEventInter";
             DueTimeInterval = 0;
-
-            // TODO : To add in the Configuration
-            string ContainerRefreshRateStr = "5";
+            string ContainerRefreshRateStr = ConfigurationManager.AppSettings.GetValues("InternalWebRefresh")[0].ToString();
+            //string ContainerRefreshRateStr = "5";
             PeriodInterval = 60 * 1000 * Int32.Parse(ContainerRefreshRateStr);
         }
 
@@ -49,7 +48,7 @@ namespace Shsict.InternalWeb.Scheduler
                     VesselAmountController.Cache.RefreshCache();
                     //LogEvent.logSuccess("VesselAmount Refresh Cache Success", 2);
 
-                    TruckOperationCycleController.Cache.RefreshCache();
+                    //TruckOperationCycleController.Cache.RefreshCache();
                     //LogEvent.logSuccess("TruckOperation Refresh Cache Success", 2);
 
                     VesselEfficiencyController.Cache.RefreshCache();

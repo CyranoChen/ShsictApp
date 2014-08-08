@@ -41,15 +41,15 @@ namespace Shsict.InternalWeb.Models
                 ANNUAL_COMPLETERATE = dr["round(ANNUAL_COMPLETERATE,5)"].ToString();
                 ANNUAL_PLANCONTAINER = dr["round(ANNUAL_PLANCONTAINER,5)"].ToString();
 
-                if (LASTALLDAY_COMPLETERATE != null)
+                if (!string.IsNullOrEmpty(LASTALLDAY_COMPLETERATE))
                 {
                     MyLASTALLDAY_COMPLETERATE = double.Parse(LASTALLDAY_COMPLETERATE).ToString("0.##%");
                 }
-                if (MONTHLY_COMPLETERATE != null)
+                if (!string.IsNullOrEmpty(MONTHLY_COMPLETERATE ))
                 {
                     MyMONTHLY_COMPLETERATE = double.Parse(MONTHLY_COMPLETERATE).ToString("0.##%");
                 }
-                if (ANNUAL_COMPLETERATE != null)
+                if (!string.IsNullOrEmpty(ANNUAL_COMPLETERATE))
                 {
                     MyANNUAL_COMPLETERATE = double.Parse(ANNUAL_COMPLETERATE).ToString("0.##%");
                 }

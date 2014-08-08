@@ -163,8 +163,13 @@
     <Compile Include="Scheduler\Jobs\CacheRefreshEventInter.cs" />
     <Compile Include="Scheduler\Ijob.cs" />
     <Compile Include="Scheduler\Job.cs" />
+    <Compile Include="Scheduler\Jobs\OperationCacheRefreshEvent.cs" />
     <Compile Include="Scheduler\SchedulerManager.cs" />
+    <Compile Include="Services\IIsUpdateService.cs" />
     <Compile Include="Services\ISendMessageService.cs" />
+    <Compile Include="Services\IsUpdateService.svc.cs">
+      <DependentUpon>IsUpdateService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Services\Routing.cs" />
     <Compile Include="Services\SendMessageService.svc.cs">
       <DependentUpon>SendMessageService.svc</DependentUpon>
@@ -435,6 +440,7 @@
     <Content Include="Scripts\Time\PluginDatetime.js" />
     <Content Include="Scripts\Time\wp_icons.png" />
     <Content Include="Scripts\Time\wp_icons_light.png" />
+    <Content Include="Services\IsUpdateService.svc" />
     <Content Include="Services\SendMessageService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

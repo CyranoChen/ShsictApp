@@ -6,4 +6,9 @@ namespace Shsict.InternalWeb.Services
     {
         public const string GetClientRoute = "/UID/{uid}";  
     }
+
+    public class VersionRouting
+    {
+        public const string GetClientRoute = "/Version/{version}";
+    }
 }

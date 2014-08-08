@@ -641,7 +641,7 @@ h3.tit, .going {
 
 
 ul.zyl li {
-    height: 80px;
+    height: 100px;
 }
 
 ul.zyl .ui-li-static {
@@ -669,7 +669,7 @@ ul.zyl li .colorbg {
     position: absolute;
     z-index: 10;
     width: 1%;
-    height: 78px;
+    height: 98px;
     display: block;
     clear: both;
 }

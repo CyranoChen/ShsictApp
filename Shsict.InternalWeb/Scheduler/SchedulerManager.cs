@@ -15,14 +15,14 @@ namespace Shsict.InternalWeb.Scheduler
 
                 //Job j1 = new DailyReporterCacheRefreshEvent();
                 //Job j2 = new ProductionReportCacheRefreshEvent();
-                //Job j3 = new OperationCacheRefreshEvent();
+                Job j3 = new OperationCacheRefreshEvent();
                 //Job j4 = new MechanicalCacheRefreshEvent();
                 //Job j5 = new AttendanceCacheRefreshEvent();
 
 
                 //CurrentJobsList.Add(j1.ScheduleType, j1.Execute());
                 //CurrentJobsList.Add(j2.ScheduleType, j2.Execute());
-                //CurrentJobsList.Add(j3.ScheduleType, j3.Execute());
+                CurrentJobsList.Add(j3.ScheduleType, j3.Execute());
                 //CurrentJobsList.Add(j4.ScheduleType, j4.Execute());
                 //CurrentJobsList.Add(j5.ScheduleType, j5.Execute());
 

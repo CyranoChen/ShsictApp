@@ -2,6 +2,7 @@
 using System.Threading;
 
 using Shsict.Entity;
+using System.Configuration;
 
 namespace Shsict.Scheduler
 {
@@ -12,7 +13,7 @@ namespace Shsict.Scheduler
             ScheduleType = "Shsict.Scheduler.ICacheRefreshEvent";
 
             // TODO : To add in the Configuration
-            string ContainerRefreshRateStr = "6";
+            string ContainerRefreshRateStr = ConfigurationManager.AppSettings.GetValues("CacheRefresh")[0].ToString(); ;
             DueTimeInterval = 0;
             PeriodInterval = 60 * 1000 * Int32.Parse(ContainerRefreshRateStr);
         }

@@ -28,6 +28,11 @@ namespace Shsict.InternalWeb.Models
                 YD_PCT = double.Parse(dr["round(YD_PCT,5)"].ToString());
                 YD_DES = dr["round(YD_DES,5)"].ToString();
 
+                if (!string.IsNullOrEmpty(YD_DES))
+                {
+                MyYD_DES= double.Parse(YD_DES).ToString("0.##%");
+                }
+
                 MyDate = YD_ID.ToString("yyyy-MM-dd");
                 MyYD_PCT=YD_PCT.ToString("0.##%");
 
@@ -77,6 +82,8 @@ namespace Shsict.InternalWeb.Models
         public double YD_PCT { get; set; }
 
         public string YD_DES { get; set; }
+
+        public string MyYD_DES { get; set; }
 
         public string MyDate { get; set; }
 

@@ -24,6 +24,7 @@ namespace Shsict.InternalWeb.Models
                 VESSELTYPE = dr["VESSELTYPE"].ToString();
                 VOCOPTM = dr["VOCOPTM"].ToString();
                 AMOUNTOFVESSEL = dr["AMOUNTOFVESSEL"].ToString();
+                TARGETVOCTM = dr["TARGETVOCTM"].ToString();
             }
             else
             {
@@ -40,6 +41,8 @@ namespace Shsict.InternalWeb.Models
         public string VOCOPTM { get; set; }
 
         public string AMOUNTOFVESSEL { get; set; }
+
+        public string TARGETVOCTM { get; set; }
 
         #endregion
 
@@ -58,7 +61,9 @@ namespace Shsict.InternalWeb.Models
 
             return list;
         }
-      
+
+
+       
     }
 
 }

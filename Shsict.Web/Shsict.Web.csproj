@@ -322,7 +322,11 @@
     <Compile Include="Handler\TruckImportExportList.ashx.cs">
       <DependentUpon>TruckImportExportList.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\IIsUpdateService.cs" />
     <Compile Include="Service\IMessagePushService.cs" />
+    <Compile Include="Service\IsUpdateService.svc.cs">
+      <DependentUpon>IsUpdateService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Service\MessagePushService.svc.cs">
       <DependentUpon>MessagePushService.svc</DependentUpon>
     </Compile>
@@ -452,6 +456,7 @@
     <Content Include="scripts\shsict.js" />
     <Content Include="scripts\waypoints.js" />
     <Content Include="scripts\waypoints.min.js" />
+    <Content Include="Service\IsUpdateService.svc" />
     <Content Include="Service\MessagePushService.svc" />
     <Content Include="ShsictThread.aspx" />
     <Content Include="Truck_ImportExport_Detail.aspx" />

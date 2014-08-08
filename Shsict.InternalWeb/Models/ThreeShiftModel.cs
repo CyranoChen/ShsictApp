@@ -23,7 +23,7 @@ namespace Shsict.InternalWeb.Models
                 SHIFTACTUAL = dr["SHIFTACTUAL"].ToString();
                 SHIFTCOMPLETERATE = dr["round(SHIFTCOMPLETERATE,5)"].ToString();
 
-                if (SHIFTCOMPLETERATE != null)
+                if (string.IsNullOrEmpty(SHIFTCOMPLETERATE))
                 {
                     MySHIFTCOMPLETERATE = double.Parse(SHIFTCOMPLETERATE).ToString("0.##%");
                 }

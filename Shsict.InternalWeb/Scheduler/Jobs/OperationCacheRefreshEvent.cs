@@ -15,7 +15,7 @@ namespace Shsict.InternalWeb.Scheduler
             ScheduleType = "Shsict.InternalWeb.Scheduler.IOperationCacheRefreshEvent";
             DueTimeInterval = 60 * 1000 * 2;
 
-            string ContainerRefreshRateStr = ConfigurationManager.AppSettings.GetValues("OperationRefreshRate")[0].ToString();
+            string ContainerRefreshRateStr = ConfigurationManager.AppSettings.GetValues("TruckOperationCycle")[0].ToString();
             PeriodInterval = 60 * 1000 * Int32.Parse(ContainerRefreshRateStr);
 
         }
@@ -30,17 +30,17 @@ namespace Shsict.InternalWeb.Scheduler
             {
                 try
                 {
-                    VesselAmountController.Cache.RefreshCache();
-                    LogEvent.logSuccess("VesselAmount Refresh Cache Success");
+                    string starTime = DateTime.Now.ToString("HH:mm:ss");
 
                     TruckOperationCycleController.Cache.RefreshCache();
-                    LogEvent.logSuccess("TruckOperation Refresh Cache Success");
+
+                    LogEvent.logSuccess(string.Format("TruckOperationCycle Refresh Cache Start-{0} \r\nRefresh Cache End - {1}", starTime, DateTime.Now.ToString("HH:mm:ss")), 2);
 
                 }
                 catch (Exception ex)
                 {
 
-                    LogEvent.logErro(ex);
+                    LogEvent.logErro(ex, 2);
                 }
                 finally
                 {

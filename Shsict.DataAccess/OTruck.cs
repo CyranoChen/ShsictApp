@@ -14,7 +14,7 @@ namespace Shsict.DataAccess
         public static DataRow GetTruckByID(string tID)
         {
             string sql = @"SELECT ID, Container_Truck_Num, Arrive_Yard_Time, Departure_Yard_Time, is_active, Remark ,Fcontainer ,Acontainer
-                            FROM v_truck WHERE (ID = :tID)";
+                            FROM v_truck WHERE (ID = :tID) order by  Arrive_Yard_Time ";
 
             OracleParameter[] para = new OracleParameter[1];
             para[0] = new OracleParameter("tID", tID);
@@ -34,7 +34,7 @@ namespace Shsict.DataAccess
         public static DataTable GetTrucks()
         {
             string sql = @"SELECT  ID, Container_Truck_Num, Arrive_Yard_Time, Departure_Yard_Time, is_active, Remark ,Fcontainer ,Acontainer
-                            FROM      v_truck ";
+                            FROM      v_truck order by  Arrive_Yard_Time ";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetViewConnection(), sql);
 
@@ -51,7 +51,7 @@ namespace Shsict.DataAccess
         public static DataTable GetTrucksByNum(string truckNo)
         {
             string sql = @"SELECT  ID, Container_Truck_Num, Arrive_Yard_Time, Departure_Yard_Time, is_active, Remark ,Fcontainer ,Acontainer
-                            FROM      v_truck Where  Container_Truck_Num = :truckNo";
+                            FROM      v_truck Where  Container_Truck_Num = :truckNo order by  Arrive_Yard_Time ";
 
             OracleParameter[] para = new OracleParameter[1];
             para[0] = new OracleParameter("truckNo", truckNo);

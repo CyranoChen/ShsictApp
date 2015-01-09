@@ -38,7 +38,7 @@ namespace Shsict.Web
 
                      if (!string.IsNullOrEmpty(ArriveYardTime))
                      {
-                         returnValue = returnValue && DateTime.Parse(ArriveYardTime).CompareTo(dateTime.AddDays(-10)) >0;
+                         returnValue = returnValue && DateTime.Parse(ArriveYardTime).CompareTo(dateTime.AddDays(-10)) > 0;
                      }
 
                      if (_Truck != null)

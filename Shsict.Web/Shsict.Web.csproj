@@ -436,6 +436,7 @@
     <Content Include="Handler\ContainerArrangeTimeList.ashx" />
     <Content Include="Handler\LoginHandler.ashx" />
     <Content Include="Handler\NoticeHandler.ashx" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\Shsict.pubxml" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\jquery.cookie.js" />

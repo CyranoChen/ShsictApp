@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.DataAccess", "Shsict.DataAccess\Shsict.DataAccess.csproj", "{E2FBA28A-DAC9-45AF-9A21-22765E443621}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shsict.Entity", "Shsict.Entity\Shsict.Entity.csproj", "{5641E8D3-3C77-486D-910C-EB2918007405}"

@@ -1,0 +1,123 @@
+﻿@model List<Shsict.InternalWeb.Models.DangerousContainers>
+
+@{
+    ViewBag.Title = "危险品消防";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+
+               @section Header{
+                   <script type="text/javascript">
+        $(function () {
+            $("#MyTime").mobiscroll(opt);
+            $("#BtnMyTime").click(function () { $("#SearchBox").focus(); });
+
+            $("#SearchBox").change(function () {
+                window.location.href = "/DangerousContainers/Index/" + $("#SearchBox").val();
+            });
+            $(".refresh").click(function () {
+                location.reload();
+            });
+        });
+                   </script>
+                   <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+                      data-transition="slidedown" href="/Portal" class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
+                   <a class="refresh"></a>
+
+                   <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+                       <div style="position: absolute; left: 10px; top: 0px"></div>
+
+                           @Html.TextBoxFor(a => a[0].SEARCHKEY, new { id = "SearchBox", data_role = "datebox", placeholder = "请输入箱号", style = "max-width:500px" })
+                           <button data-icon="star" id="BtnMyTime">@Model[0].SEARCHKEY</button>
+                       
+                   </div>
+               }
+
+    
+               <ul data-role="listview">
+                   @foreach (Shsict.InternalWeb.Models.DangerousContainers item in Model)
+                   {
+                       if (@item.CNTRNO != "暂无数据")
+                       {
+
+                           @*<li>
+                               <h3>@item.CNTRNO</h3>
+                               <p>场箱位：@item.YLOCATION </p>
+                               <p>UN编号：@item.UNNO </p>
+                               <p>危险品代码：@item.DNGGCD </p>
+                               <p>尺寸：@item.CSIZE </p>
+                               <p>箱型：@item.CTYPE </p>
+                               <p>状态：@item.STS </p>
+                               <p>流向：@item.CSTTO </p>
+                               <p>配载标志：@item.STGFG </p>
+                               <p>堆存天：@item.STGDAYS </p>
+                           </li>*@
+                        <div data-role="collapsible" data-inset="false" >
+                            <h3 class="tit">@item.CNTRNO</h3>
+                            <table data-role="table" data-mode="reflow" class="table-stroke">
+                                <thead>
+                                    <tr>
+                                        <th data-priority="persist">场箱位</th>
+                                        <th data-priority="2">UN编号</th>
+                                        <th data-priority="3">危险品代码</th>
+                                        <th data-priority="4">尺寸</th>
+                                        <th data-priority="5">箱型</th>
+                                        <th data-priority="6">状态</th>
+                                        <th data-priority="7">流向</th>
+                                        <th data-priority="8">配载标志</th>
+                                        <th data-priority="9">堆存天</th>
+                                        <th data-priority="10">通用消防</th>
+                                        <th data-priority="11">特殊消防</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @item.YLOCATION
+                                        </td>
+                                        <td>
+                                            @item.UNNO
+                                        </td>
+                                        <td>
+                                            @item.DNGGCD
+                                        </td>
+                                        <td>
+                                            @item.CSIZE
+                                        </td>
+                                        <td>
+                                            @item.CTYPE
+                                        </td>
+                                        <td>
+                                            @item.STS
+                                        </td>
+                                        <td>
+                                            @item.CSTTO
+                                        </td>
+                                        <td>
+                                            @item.STGFG
+                                        </td>
+                                        <td>
+                                            @item.STGDAYS
+                                        </td>
+                                        <td >
+                                            
+                                        @Html.Raw(@HttpUtility.HtmlDecode(@item.WS))
+                                        </td>
+                                        <td>
+                                           @Html.Raw(@HttpUtility.HtmlDecode(@item.SS))
+                                        </td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                       }
+                       else
+                       {
+                           <li>
+                               <h3>暂无数据</h3>
+                           </li>
+                       }
+                   }
+               </ul>

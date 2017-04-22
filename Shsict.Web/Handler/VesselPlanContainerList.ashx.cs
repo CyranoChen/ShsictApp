@@ -56,14 +56,10 @@ namespace Shsict.Web
                     {
                         returnValue = returnValue && true;
                     }
-                    else
-                    {
-                        returnValue = false;
-                    }
 
                     //进箱开始desc 船名 asc
 
-                    if (!string.IsNullOrEmpty(ContainerBeginTime) && ContainerBeginTime != "")
+                    if (!string.IsNullOrEmpty(ContainerBeginTime))
                     {
                         returnValue = returnValue && DateTime.Parse(ContainerBeginTime).CompareTo(dateTime.AddDays(-15)) > 0;
                     }

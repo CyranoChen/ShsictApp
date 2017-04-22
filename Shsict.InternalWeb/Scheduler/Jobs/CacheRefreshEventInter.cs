@@ -63,6 +63,10 @@ namespace Shsict.InternalWeb.Scheduler
                     VesselBerthController.Cache.RefreshCache();
                     //LogEvent.logSuccess("VesselBerth Refresh Cache Success", 2);
 
+                    YardTruckController.Cache.RefreshCache();
+          
+                    PlanCompletionController.Cache.RefreshCache();
+
 
                     LogEvent.logSuccess(string.Format("Refresh Cache Start-{0} \r\nRefresh Cache End - {1}", starTime, DateTime.Now.ToString("HH:mm:ss")), 2);
                 }

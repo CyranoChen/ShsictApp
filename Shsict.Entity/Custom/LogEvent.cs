@@ -132,9 +132,19 @@ namespace Shsict.Entity
 
                 }
 
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter("D:\\www-root\\LogEvent\\" + str, true))
+                try
                 {
-                    sw.WriteLine("\r\n报错信息：时间：{0}\r\n    LogType:{1}\r\n Message:{2}\r\n ErrorStackTrace:{3} \r\n 错误信息", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss "), let, message, errorStackTrace, ex.Message);
+                    using (
+                        System.IO.StreamWriter sw = new System.IO.StreamWriter("D:\\www-root\\LogEvent\\" + str, true))
+                    {
+                        sw.WriteLine(
+                            "\r\n报错信息：时间：{0}\r\n    LogType:{1}\r\n Message:{2}\r\n ErrorStackTrace:{3} \r\n 错误信息",
+                            DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss "), let, message, errorStackTrace, ex.Message);
+                    }
+                }
+                catch
+                {
+
                 }
 
             }

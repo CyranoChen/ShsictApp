@@ -1,0 +1,317 @@
+﻿@model Shsict.InternalWeb.Controllers.PlanCompletionReturnModel
+@{
+    ViewBag.Title = "作业进度跟踪";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@section Header{
+
+
+    <script src="~/Scripts/highcharts.js"></script>
+
+    <style>
+        h1 {
+            font-size: 1.3rem;
+        }
+
+        h2 {
+            font-size: 1.0rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        .panel > h4 {
+            font-size: 0.8rem;
+        }
+
+        h5 {
+            font-size: 0.8rem;
+        }
+
+        h6 {
+            font-size: 0.5rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            font-weight:normal;
+        }
+
+        ul, li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+
+        .clear {
+            clear: both;
+            display: block;
+            overflow: hidden;
+            visibility: hidden;
+            width: 0;
+            height: 0;
+        }
+
+
+        .clearfix:before,
+        .clearfix:after {
+            content: '.';
+            display: block;
+            overflow: hidden;
+            visibility: hidden;
+            font-size: 0;
+            line-height: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        /*
+          The following zoom:1 rule is specifically for IE6 + IE7.
+          Move to separate stylesheet if invalid CSS is a problem.
+        */
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+         .panel {
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+            background: #92af28 url(../../Content/images/panel-bg.png) 0.5rem 1rem no-repeat;
+            background-size: 3rem;
+            height: 10rem;
+            padding: 1rem 0.5rem 1rem 4rem;
+        }
+
+
+            .panel h4, .panel h5, .panel h6 {
+                line-height: 2rem;
+                text-shadow: none;
+            }
+
+            .panel h1 {
+                line-height: 2.3em;
+                text-align: right;
+            }
+
+            .panel h5 {
+                color: #e1f1a7;
+            }
+
+            .panel h1, .panel h4 {
+                color: #fff;
+            }
+
+        .bar {
+            height: 0.2rem;
+            border-radius: 0.5rem;
+            background: #819b22;
+        }
+    </style>
+    <script>
+        $(function() {
+            var dateData = @Model.dateData.Day;
+            var monthData = @Model.dateData.Month;
+            var timeData = monthData +"." + dateData ;
+            var oldDate = @Model.dateData.AddDays(-1).Day;
+            var oldMonthData =  @Model.dateData.AddDays(-1).Month;
+            var oldTimeData = oldMonthData +"." + oldDate ;
+            $('input:jqmData(role="datebox")').mobiscroll(opt);
+
+            $("#SearchBox").change(function() {
+                window.location.href = "/PlanCompletion/Index/" + $("#SearchBox").val();
+            });
+
+            $(".refresh").click(function() {
+                location.reload();
+            });
+
+            $('#container').highcharts({
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [ oldTimeData+'/22',
+                        oldTimeData+'/23',
+                        timeData+'/0',
+                        timeData+'/1',
+                        timeData+'/2',
+                        timeData+'/3',
+                        timeData+'/4',
+                        timeData+'/5',
+                        timeData+'/6',
+                        timeData+'/7',
+                        timeData+'/8',
+                        timeData+'/9',
+                        timeData+'/10',
+                        timeData+'/11',
+                        timeData+'/12',
+                        timeData+'/13',
+                        timeData+'/14',
+                        timeData+'/15',
+                        timeData+'/16',
+                        timeData+'/17',
+                        timeData+'/18',
+                        timeData+'/19',
+                        timeData+'/20',
+                        timeData+'/21'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0, // 从0开始计数
+                    max:@Model.max,
+                    title: {
+                        text: '',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip:  {
+                    //backgroundColor: '#FCFFC5',   // 背景颜色
+                    //borderColor: 'black',         // 边框颜色
+                    //borderRadius: 10,             // 边框圆角
+                    ////borderWidth: 3,               // 边框宽度
+                    //shadow: true,                 // 是否显示阴影
+                    //animation: true   ,            // 是否启用动画效果
+                    style: {                      // 文字内容相关样式
+
+                        fontSize: "12px",
+                        fontWeight: "blod",
+                        fontFamily: "Courir new"
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true,
+                            allowOverlap: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    x: -40,
+                    y: 100,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [
+                    {
+                        name: 'TEU',
+                        color:"#0469a9",
+                        data: [@Model.arr]
+                    }
+                ]
+            });
+        });
+    </script>
+
+
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
+       data-transition="slidedown" href="/Portal"
+       class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
+    <a class="refresh"></a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        <fieldset data-type="horizontal" data-mini="true">
+            @Html.TextBoxFor(a => a.MyTime, new { id = "SearchBox", data_role = "datebox" })
+
+        </fieldset>
+    </div>
+}
+
+
+
+<div class="panel">
+    <ul>
+        <li class="clearfix">
+            <h5 class="fl">吞吐量兑现率</h5>
+            @*<h4 class="fr" id="MyTime">4/10/2017</h4>*@
+        </li>
+        <li>
+            <h1>
+                <span id="MyTHroughputRidio_b">@Model.model.AMOUNT</span>
+                <span>/</span>
+                <span id="MyTHroughputRidio_e">@Model.model.PLANAMOUT</span>
+            </h1>
+        </li>
+        <li>
+            <div class="clearfix">
+                <h5 class="fl">任务进度</h5>
+                <h4 class="fr" id="MyWorkProgress">@Model.model.PlanCompletionRATE</h4>
+            </div>
+            <div class="bar">
+                @{
+                    string widtht = "0%";
+                    if (double.Parse(@Model.model.PlanCompletionRATE.Substring(0, @Model.model.PlanCompletionRATE.Length - 1)) >= 100)
+                    {
+                        widtht = "100%";
+                    }
+                    else
+                    {
+                        widtht = Model.model.PlanCompletionRATE;
+                    }
+                    <div id="workBar" style="width: @widtht; height: inherit; background-color: #ffcc00"></div>
+                }
+
+            </div>
+        </li>
+        <li>
+            <div class="clearfix">
+                <h5 class="fl">时间进度</h5>
+                <h4 class="fr" id="MyTimeProgress">@Model.model.TIMESCHEDULE</h4>
+            </div>
+            <div class="bar">
+                @{
+                    string width = "0%";
+                    if (double.Parse(@Model.model.TIMESCHEDULE.Substring(0, @Model.model.TIMESCHEDULE.Length - 1)) >= 100)
+                    {
+                        width = "100%";
+                    }
+                    else
+                    {
+                        width = Model.model.TIMESCHEDULE;
+                    }
+                    <div id="timeBar" style="width: @width; height: inherit; background-color: #ffcc00"></div>
+                }
+
+
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="col-lg-12 col-sm-12 col-md-12">
+    <div id="container" style="min-height: 700px; height: inherit"></div>
+</div>

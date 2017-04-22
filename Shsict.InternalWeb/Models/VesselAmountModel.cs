@@ -25,6 +25,23 @@ namespace Shsict.InternalWeb.Models
                 VOCOPTM = dr["VOCOPTM"].ToString();
                 AMOUNTOFVESSEL = dr["AMOUNTOFVESSEL"].ToString();
                 TARGETVOCTM = dr["TARGETVOCTM"].ToString();
+                SURPLUSCNT = dr["SURPLUSCNT"].ToString();
+
+
+                SURPLUSTIME = double.Parse(dr["SURPLUSTIME"].ToString());
+                
+              
+
+                WORKCRANE = dr["WORKCRANE"].ToString();
+
+                if (!string.IsNullOrEmpty(dr["PLANWORKENDTM"].ToString()))
+                {
+                    PLANWORKENDTM = DateTime.Parse(dr["PLANWORKENDTM"].ToString());
+                }
+                else
+                {
+                    PLANWORKENDTM = null;
+                }
             }
             else
             {
@@ -43,6 +60,14 @@ namespace Shsict.InternalWeb.Models
         public string AMOUNTOFVESSEL { get; set; }
 
         public string TARGETVOCTM { get; set; }
+
+        public string SURPLUSCNT { get; set; }
+
+        public double SURPLUSTIME { get; set; }
+
+        public string WORKCRANE { get; set; }
+
+        public DateTime? PLANWORKENDTM { get; set; }
 
         #endregion
 

@@ -7,68 +7,68 @@
 
 <script type="text/javascript">
     $(function () {
-    
-            $('input:jqmData(role="datebox")').mobiscroll(opt);
-            $("#SearchBox").change(function () {
-                window.location.href = "/PadYardDensity/Charts/" + $("#SearchBox").val();
-            });
 
-            $('#container').highcharts({
-                chart: {
-                    type: 'column'
-                },
+        $('input:jqmData(role="datebox")').mobiscroll(opt);
+        $("#SearchBox").change(function () {
+            window.location.href = "/PadYardDensity/Charts/" + $("#SearchBox").val();
+        });
+
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '<b>堆存密度情况</b>'
+            },
+            xAxis: {
+                categories: ['出口箱', '进口重箱', '空箱', '中转箱']
+            },
+            yAxis: {
+                min: 0,
                 title: {
-                    text: '<b>堆存密度情况</b>'
+                    text: ''
                 },
-                xAxis: {
-                    categories: ['出口箱', '进口重箱', '空箱', '中转箱']
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: ''
-                    },
-                    stackLabels: {
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return this.x + '<br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
                         enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                         style: {
-                            fontWeight: 'bold',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            textShadow: '0 0 3px black'
                         }
                     }
-                },
-                legend: {
-                    align: 'right',
-                    x: -70,
-                    verticalAlign: 'top',
-                    y: 20,
-                    floating: true,
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                    borderColor: '#CCC',
-                    borderWidth: 1,
-                    shadow: false
-                },
-                tooltip: {
-                    formatter: function () {
-                        return  this.x + '<br/>' +
-                            this.series.name + ': ' + this.y + '<br/>' +
-                            'Total: ' + this.point.stackTotal;
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                            style: {
-                                textShadow: '0 0 3px black'
-                            }
-                        }
-                    }
-                },
-                series: [{
-                    name: '剩余适用箱位',
-                    data: [@Model[1].YD_YARD_SLOT_SUM,@Model[2].YD_YARD_SLOT_SUM,@Model[3].YD_YARD_SLOT_SUM,@Model[4].YD_YARD_SLOT_SUM]
+                }
+            },
+            series: [{
+                name: '剩余适用箱位',
+                data: [@Model[1].YD_YARD_SLOT_SUM,@Model[2].YD_YARD_SLOT_SUM,@Model[3].YD_YARD_SLOT_SUM,@Model[4].YD_YARD_SLOT_SUM]
                 }, {
 
                     name: '在场箱量',
@@ -77,47 +77,47 @@
                 }]
             });
 
-            $('#container2').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-                },
+        $('#container2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
 
-                title: {
-                    text: '<b>堆存占总箱位分布</b>'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: {point.percentage:.1f}%'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.name}: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
+            title: {
+                text: '<b>堆存占总箱位分布</b>'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: {point.percentage:.1f}%'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
                     }
-                },
-                colors: [
+                }
+            },
+            colors: [
 
-    '#305bbc',
-    '#94c4f7',
-    '#6a97e2',
-    '#3f71c2',
-    '#ffc600'
+'#305bbc',
+'#94c4f7',
+'#6a97e2',
+'#3f71c2',
+'#ffc600'
 
-                ],
-                series: [{
-                    type: 'pie',
-                    name: '占总箱位',
-                    data: [
-                        ['出口箱', @Model[1].YD_PCT],
-                         ['进口重箱', @Model[1].YD_PCT],
+            ],
+            series: [{
+                type: 'pie',
+                name: '占总箱位',
+                data: [
+                    ['出口箱', @Model[1].YD_PCT],
+                         ['进口重箱', @Model[2].YD_PCT],
                         ['空箱', @Model[3].YD_PCT],
                         ['中转箱', @Model[4].YD_PCT],
                         ['未占用箱位', @Model[5].YD_PCT],
@@ -126,37 +126,37 @@
                 }]
             });
 
-            $('#container3').highcharts({
-                chart: {
-                    type: 'bar'
-                },
+        $('#container3').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '<b>箱密度对比</b>'
+            },
+            xAxis: {
+                categories: ['出口箱', '进口重箱', '空箱', '中转箱']
+            },
+            yAxis: {
+                min: 0,
                 title: {
-                    text: '<b>箱密度对比</b>'
-                },
-                xAxis: {
-                    categories: ['出口箱', '进口重箱', '空箱', '中转箱']
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: ''
-                    }
-                },
-                legend: {
-                    reversed: true
-                },
-                plotOptions: {
-                    series: {
-                        stacking: 'normal'
-                    }
-                },
-                series: [{
-                    name: '密度（%）',
-                    data: [@Model[1].YD_DES, @Model[2].YD_DES, @Model[3].YD_DES, @Model[4].YD_DES]
+                    text: ''
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: '密度（%）',
+                data: [@Model[1].YD_DES, @Model[2].YD_DES, @Model[3].YD_DES, @Model[4].YD_DES]
                 }]
             });
 
-        });
+    });
 		</script>
 <script src="~/Scripts/highcharts.js"></script>
 <script src="~/Scripts/exporting.js"></script>
@@ -166,6 +166,7 @@
            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false" class="fr">
         @Html.TextBoxFor(a => a[1].MyDate, new { id = "SearchBox", data_role = "datebox" })
         <a href="/PadYardDensity/Index/@Model[1].MyDate" target="_top" class="grid"></a>
+
    </fieldset>
 </div>
 <div class="ui-body-d">

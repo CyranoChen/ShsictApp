@@ -1,0 +1,44 @@
+﻿@model List<Shsict.InternalWeb.Models.YardTruck>
+@{
+    ViewBag.Title = "外集卡超时";
+    Layout = "~/Views/Shared/_LayoutPad.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $(".Mysort").click(function () {
+            var page = $(this).attr('id');
+            window.location.href = "/PadYardTruck/" + page;
+        });
+    });
+</script>
+<div class="ui-body">
+    <div class="ui-bar ui-bar-c">
+        <h4>外集卡超时</h4>
+    </div>
+    <div class="ui-body-d">
+        <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
+            <thead>
+
+                <tr>
+                    <th>箱区</th>
+                     <th><a href="#" data-role="button" data-iconpos="right" data-mini="true" data-corners="false" data-shadow="false" id="TruckAsc" class="Mysort">外集卡数</a></th>
+                    <th style="background-color: #eee"><a href="#" data-role="button" data-icon="arrow-u" data-iconpos="right" data-mini="true" data-corners="false" data-shadow="false" id="TimeDesc" class="Mysort">等待最大时长</a></th>
+                    <th>机械数</th>
+                      
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Shsict.InternalWeb.Models.YardTruck item in Model)
+                {
+                    <tr>
+                        <td>@item.YARDNO</td>
+                        <td>@item.OUTTRKNUM</td>
+                        <td>@item.OUTWAITTM</td>
+                        <td>@item.RTGNO</td>
+                             
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

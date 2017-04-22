@@ -14,7 +14,7 @@ namespace Shsict.DataAccess
     {
         public static DataTable GetOnBerths()
         {
-            string sql = @"SELECT   VESSELNAME,VESSELTYPE,VOCOPTM ,AMOUNTOFVESSEL ,TARGETVOCTM 
+            string sql = @"SELECT   VESSELNAME,VESSELTYPE,VOCOPTM ,AMOUNTOFVESSEL ,TARGETVOCTM ,SURPLUSCNT,SURPLUSTIME,WORKCRANE,PLANWORKENDTM
                             FROM  SSICT_APP_ONBERTH_EFF";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql);

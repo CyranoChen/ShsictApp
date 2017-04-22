@@ -25,7 +25,7 @@ namespace Shsict.InternalWeb.Models
                 YD_SAC_SUM = dr["YD_SAC_SUM"].ToString();
                 YD_YARD_SLOT_SUM = dr["YD_YARD_SLOT_SUM"].ToString();
                 YD_YARD_SLOT_TOTAL = dr["YD_YARD_SLOT_TOTAL"].ToString();
-                YD_PCT = double.Parse(dr["round(YD_PCT,5)"].ToString());
+                YD_PCT = dr["round(YD_PCT,5)"].ToString();
                 YD_DES = dr["round(YD_DES,5)"].ToString();
 
                 if (!string.IsNullOrEmpty(YD_DES))
@@ -34,7 +34,9 @@ namespace Shsict.InternalWeb.Models
                 }
 
                 MyDate = YD_ID.ToString("yyyy-MM-dd");
-                MyYD_PCT=YD_PCT.ToString("0.##%");
+
+                if (!string.IsNullOrEmpty(YD_PCT))
+                MyYD_PCT=double.Parse(YD_PCT).ToString("0.##%");
 
                 switch (YD_CNTR_STATUS)
                 {
@@ -79,7 +81,7 @@ namespace Shsict.InternalWeb.Models
 
         public string YD_YARD_SLOT_TOTAL { get; set; }
 
-        public double YD_PCT { get; set; }
+        public string YD_PCT { get; set; }
 
         public string YD_DES { get; set; }
 

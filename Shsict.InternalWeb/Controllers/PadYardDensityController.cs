@@ -54,6 +54,9 @@ namespace Shsict.InternalWeb.Controllers
             {
                 if (!myYardDensity.ContainsKey(yd.mySort))
                 {
+                    if (string.IsNullOrEmpty(yd.YD_DES))
+                        yd.YD_DES = "0";
+
                     myYardDensity.Add(yd.mySort, yd);
                 }
             }
@@ -64,7 +67,8 @@ namespace Shsict.InternalWeb.Controllers
             yardDensity.MyDate = id;
             yardDensity.mySort = 0;
             yardDensity.YD_SAC_SUM = yardDensity.YD_YARD_SLOT_SUM = yardDensity.YD_YARD_SLOT_TOTAL = "0";
-            yardDensity.YD_PCT = 0;
+            yardDensity.YD_PCT = "0";
+            yardDensity.YD_DES = "0";
 
             for (int i = 1; i <= 7; i++)
             {

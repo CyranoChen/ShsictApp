@@ -40,19 +40,19 @@
     });
 </script>
 <h2></h2>
-@{  string aa = ViewBag.ThreadStatus;
+@{ string aa = ViewBag.ThreadStatus;
 
     if (aa.IndexOf("Has Open") > -1)
-    { 
+    {
 
-    <button type="button" class="ui-btn ui-corner-all ui-shadow" id="ThreadStop">Thread Stop</button>     
+        <button type="button" class="ui-btn ui-corner-all ui-shadow" id="ThreadStop">Thread Stop</button>
     }
     else
     {
-    <button type="button" class="ui-btn ui-corner-all ui-shadow" id="ThreadStar">Thread Star</button>
+        <button type="button" class="ui-btn ui-corner-all ui-shadow" id="ThreadStar">Thread Star</button>
     }
     <div id="errorMsg" style="display: none"></div>
-                       
+
 }
 <div id="StatusMsg">@ViewBag.ThreadStatus</div>
 

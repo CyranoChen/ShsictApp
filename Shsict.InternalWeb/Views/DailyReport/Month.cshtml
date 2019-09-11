@@ -21,16 +21,16 @@
         });
     </script>
 
-    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
-        data-transition="slidedown" href="/Portal"
-        class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back </a>
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external"
+       data-transition="slidedown" onclick="window.location.href='/Portal'"
+       class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
     <a class="refresh"></a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
 
         @using (Html.BeginForm("index", "DailyReport", FormMethod.Post, new { id = "SearchForm" }))
         {
             @Html.TextBoxFor(a => a.MyDate, new { id = "SearchBox", data_role = "datebox" })
-     
+
             <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                 <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Day">
                 <label for="radio-choice-c">日</label>
@@ -39,7 +39,7 @@
                 <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Year">
                 <label for="radio-choice-e">年</label>
 
-            </fieldset>     
+            </fieldset>
         }
 
     </div>

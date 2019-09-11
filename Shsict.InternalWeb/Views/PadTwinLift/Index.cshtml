@@ -49,25 +49,25 @@
                         <th>效率</th>
                     </tr>
                 </thead>
-                @{   var query = from tl in Model
-                                 orderby tl.VESSELNAME descending
-                                 group tl by new { tl.VESSELNAME } into vName
-                                 select new
-                                 {
-                                     vName = vName.Key.VESSELNAME
-                                 };
-                             
-                   
-                             
+                @{ var query = from tl in Model
+                                orderby tl.VESSELNAME descending
+                                group tl by new { tl.VESSELNAME } into vName
+                                select new
+                                {
+                                    vName = vName.Key.VESSELNAME
+                                };
+
+
+
                     <tbody class="twinf">
                         @foreach (var nameList in query)
                         {
                             var import = Model.Find(m => m.IEFG.Equals("I") && m.VESSELNAME.Equals(nameList.vName));
-                            var export = Model.Find(m => m.IEFG.Equals("E") && m.VESSELNAME.Equals(nameList.vName)); 
+                            var export = Model.Find(m => m.IEFG.Equals("E") && m.VESSELNAME.Equals(nameList.vName));
                             <tr>
                                 <th>@nameList.vName</th>
                                 @if (@import != null)
-                                { 
+                                {
                                     <td>@import.TOTALCNT</td>
                                     <td>@import.CANSTGOPTCNT</td>
                                     <td>@import.CANSTGOPTRATE</td>
@@ -83,7 +83,7 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                         
+
                                 }
 
                                 @if (@export != null)

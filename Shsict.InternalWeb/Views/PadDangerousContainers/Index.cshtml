@@ -1,77 +1,77 @@
 ﻿@model List<Shsict.InternalWeb.Models.DangerousContainers>
 
-    @{
-        ViewBag.Title = "危险品消防";
-        Layout = "~/Views/Shared/_LayoutPad.cshtml";
-    }
+@{
+    ViewBag.Title = "危险品消防";
+    Layout = "~/Views/Shared/_LayoutPad.cshtml";
+}
 
-    <script type="text/javascript">
+<script type="text/javascript">
     $(function () {
-   
+
         $("#BtnMyTime").click(function () { $("#SearchBox").focus(); });
         $("#SearchBox").change(function () {
             window.location.href = "/PadDangerousContainers/Index/" + $("#SearchBox").val();
         });
 
     });
-    </script>
-    <div class="ui-body">
-        <div class="ui-bar ui-bar-c">
-            <h4>危险品消防</h4>
-            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="txt_btn">
-                <div style="position: absolute; left: 14px; top: 31px"> </div>
-                @Html.TextBoxFor(a => a[0].SEARCHKEY, new { id = "SearchBox", data_role = "datebox", placeholder = "请输入箱号", style = "max-width:500px" })
-                <button data-icon="star" id="BtnMyTime">@Model[0].SEARCHKEY</button>
-            </fieldset>
-        </div>
-        <div class="ui-body-d">
-            <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke M-repair">
-                <thead>
-                    <tr>
-                        <th>箱号</th>
-                        <th>场箱位</th>
-                        <th>UN编号</th>
-                        <th>危险品代码</th>
-                        <th>尺寸</th>
-                        <th>箱型</th>
-                        <th>状态</th>
-                        <th>流向</th>
-                        <th>配载标志</th>
-                        <th>堆存天</th>
-                        <th>通用消防</th>
-                        <th>特殊消防</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Shsict.InternalWeb.Models.DangerousContainers item in Model)
-                    {
-                        if (@item.CNTRNO != "暂无数据")
-                        {
-                            <tr>
-                                <td> @item.CNTRNO</td>
-                                <td> @item.YLOCATION</td>
-                                <td>@item.UNNO</td>
-                                <td>@item.DNGGCD</td>
-                                <td>@item.CSIZE</td>
-                                <td>@item.CTYPE</td>
-                                <td>@item.STS</td>
-                                <td>@item.CSTTO</td>
-                                <td>@item.STGFG</td>
-                                <td>@item.STGDAYS</td>
-                                <td> @Html.Raw(@HttpUtility.HtmlDecode(@item.WS))</td>
-                                <td>@Html.Raw(@HttpUtility.HtmlDecode(@item.SS))</td>
-                            </tr>
-                        }
-                        else
-                        {
-                            <tr>
-                                <td colspan="5">暂无数据</td>
-                            </tr>
-                        }
-                    }
-                </tbody>
-            </table>
-        </div>
+</script>
+<div class="ui-body">
+    <div class="ui-bar ui-bar-c">
+        <h4>危险品消防</h4>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="txt_btn">
+            <div style="position: absolute; left: 14px; top: 31px"> </div>
+            @Html.TextBoxFor(a => a[0].SEARCHKEY, new { id = "SearchBox", data_role = "datebox", placeholder = "请输入箱号", style = "max-width:500px" })
+            <button data-icon="star" id="BtnMyTime">@Model[0].SEARCHKEY</button>
+        </fieldset>
     </div>
+    <div class="ui-body-d">
+        <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke M-repair">
+            <thead>
+                <tr>
+                    <th>箱号</th>
+                    <th>场箱位</th>
+                    <th>UN编号</th>
+                    <th>危险品代码</th>
+                    <th>尺寸</th>
+                    <th>箱型</th>
+                    <th>状态</th>
+                    <th>流向</th>
+                    <th>配载标志</th>
+                    <th>堆存天</th>
+                    <th>通用消防</th>
+                    <th>特殊消防</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Shsict.InternalWeb.Models.DangerousContainers item in Model)
+                {
+                    if (@item.CNTRNO != "暂无数据")
+                    {
+                        <tr>
+                            <td> @item.CNTRNO</td>
+                            <td> @item.YLOCATION</td>
+                            <td>@item.UNNO</td>
+                            <td>@item.DNGGCD</td>
+                            <td>@item.CSIZE</td>
+                            <td>@item.CTYPE</td>
+                            <td>@item.STS</td>
+                            <td>@item.CSTTO</td>
+                            <td>@item.STGFG</td>
+                            <td>@item.STGDAYS</td>
+                            <td> @Html.Raw(@HttpUtility.HtmlDecode(@item.WS))</td>
+                            <td>@Html.Raw(@HttpUtility.HtmlDecode(@item.SS))</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">暂无数据</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 

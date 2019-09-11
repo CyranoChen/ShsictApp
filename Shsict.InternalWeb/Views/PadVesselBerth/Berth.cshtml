@@ -16,7 +16,7 @@
 </script>
 <div class="ui-body">
     <div class="ui-bar ui-bar-c">
-        <h4 >靠离泊情况</h4>
+        <h4>靠离泊情况</h4>
         <div class="clear"></div>
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false" style="float:left">
             @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
@@ -24,12 +24,12 @@
             <label for="radio-choice-c">靠泊</label>
             <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Depart">
             <label for="radio-choice-e">离泊</label>
-       
+
         </fieldset>
-             <div class="clearfix zdl" style="float:right">
-                <h6>准点率:</h6>
-                <h2>@Model[0].punctualityRate.ToString("0.00")%</h2>
-            </div>
+        <div class="clearfix zdl" style="float:right">
+            <h6>准点率:</h6>
+            <h2>@Model[0].punctualityRate.ToString("0.00")%</h2>
+        </div>
     </div>
     <div class="ui-body-d">
         <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
@@ -40,7 +40,7 @@
                     <th>实际靠泊</th>
                     <th>实际开工</th>
                     <th>状态</th>
-                   
+
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +52,7 @@
                         <td>@item.VBT_ABTHDT</td>
                         <td>@item.VOT_AWKSTTM</td>
                         <td>@item.VBT_STATUS</td>
-                                            
+
                     </tr>
                 }
             </tbody>

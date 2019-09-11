@@ -24,7 +24,7 @@
             var opt = {
                 preset: 'date', //日期
                 theme: 'jqm', //皮肤样式
-                display: 'modal', //显示方式 
+                display: 'modal', //显示方式
                 mode: 'clickpick', //日期选择模式
                 dateFormat: 'yy-mm-dd', // 日期格式
                 setText: '确定', //确认按钮名称
@@ -37,7 +37,7 @@
                 $(".refresh").click(function () {
                     location.reload();
                 });
-               
+
 
                 $("#ShsictMenu .ui-collapsible-heading-toggle").click(function () {
                     var menu_num = $(this).parent().parent().attr("id").replace("menu", "")
@@ -59,115 +59,153 @@
         </script>
         @{ var id = Request.RequestContext.HttpContext.User.Identity as FormsIdentity; ;
 
-           if (id != null && id.IsAuthenticated)
-           {
-               string[] roles = id.Ticket.UserData.Split(',');
+            if (id != null && id.IsAuthenticated)
+            {
+                string[] roles = id.Ticket.UserData.Split(',');
 
-               string[] str;
+                string[] str;
 
-               if (Session["myMenu"] != null)
-               {
-                   str = Session["myMenu"].ToString().Split(',');
-               }
-               else
-               {
+                if (Session["myMenu"] != null)
+                {
+                    str = Session["myMenu"].ToString().Split(',');
+                }
+                else
+                {
 
-                   str = new string[5] { "true", "true", "true", "true", "true" };
+                    str = new string[5] { "true", "true", "true", "true", "true" };
 
-               }
+                }
 
-            <div  data-role="panel" data-position-fixed="true" data-display="push" id="nav-panel" data-theme="d">
-                <div id="ShsictMenu" data-role="collapsibleset" class="p-15" data-inset="false">
-                    @foreach (string item in roles)
-                    {
-                        if (item == "ZY")
-                        { 
-                        <div id="menu1" data-collapsed="@str[0]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
-                            <h2>
-                                <div>昼夜生产情况</div>
-                                <span>&nbsp</span></h2>
-                            <ul data-role="listview" class="p3-10">
-                                <li class="p35"><a href="/PadDailyReport" target="_top">
-                                    <img src="~/Content/images/icon-dAndn.png" alt="day&night">昼夜吞吐量</a></li>
-                                <li class="p35"><a href="/PadThreeShift" target="_top">
-                                    <img src="~/Content/images/icon-gb123.png" alt="gongban">第一、二、三工班吞吐量</a></li>
-                            </ul>
-                        </div>
+                <div data-role="panel" data-position-fixed="true" data-display="push" id="nav-panel" data-theme="d">
+                    <div id="ShsictMenu" data-role="collapsibleset" class="p-15" data-inset="false">
+                        @foreach (string item in roles)
+                        {
+                            if (item == "ZY")
+                            {
+                                <div id="menu1" data-collapsed="@str[0]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                                    <h2>
+                                        <div>昼夜生产情况</div>
+                                        <span>&nbsp</span>
+                                    </h2>
+                                    <ul data-role="listview" class="p3-10">
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadDailyReport'">
+                                                <img src="~/Content/images/icon-dAndn.png" alt="day&night">昼夜吞吐量
+                                            </a>
+                                        </li>
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadThreeShift'">
+                                                <img src="~/Content/images/icon-gb123.png" alt="gongban">第一、二、三工班吞吐量
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         }
-                    }
-                    @foreach (string item in roles)
-                    {
-                        if (item == "SC")
-                        { 
-                        <div id="menu2" data-collapsed="@str[1]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
-                            <h2>
-                                <div>生产汇报</div>
-                                <span>&nbsp</span></h2>
-                            <ul data-role="listview" class="p3-10">
-                                <li class="p35"><a href="/PadVesselEfficiency" target="_top">
-                                    <img src="~/Content/images/icon-chuanxiaolv.png" alt="xiaolv1">船舶效率</a></li>
-                                <li class="p35"><a href="/PadYardDensity/Charts" target="_top">
-                                    <img src="~/Content/images/icon-xiaolv2.png" alt="xiaolv2">堆场利用率</a></li>
-                                <li class="p35"><a href="/PadTwinLift" target="_top">
-                                    <img src="~/Content/images/icon-xiaolv3.png" alt="xiaolv3">双吊具作业情况</a></li>
-                                <li class="p35"><a href="/PadVesselBerth" target="_top">
-                                    <img src="~/Content/images/icon-xiaolv4.png" alt="xiaolv4">靠离泊情况</a></li>
-                            </ul>
-                        </div>
+                        @foreach (string item in roles)
+                        {
+                            if (item == "SC")
+                            {
+                                <div id="menu2" data-collapsed="@str[1]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                                    <h2>
+                                        <div>生产汇报</div>
+                                        <span>&nbsp</span>
+                                    </h2>
+                                    <ul data-role="listview" class="p3-10">
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadVesselEfficiency'">
+                                                <img src="~/Content/images/icon-chuanxiaolv.png" alt="xiaolv1">船舶效率
+                                            </a>
+                                        </li>
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadYardDensity/Charts'">
+                                                <img src="~/Content/images/icon-xiaolv2.png" alt="xiaolv2">堆场利用率
+                                            </a>
+                                        </li>
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadTwinLift'">
+                                                <img src="~/Content/images/icon-xiaolv3.png" alt="xiaolv3">双吊具作业情况
+                                            </a>
+                                        </li>
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadVesselBerth'">
+                                                <img src="~/Content/images/icon-xiaolv4.png" alt="xiaolv4">靠离泊情况
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         }
-                    }
-                    @foreach (string item in roles)
-                    {
-                        if (item == "ZYL")
-                        { 
-                        <div id="menu3" data-collapsed="@str[2]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
-                            <h2>
-                                <div>作业路情况</div>
-                                <span>&nbsp</span></h2>
-                            <ul data-role="listview" class="p3-10">
-                                <li class="p35"><a href="/PadVesselAmount" target="_top">
-                                    <img src="~/Content/images/icon-zyl1.png" alt="zyl1">在泊船舶实际及计划毛船时量</a></li>
-                                <li class="p35"><a href="/PadTruckOperationCycle" target="_top">
-                                    <img src="~/Content/images/icon-zyl2.png" alt="zyl2">单车运行周期</a></li>
-                                    <li class="p35"><a href="/PadYardTruck" target="_top">
-                                    <img src="~/Content/images/icon-time.png" alt="zyl2">外集卡超时</a></li>
-                            </ul>
-                        </div>
+                        @foreach (string item in roles)
+                        {
+                            if (item == "ZYL")
+                            {
+                                <div id="menu3" data-collapsed="@str[2]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                                    <h2>
+                                        <div>作业路情况</div>
+                                        <span>&nbsp</span>
+                                    </h2>
+                                    <ul data-role="listview" class="p3-10">
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadVesselAmount'">
+                                                <img src="~/Content/images/icon-zyl1.png" alt="zyl1">在泊船舶实际及计划毛船时量
+                                            </a>
+                                        </li>
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadTruckOperationCycle'">
+                                                <img src="~/Content/images/icon-zyl2.png" alt="zyl2">单车运行周期
+                                            </a>
+                                        </li>
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadYardTruck'">
+                                                <img src="~/Content/images/icon-time.png" alt="zyl2">外集卡超时
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         }
-                    }
-                    @foreach (string item in roles)
-                    {
-                        if (item == "JX")
-                        { 
-                        <div id="menu4" data-collapsed="@str[3]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
-                            <h2>
-                                <div>机械故障维修情况</div>
-                                <span>&nbsp</span></h2>
-                            <ul data-role="listview" class="p3-15">
-                                <li class="p35"><a href="/PadMechanicalError" target="_top">
-                                    <img src="~/Content/images/icon-weixiu.png" alt="BMW">未完成维修的机械及故障时间</a></li>
-                            </ul>
-                        </div>
+                        @foreach (string item in roles)
+                        {
+                            if (item == "JX")
+                            {
+                                <div id="menu4" data-collapsed="@str[3]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                                    <h2>
+                                        <div>机械故障维修情况</div>
+                                        <span>&nbsp</span>
+                                    </h2>
+                                    <ul data-role="listview" class="p3-15">
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadMechanicalError'">
+                                                <img src="~/Content/images/icon-weixiu.png" alt="BMW">未完成维修的机械及故障时间
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         }
-                    }
-                    @foreach (string item in roles)
-                    {
-                        if (item == "CQ")
-                        { 
-                        <div id="menu5" data-collapsed="@str[4]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
-                            <h2>
-                                <div>承包队出勤情况</div>
-                                <span>&nbsp</span></h2>
-                            <ul data-role="listview" class="p3-10">
-                                <li class="p35"><a href="/PadOperatePlan" target="_top">
-                                    <img src="~/Content/images/icon-people.png" alt="ryzz">各承包队出勤人员资质信息查询</a></li>
-                            </ul>
-                        </div>
+                        @foreach (string item in roles)
+                        {
+                            if (item == "CQ")
+                            {
+                                <div id="menu5" data-collapsed="@str[4]" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" data-inset="false" class="plr15" data-content-theme="d" data-theme="b">
+                                    <h2>
+                                        <div>承包队出勤情况</div>
+                                        <span>&nbsp</span>
+                                    </h2>
+                                    <ul data-role="listview" class="p3-10">
+                                        <li class="p35">
+                                            <a onclick="window.location.href='/PadOperatePlan'">
+                                                <img src="~/Content/images/icon-people.png" alt="ryzz">各承包队出勤人员资质信息查询
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         }
-                    }
+                    </div>
                 </div>
-            </div>
-           }
+            }
         }
 
         <div data-role="header" data-position="fixed" data-theme="b">

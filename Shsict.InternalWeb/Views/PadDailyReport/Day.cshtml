@@ -4,36 +4,36 @@
     Layout = "~/Views/Shared/_LayoutPad.cshtml";
 }
 
-    <script type="text/javascript">
-        $(function () {
-            $('input:jqmData(role="datebox")').mobiscroll(opt);
-            $("#SearchBox").change(function () {
-                window.location.href = "/PadDailyReport/Day/" + $("#SearchBox").val();
-            });
-            $("input[name='radio-choice-b']").change(function () {
-                window.location.href = "/PadDailyReport/" + $(this).val() + "/" + $("#SearchBox").val();
-            });
+<script type="text/javascript">
+    $(function () {
+        $('input:jqmData(role="datebox")').mobiscroll(opt);
+        $("#SearchBox").change(function () {
+            window.location.href = "/PadDailyReport/Day/" + $("#SearchBox").val();
         });
+        $("input[name='radio-choice-b']").change(function () {
+            window.location.href = "/PadDailyReport/" + $(this).val() + "/" + $("#SearchBox").val();
+        });
+    });
 
-    </script>
+</script>
 
 <div class="ui-body">
     <div class="ui-bar ui-bar-c">
         <h4>昼夜吞吐量</h4>
-               <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false">
-                   @Html.TextBoxFor(a => a.MyDate, new { id = "SearchBox", data_role = "datebox",@class="fl",data_corners="false" })
-            <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Day" checked="checked" >
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false">
+            @Html.TextBoxFor(a => a.MyDate, new { id = "SearchBox", data_role = "datebox", @class = "fl", data_corners = "false" })
+            <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Day" checked="checked">
             <label for="radio-choice-c">日</label>
-            <input type="radio" name="radio-choice-b" id="radio-choice-d" value="Month"  >
+            <input type="radio" name="radio-choice-b" id="radio-choice-d" value="Month">
             <label for="radio-choice-d">月</label>
-            <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Year" >
+            <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Year">
             <label for="radio-choice-e">年</label>
 
         </fieldset>
-            </div>
-     <div class="ui-body-d">
+    </div>
+    <div class="ui-body-d">
         <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
-            <thead>          
+            <thead>
                 <tr>
                     <th>日计划TEU</th>
                     <th>日实际TEU</th>
@@ -43,18 +43,18 @@
                 </tr>
             </thead>
             <tbody>
-              <tr>
-                       <td>@Html.DisplayFor(a => a.LASTALLDAY_PLAN)</td>
-            <td>@Html.DisplayFor(a => a.LASTALLDAY_ACTUAL)</td>
-            <td>@Html.DisplayFor(a => a.LASTALLDAY_BARGE)</td>
-            <td>@Html.DisplayFor(a => a.LASTALLDAY_SHUTTLE)</td>
-            <td>@Html.DisplayFor(a => a.MyLASTALLDAY_COMPLETERATE)</td>
+                <tr>
+                    <td>@Html.DisplayFor(a => a.LASTALLDAY_PLAN)</td>
+                    <td>@Html.DisplayFor(a => a.LASTALLDAY_ACTUAL)</td>
+                    <td>@Html.DisplayFor(a => a.LASTALLDAY_BARGE)</td>
+                    <td>@Html.DisplayFor(a => a.LASTALLDAY_SHUTTLE)</td>
+                    <td>@Html.DisplayFor(a => a.MyLASTALLDAY_COMPLETERATE)</td>
 
-                    </tr>
-                
+                </tr>
+
             </tbody>
         </table>
-</div>
+    </div>
 </div>
 
 

@@ -157,17 +157,17 @@
             });
 
     });
-		</script>
+</script>
 <script src="~/Scripts/highcharts.js"></script>
 <script src="~/Scripts/exporting.js"></script>
 
 <div class="ui-bar ui-bar-c">
     <h4>堆存密度情况</h4>
-           <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false" class="fr">
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false" class="fr">
         @Html.TextBoxFor(a => a[1].MyDate, new { id = "SearchBox", data_role = "datebox" })
-        <a href="/PadYardDensity/Index/@Model[1].MyDate" target="_top" class="grid"></a>
+        <a href="/PadYardDensity/Index/@Model[1].MyDate" class="grid"></a>
 
-   </fieldset>
+    </fieldset>
 </div>
 <div class="ui-body-d">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

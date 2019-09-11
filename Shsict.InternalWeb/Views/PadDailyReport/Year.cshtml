@@ -21,22 +21,22 @@
 <div class="ui-body">
     <div class="ui-bar ui-bar-c">
         <h4>昼夜吞吐量</h4>
-        
-                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false">
-                      @Html.TextBoxFor(a => a.MyDate, new { id = "SearchBox", data_role = "datebox" })
-                            <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Day">
-                            <label for="radio-choice-c">日</label>
-                            <input type="radio" name="radio-choice-b" id="radio-choice-d" value="Month">
-                            <label for="radio-choice-d">月</label>
-                            <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Year" checked="checked">
-                            <label for="radio-choice-e">年</label>
 
-                        </fieldset>
-          </div>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false">
+            @Html.TextBoxFor(a => a.MyDate, new { id = "SearchBox", data_role = "datebox" })
+            <input type="radio" name="radio-choice-b" id="radio-choice-c" value="Day">
+            <label for="radio-choice-c">日</label>
+            <input type="radio" name="radio-choice-b" id="radio-choice-d" value="Month">
+            <label for="radio-choice-d">月</label>
+            <input type="radio" name="radio-choice-b" id="radio-choice-e" value="Year" checked="checked">
+            <label for="radio-choice-e">年</label>
+
+        </fieldset>
+    </div>
     <div class="ui-body-d">
         <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
             <thead>
-               
+
                 <tr>
                     <th>年计划TEU </th>
                     <th>年实际TEU </th>

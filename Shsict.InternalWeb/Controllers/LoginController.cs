@@ -22,7 +22,7 @@ namespace Shsict.InternalWeb.Controllers
                 ViewBag.ReturnUrl = returnUrl;
             }
 
-            if (returnUrl.IndexOf("Pad") > 0)
+            if (!string.IsNullOrEmpty(returnUrl) && returnUrl.IndexOf("Pad") > 0)
             {
                 return RedirectToAction("Pad");
             }
@@ -126,7 +126,7 @@ namespace Shsict.InternalWeb.Controllers
             }
         }
 
-      
+
         public void LogOff()
         {
             Response.Cookies.Remove("uid");
@@ -134,7 +134,7 @@ namespace Shsict.InternalWeb.Controllers
             FormsAuthentication.SignOut();
             Response.Write("success");
         }
-    
+
         public void PadLogOff()
         {
             Response.Cookies.Remove("uid");

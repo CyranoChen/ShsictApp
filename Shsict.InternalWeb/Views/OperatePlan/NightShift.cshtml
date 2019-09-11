@@ -21,9 +21,9 @@
         });
     </script>
 
-    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
-        data-transition="slidedown" href="/Portal"
-        class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back </a>
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external"
+       data-transition="slidedown" onclick="window.location.href='/Portal'"
+       class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
     <a class="refresh"></a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
         @Html.TextBoxFor(a => a[0].MyDate, new { id = "SearchBox", data_role = "datebox" })
@@ -44,7 +44,7 @@
             <p>派工路数：@item.OP_ROUTE | 桥边：@item.QB | 喊勾：@item.HG</p>
             <p>辅助工：@item.FZ  |  其他：@item.OTHER | 总人数：@item.SHIFT_NUM</p>
             <p>出勤差异：@item.ATD_DIFF</p>
-        </li>        
+        </li>
     }
 </ul>
 

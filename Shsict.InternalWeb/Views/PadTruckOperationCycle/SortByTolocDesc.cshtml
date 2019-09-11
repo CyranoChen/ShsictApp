@@ -43,14 +43,14 @@
         <div class="clear"></div>
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-corners="false" style="float: left">
             @{ string MyTime = "25min";
-               string stopfg = "N";
+                string stopfg = "N";
 
-               if (@Html.ViewContext.RouteData.Values["id"] != null)
-               {
-                   string _id = @Html.ViewContext.RouteData.Values["id"].ToString();
-                   MyTime = _id.Substring(0, _id.Length - 1) + "min";
-                   stopfg = _id.Substring(_id.Length - 1, 1);
-               }
+                if (@Html.ViewContext.RouteData.Values["id"] != null)
+                {
+                    string _id = @Html.ViewContext.RouteData.Values["id"].ToString();
+                    MyTime = _id.Substring(0, _id.Length - 1) + "min";
+                    stopfg = _id.Substring(_id.Length - 1, 1);
+                }
             }
 
             <a id="myTime" href="#" data-role="button" data-inline="true">
@@ -77,7 +77,7 @@
         </fieldset>
     </div>
     <div class="ui-body-d">
-        @{  string stopfg2 = "N";
+        @{ string stopfg2 = "N";
 
             if (@Html.ViewContext.RouteData.Values["id"] != null)
             {
@@ -92,7 +92,7 @@
                     <th class="lh40">集卡号</th>
                     <th><a href="#" data-role="button" data-iconpos="right" data-mini="true" data-corners="false" data-shadow="false" id="SortByCompTruck" class="Mysort">完成车次数</a></th>
                     <th><a href="#" data-role="button" data-iconpos="right" data-mini="true" data-corners="false" data-shadow="false" id="SortByAvgTruck" class="Mysort">平均周期</a></th>
-                    <th ><a href="#" data-role="button" data-iconpos="right" data-mini="true" data-corners="false" data-shadow="false" id="SortByCurrent" class="Mysort">当前周期</a></th>
+                    <th><a href="#" data-role="button" data-iconpos="right" data-mini="true" data-corners="false" data-shadow="false" id="SortByCurrent" class="Mysort">当前周期</a></th>
                     <th style="background-color: #eee"><a href="#" data-role="button" data-icon="arrow-d" data-iconpos="right" data-mini="true" data-corners="false" data-shadow="false" id="SortByToloc" class="Mysort">目标1</a></th>
                     <th class="lh40">目标2</th>
                     @if (stopfg2.Trim().Equals("Y"))

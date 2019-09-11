@@ -14,19 +14,16 @@
                 window.location.href = "/DailyReport/" + $(this).val() + "/" + $("#SearchBox").val();
             });
             $(".refresh").click(function () {
-
-                location.reload();
+                window.location.reload();
             });
         });
     </script>
 
-    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
-        data-transition="slidedown" href="/Portal"
-        class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back </a>
-        <a class="refresh"></a>
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external"
+       data-transition="slidedown" onclick="window.location.href='/Portal'"
+       class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
+    <a class="refresh"></a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
-
-
         @Html.TextBoxFor(a => a.MyDate, new { id = "SearchBox", data_role = "datebox" })
 
         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">

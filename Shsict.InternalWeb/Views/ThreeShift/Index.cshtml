@@ -17,9 +17,9 @@
         });
     </script>
 
-    <a id="but_back" data-role="button" data-inline="true" data-rel="external" target="_top"
-        data-transition="slidedown" href="/Portal"
-        class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back </a>
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external"
+       data-transition="slidedown" onclick="window.location.href='/Portal'"
+       class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
     <a class="refresh"></a>
     <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
         <fieldset data-type="horizontal" data-mini="true">
@@ -42,9 +42,10 @@
             @foreach (Shsict.InternalWeb.Models.ThreeShift item in Model)
             {
                 if (item.SHIFT.Trim() == "1")
-                {   <td>@item.SHIFTPLAN</td>
-                <td>@item.SHIFTACTUAL</td>
-                <td>@item.MySHIFTCOMPLETERATE</td>      
+                {
+                    <td>@item.SHIFTPLAN</td>
+                    <td>@item.SHIFTACTUAL</td>
+                    <td>@item.MySHIFTCOMPLETERATE</td>
                 }
             }
         </tr>
@@ -65,9 +66,9 @@
             {
                 if (item.SHIFT.Trim() == "2")
                 {
-                <td>@item.SHIFTPLAN</td>
-                <td>@item.SHIFTACTUAL</td>
-                <td>@item.MySHIFTCOMPLETERATE</td>
+                    <td>@item.SHIFTPLAN</td>
+                    <td>@item.SHIFTACTUAL</td>
+                    <td>@item.MySHIFTCOMPLETERATE</td>
                 }
             }
         </tr>
@@ -87,10 +88,10 @@
             @foreach (Shsict.InternalWeb.Models.ThreeShift item in Model)
             {
                 if (item.SHIFT.Trim() == "3")
-                { 
-                <td>@item.SHIFTPLAN</td>
-                <td>@item.SHIFTACTUAL</td>
-                <td>@item.MySHIFTCOMPLETERATE</td>
+                {
+                    <td>@item.SHIFTPLAN</td>
+                    <td>@item.SHIFTACTUAL</td>
+                    <td>@item.MySHIFTCOMPLETERATE</td>
                 }
             }
         </tr>

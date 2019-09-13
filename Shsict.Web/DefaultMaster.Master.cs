@@ -47,8 +47,9 @@ namespace Shsict.Web
             else
             {
                 btnBack.Attributes["data-rel"] = "external";
-                btnBack.Attributes["href"] = "Portal.aspx";
-                btnBack.Target = "_top";
+                btnBack.Attributes["onclick"] = "window.location.href='/Portal.aspx'";
+                //btnBack.Attributes["href"] = "Portal.aspx";
+                //btnBack.Target = "_top";
             }
 
             //Button Refresh Notice

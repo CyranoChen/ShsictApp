@@ -79,6 +79,7 @@
     <Compile Include="DailyReport.cs" />
     <Compile Include="DangerousContainers.cs" />
     <Compile Include="InternalUser.cs" />
+    <Compile Include="MachineOperation.cs" />
     <Compile Include="OnBerth.cs" />
     <Compile Include="OperatePlan.cs" />
     <Compile Include="PlanCompletion.cs" />

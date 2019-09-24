@@ -1,0 +1,77 @@
+﻿@model Shsict.InternalWeb.Models.MachineOperationDto
+@{
+    ViewBag.Title = "机械作业情况";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+@section Header{
+    <link rel="stylesheet" href="~/Scripts/datatables/jquery.dataTables.css">
+    <script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input:jqmData(role="datebox")').mobiscroll(window.opt);
+
+            $("input[name='radio-choice-b']").change(function () {
+                redirect($(this).val(), $("#tbDate").val(), $("input[name='radio-choice-a']:checked").val());
+            });
+
+            $("input#tbDate").change(function () {
+                redirect($("input[name='radio-choice-b']:checked").val(), $(this).val(), $("input[name='radio-choice-a']:checked").val());
+            });
+
+            $("input[name='radio-choice-a']").change(function () {
+                redirect($("input[name='radio-choice-b']:checked").val(), $("#tbDate").val(), $(this).val());
+            });
+
+            $(".refresh").click(function () {
+                location.reload();
+            });
+
+            $("#tblUnitList").DataTable({
+                "paging": false,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": true,
+                "language": {
+                    "url": "/Scripts/datatables/zh-CN.json"
+                }
+            });
+        });
+
+        function redirect(category, date, shift) {
+            if (date != undefined && shift != undefined && date !== "" && shift !== "") {
+                window.location.href = "/MachineOperation/" + category + "?date=" + date + "&shift=" + shift;
+            } else {
+                window.location.href = "/MachineOperation/" + category;
+            }
+        }
+    </script>
+
+    <a id="but_back" data-role="button" data-inline="true" data-rel="external"
+       data-transition="slidedown" onclick="window.location.href='/Portal'" class="ui-btn-left back" data-iconpos="notext" data-mini="true">Back</a>
+    <a class="refresh"></a>
+    <div class="ui-body ui-body-c" style="padding: 0 10px; margin-bottom: -1px;">
+        <input type="text" id="tbDate" value="@Model.OpDate[0]" data-role="datebox" />
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+            <input type="radio" name="radio-choice-a" id="daytime" value="daytime"
+                   @if (Model.OpDate[1].Equals("daytime", StringComparison.OrdinalIgnoreCase)) { @Html.Raw("checked=\"checked\"") }>
+            <label for="daytime">日班</label>
+            <input type="radio" name="radio-choice-a" id="night" value="night"
+                   @if (Model.OpDate[1].Equals("night", StringComparison.OrdinalIgnoreCase)) { @Html.Raw("checked=\"checked\"") }>
+            <label for="night">夜班</label>
+        </fieldset>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+            <input type="radio" name="radio-choice-b" id="crane" value="Crane">
+            <label for="crane">桥吊</label>
+            <input type="radio" name="radio-choice-b" id="rtg" value="RTG">
+            <label for="rtg">轮胎吊</label>
+            <input type="radio" name="radio-choice-b" id="forklift" value="Forklift" checked="checked">
+            <label for="forklift">正面吊/空铲</label>
+        </fieldset>
+    </div>
+}
+
+@Html.Partial("MachineOperationPartial", Model)
+

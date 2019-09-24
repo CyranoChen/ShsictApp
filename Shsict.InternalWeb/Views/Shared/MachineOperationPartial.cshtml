@@ -1,0 +1,39 @@
+﻿@model Shsict.InternalWeb.Models.MachineOperationDto
+
+<ul data-role="listview">
+    @if (Model.Summary != null)
+    {
+        <li>
+            <h3><span style="color: red">最大:@Model.Summary.MAXUNIT | 最小: @Model.Summary.MINUNIT | 平均值: @Model.Summary.AVGUNIT <br> 出勤数: @Model.Summary.DUTYMACH</span></h3>
+        </li>
+    }
+</ul>
+<table id="tblUnitList" class="dataTable">
+    <thead>
+        <tr>
+            <th>设备号</th>
+            <th>作业量</th>
+            <th>间隔分钟</th>
+            <th>上一箱位置</th>
+            <th>平均值比率</th>
+        </tr>
+    </thead>
+    @if (Model.UnitList != null && Model.UnitList.Count > 0 && Model.Summary != null)
+    {
+        <tbody>
+            @foreach (var m in Model.UnitList)
+            {
+                var avgRate = Math.Round(Convert.ToDouble(m.UNIT) / Convert.ToDouble(Model.Summary.AVGUNIT), 2);
+                var strcolor = avgRate < 1 ? "red" : "black";
+
+                <tr>
+                    <td style="text-align: center">@m.MACHNO</td>
+                    <td style="text-align: right">@m.UNIT</td>
+                    <td style="text-align: right">@m.LASTOPTM</td>
+                    <td style="text-align: center">@m.LASTLOC</td>
+                    <td style="text-align: right"><span style="color: @strcolor">@avgRate</span></td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>

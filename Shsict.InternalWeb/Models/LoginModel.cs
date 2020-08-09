@@ -25,26 +25,12 @@ namespace Shsict.InternalWeb.Models
                 SUR_PASSWORD = dr["SUR_PASSWORD"].ToString();
                 SUR_DISPLAYNAME = dr["SUR_DISPLAYNAME"].ToString();
                 SUR_DESCRIPTION = dr["SUR_DESCRIPTION"].ToString();
-                if (!string.IsNullOrEmpty(dr["SUR_CREATETIME"].ToString()))
-                {
-                    SUR_CREATETIME = DateTime.Parse(dr["SUR_CREATETIME"].ToString());
-                }
-                else
-                {
-                    SUR_CREATETIME = null;
-                }
-                if (!string.IsNullOrEmpty(dr["SUR_UPDATETIME"].ToString()))
-                {
-                    SUR_UPDATETIME = DateTime.Parse(dr["SUR_UPDATETIME"].ToString());
-                }
-                else
-                {
-                    SUR_UPDATETIME = null;
-                }
+                SUR_CREATETIME = DateTime.Parse(dr["SUR_CREATETIME"].ToString());
+                SUR_UPDATETIME = DateTime.Parse(dr["SUR_UPDATETIME"].ToString());
                 SUR_GROUP = dr["SUR_GROUP"].ToString();
-                SUR_STATUS = dr["SUR_STATUS"].ToString();
-                SUR_ERRORCOUNT = dr["SUR_ERRORCOUNT"].ToString();
-                SUR_ISLOOKED = dr["SUR_ISLOOKED"].ToString();
+                SUR_STATUS = Convert.ToInt16(dr["SUR_STATUS"]);
+                SUR_ERRORCOUNT = Convert.ToInt16(dr["SUR_ERRORCOUNT"]);
+                SUR_ISLOOKED = Convert.ToBoolean(dr["SUR_ISLOOKED"]);
             }
             else
             {
@@ -61,17 +47,17 @@ namespace Shsict.InternalWeb.Models
 
         public string SUR_DESCRIPTION { get; set; }
 
-        public DateTime? SUR_CREATETIME { get; set; }
+        public DateTime SUR_CREATETIME { get; set; }
 
-        public DateTime? SUR_UPDATETIME { get; set; }
+        public DateTime SUR_UPDATETIME { get; set; }
 
         public string SUR_GROUP { get; set; }
 
-        public string SUR_STATUS { get; set; }
+        public int SUR_STATUS { get; set; }
 
-        public string SUR_ERRORCOUNT { get; set; }
+        public int SUR_ERRORCOUNT { get; set; }
 
-        public string SUR_ISLOOKED { get; set; }
+        public bool SUR_ISLOOKED { get; set; }
         #endregion
 
 
@@ -90,9 +76,10 @@ namespace Shsict.InternalWeb.Models
 
             return list;
         }
-        public static List<LoginModel> GetLoginModelByUserName(string userName)
+
+        public static List<LoginModel> Authenticate(string userName, string password)
         {
-            DataTable dt = Shsict.DataAccess.InternalUser.GetInternalUserByUserName(userName);
+            DataTable dt = Shsict.DataAccess.InternalUser.GetInternalUserByUserNamePassword(userName, password);
             List<LoginModel> list = new List<LoginModel>();
 
             if (dt != null)
@@ -106,9 +93,14 @@ namespace Shsict.InternalWeb.Models
             return list;
         }
 
-
-
+        public void Save()
+        {
+            Shsict.DataAccess.InternalUser.Update(this.SUR_USERACCOUNT, this.SUR_PASSWORD, this.SUR_DISPLAYNAME, this.SUR_DESCRIPTION,
+                this.SUR_CREATETIME, DateTime.Now, this.SUR_GROUP, this.SUR_STATUS, this.SUR_ERRORCOUNT, 
+                Convert.ToInt16(this.SUR_ISLOOKED));
+        }
     }
+    
     public class UserResource
     {
         public UserResource() { }
@@ -155,5 +147,18 @@ namespace Shsict.InternalWeb.Models
             return list;
         }
 
+    }
+
+    public class PasswordModel
+    {
+        #region members and propertis
+
+        public string PasswordOld { get; set; }
+
+        public string PasswordNew { get; set; }
+
+        public string PasswordRepeat { get; set; }
+
+        #endregion
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Shsict.InternalWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -22,7 +24,7 @@ namespace Shsict.InternalWeb.Controllers
                 ViewBag.ReturnUrl = returnUrl;
             }
 
-            if (!string.IsNullOrEmpty(returnUrl) && returnUrl.IndexOf("Pad") > 0)
+            if (!string.IsNullOrEmpty(returnUrl) && returnUrl.IndexOf("Pad", StringComparison.OrdinalIgnoreCase) > 0)
             {
                 return RedirectToAction("Pad");
             }
@@ -38,6 +40,7 @@ namespace Shsict.InternalWeb.Controllers
 
             return View();
         }
+
         public ActionResult Pad(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -45,79 +48,118 @@ namespace Shsict.InternalWeb.Controllers
             return View();
         }
 
+        public ActionResult Password()
+        {
+            //ViewBag.ReturnUrl = returnUrl;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Password(PasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var username = Request.Cookies["uid"]?.Value;
+                    var passwordOld = GetMd5Hash(model.PasswordOld);
+                    List<LoginModel> users = LoginModel.Authenticate(username, passwordOld);
+
+                    if (users != null && users.Count > 0)
+                    {
+                        var user = users[0];
+
+                        user.SUR_PASSWORD = GetMd5Hash(model.PasswordNew);
+                        user.Save();
+
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                    {
+                        throw new Exception("提示：用户或密码不正确");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Warn", ex.Message);
+                }
+            }
+
+            return View(model);
+        }
+
         [HttpPost]
         public void LogOn(FormCollection collection, LoginModel model)
         {
             if (model.SUR_USERACCOUNT != null && model.SUR_PASSWORD != null)
             {
-                List<LoginModel> user = LoginModel.GetLoginModelByUserName(model.SUR_USERACCOUNT);
+                var password = GetMd5Hash(model.SUR_PASSWORD);
 
-                bool isTrue;
+                List<LoginModel> users = LoginModel.Authenticate(model.SUR_USERACCOUNT, password);
+
                 Response.ContentType = "text/html";
 
-                if (user.Count > 0)
+                if (users != null && users.Count > 0)
                 {
-                    isTrue = user.Exists(t => t.SUR_PASSWORD.Equals(model.SUR_PASSWORD));
-                    if (isTrue)
+                    var user = users[0];
+                    //isTrue = user.Exists(t => t.SUR_PASSWORD.Equals(model.SUR_PASSWORD));
+
+                    List<UserResource> userResources = UserResource.GetUserResourceByUserName(model.SUR_USERACCOUNT);
+
+                    string permissions = "";
+
+                    if (userResources.Count > 0)
                     {
-                        List<UserResource> _userResource = UserResource.GetUserResourceByUserName(model.SUR_USERACCOUNT);
 
-                        string permissions = "";
-
-                        if (_userResource.Count != 0)
+                        foreach (UserResource items in userResources)
                         {
-
-                            foreach (UserResource items in _userResource)
+                            switch (items.SUR_RESOURCECODE)
                             {
-                                switch (items.SUR_RESOURCECODE)
-                                {
-                                    case "1":
-                                        permissions += "ZY,";
-                                        break;
-                                    case "2":
-                                        permissions += "SC,";
-                                        break;
-                                    case "3":
-                                        permissions += "ZYL,";
-                                        break;
-                                    case "4":
-                                        permissions += "JX,";
-                                        break;
-                                    case "5":
-                                        permissions += "CQ,";
-                                        break;
-                                }
-                            }
-                            if (permissions.IndexOf(',') > 0)
-                            {
-                                permissions = permissions.Substring(0, permissions.Length - 1);
+                                case "1":
+                                    permissions += "ZY,";
+                                    break;
+                                case "2":
+                                    permissions += "SC,";
+                                    break;
+                                case "3":
+                                    permissions += "ZYL,";
+                                    break;
+                                case "4":
+                                    permissions += "JX,";
+                                    break;
+                                case "5":
+                                    permissions += "CQ,";
+                                    break;
                             }
                         }
-                        Response.SetCookie(new HttpCookie("uid", collection[0]));
-                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
-                              1,
-                              collection[0],
-                              DateTime.Now,
-                              DateTime.Now.AddMinutes(30),
-                              false,
-                              permissions
-                              );
-                        string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-
-                        System.Web.HttpCookie authCookie = new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                        System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
-
-                        Response.Write("success");
-
+                        if (permissions.IndexOf(',') > 0)
+                        {
+                            permissions = permissions.Substring(0, permissions.Length - 1);
+                        }
                     }
-                    else
-                    {
-                        Response.Write("提示：用户名与密码不匹配");
-                    }
+
+                    Response.SetCookie(new HttpCookie("uid", collection[0]));
+
+                    FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+                          1,
+                          collection[0],
+                          DateTime.Now,
+                          DateTime.Now.AddMinutes(30),
+                          false,
+                          permissions
+                          );
+
+                    string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+
+                    System.Web.HttpCookie authCookie = new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
+
+                    Response.Write("success");
                 }
                 else
                 {
-                    Response.Write("提示：用户名不存在，请检查");
+                    Response.Write("提示：用户名或密码不正确");
                 }
             }
             else
@@ -142,5 +184,57 @@ namespace Shsict.InternalWeb.Controllers
             FormsAuthentication.SignOut();
             Response.Write("success");
         }
+
+        private string GetMd5Hash(string input)
+        {
+            // Create a new instance of the MD5CryptoServiceProvider object.
+            var md5Hasher = MD5.Create();
+
+            // Convert the input string to a byte array and compute the hash.
+            // Edit By Cyrano
+            //byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
+            var data = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            var sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data
+            // and format each one as a hexadecimal string.
+            for (var i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
+
+        //// GET: Login/RefreshPassword
+        //[HttpGet]
+        //public object RefreshPassword()
+        //{
+        //    try
+        //    {
+        //        var users = LoginModel.GetLoginModels();
+
+        //        if (users != null && users.Count > 0)
+        //        {
+        //            foreach (var u in users)
+        //            {
+        //                u.SUR_PASSWORD = GetMd5Hash(u.SUR_PASSWORD);
+        //                u.Save();
+        //            }
+
+        //            return users.Count;
+        //        }
+
+        //        return -1;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return e.Message;
+        //    }
+        //}
     }
 }

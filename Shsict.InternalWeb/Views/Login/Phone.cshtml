@@ -15,22 +15,40 @@
 
     <script src="~/Scripts/jquery-1.9.1.min.js"></script>
     <script src="~/Scripts/jquery.mobile-1.3.2.min.js"></script>
+    <script src="~/Scripts/captcha/captcha-mini.min.js"></script>
     <link href="~/Scripts/Jquery.mobile/jquery.mobile-1.3.2.min.css" rel="stylesheet" />
     <link href="~/Content/themes/Screen.css" rel="stylesheet" />
+
     <script type="text/javascript">
         $(function () {
-            $("#loginBtn").click(function () {
-                var userName = $("#un").val();
-                var passWord = $("#pw").val();
+            new Captcha().draw(document.querySelector('#cvsCaptcha'), code => {
+                //console.log('captcha', code);
+                $("#cvsCaptcha").attr('title', code.toLowerCase());
+            });
+
+            var $lblErrorMsg = $("#errorMsg");
+
+            $("#loginBtn").on('click', function () {
+                let userName = $("#un").val();
+                let passWord = $("#pw").val();
+                let captcha = $("#tbCaptcha").val().toLowerCase();
+
+                //console.log(captcha, $("#cvsCaptcha").attr('title'));
+
+                if (captcha == null || captcha === '' || captcha !== $("#cvsCaptcha").attr('title')) {
+                    $lblErrorMsg.text("提示：请输入正确的验证码").show();
+                    return false;
+                }
+
                 var mydata = "SUR_USERACCOUNT=" + userName + "&SUR_PASSWORD=" + passWord;
 
-                if (userName != "" && passWord != "") {
+                if (userName !== "" && passWord !== "") {
                     $.ajax({
                         url: "/Login/LogOn",
                         type: "post",
                         data: mydata,
                         success: function (msg) {
-                            if (msg == "success") {
+                            if (msg === "success") {
                                 $("#errorMsg").css("display", "none");
 
                                 window.location.href = "/Portal";
@@ -58,7 +76,7 @@
                     url: "/Login/LogOff",
                     type: "post",
                     success: function (msg) {
-                        if (msg == "success") {
+                        if (msg === "success") {
                             window.location.href = "/Login/Phone";
                             $("#errorMsg").text("提示：注销成功");
                         }
@@ -83,15 +101,29 @@
             <section id="loginForm">
                 @using (Html.BeginForm("index", "Login", FormMethod.Post, new { id = "loginForm", ReturnUrl = ViewBag.ReturnUrl }))
                 {
-                    <div class=" con">
+                    <div class="con">
                         <h3>&nbsp;</h3>
                         <label for="un" class="ui-hidden-accessible">Username:</label>
-                        @Html.TextBoxFor(m => m.SUR_USERACCOUNT, new { name = "user", type = "text", id = "un", placeholder = "username", data_theme = "b" })
+                        @Html.TextBoxFor(m => m.SUR_USERACCOUNT, new { name = "user", type = "text", id = "un", placeholder = "用户名", data_theme = "b" })
                         @Html.ValidationMessageFor(m => m.SUR_USERACCOUNT)
 
                         <label for="pw" class="ui-hidden-accessible">Password:</label>
-                        @Html.PasswordFor(m => m.SUR_PASSWORD, new { name = "pass", type = "password", id = "pw", placeholder = "password", data_theme = "b" })
+                        @Html.PasswordFor(m => m.SUR_PASSWORD, new { name = "pass", type = "password", id = "pw", placeholder = "密码", data_theme = "b" })
                         @Html.ValidationMessageFor(m => m.SUR_PASSWORD)
+
+                        <div data-role="controlgroup" data-type="horizontal">
+                            <table>
+                                <tr>
+                                    <td width="70%">
+                                        <input name="captcha" type="text" id="tbCaptcha" placeholder="验证码" data-theme="b" data-inline="true" />
+                                    </td>
+                                    <td width="30%">
+                                        <canvas width="90" height="32" id="cvsCaptcha" data-inline="true"></canvas>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
                         <button type="button" class="ui-btn ui-corner-all ui-shadow" id="loginBtn">登录</button>
                         <button type="button" class="ui-btn ui-corner-all ui-shadow" id="LogOffBtn">注销</button>
                     </div>

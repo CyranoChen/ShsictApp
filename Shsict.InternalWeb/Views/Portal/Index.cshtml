@@ -16,7 +16,7 @@
                 $(this).css("width", $(this).prev("div.textcontainer").find("p.ui-li-aside").text());
             });
             $("#ShsictMenu .ui-collapsible-heading-toggle").click(function () {
-                var menu_num = $(this).parent().parent().attr("id").replace("menu", "")
+                var menu_num = $(this).parent().parent().attr("id").replace("menu", "");
                 $.ajax({
                     url: "/Portal/SaveMenu/" + menu_num,
                     type: "get",
@@ -38,7 +38,7 @@
     <div data-role="page">
         <div id="header" data-role="header" data-position="fixed" class="header" data-theme="b">
             <h3>上海盛东集装箱码头有限公司</h3>
-            <b></b>
+            <a class="user" href="javascript:window.location.href = '/Login/Password'"></a>
         </div>
         <div data-role="content">
             <div id="ShsictMenu" data-role="collapsibleset" class="p-15" data-theme="a" data-inset="false">

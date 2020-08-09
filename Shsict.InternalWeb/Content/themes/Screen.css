@@ -59,12 +59,12 @@ html, .ui-mobile, .ui-mobile body {
     }
 
     .nav-glyphish-example .ui-btn .ui-icon {
-        width: 30px!important;
-        height: 30px!important;
+        width: 30px !important;
+        height: 30px !important;
         margin-left: -15px !important;
-        box-shadow: none!important;
-        -moz-box-shadow: none!important;
-        -webkit-box-shadow: none!important;
+        box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
         -webkit-border-radius: 0 !important;
         border-radius: 0 !important;
     }
@@ -861,6 +861,10 @@ ul.zyl li .colorbg {
     height: 29px;
 }
 
+    .ui-header a.user {
+        background: url(../images/icons-png/user-white.png) center no-repeat;
+    }
+
     .ui-header a.refresh {
         background: url(../images/refresh.png) center no-repeat;
     }
@@ -879,6 +883,6 @@ ul.zyl li .colorbg {
 
 #sortCycle.ui-mini .ui-btn-inner {
     font-size: 11px;
-    padding-left:4px;
-    text-align:left;
+    padding-left: 4px;
+    text-align: left;
 }

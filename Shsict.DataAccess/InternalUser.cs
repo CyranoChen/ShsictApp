@@ -67,20 +67,22 @@ namespace Shsict.DataAccess
             //                      SUR_CREATETIME = :createTime, SUR_UPDATETIME = :updateTime, SUR_GROUP = :group,  SUR_STATUS = :status,  SUR_ERRORCOUNT = :errorCount, SUR_ISLOOKED = :isLooked 
             //                      WHERE SUR_USERACCOUNT = :userAccount";
 
-            var sql = @"UPDATE SYS_USER SET SUR_PASSWORD = :password, SUR_STATUS = :status, SUR_ERRORCOUNT = :errorCount, SUR_ISLOOKED = :isLooked
+            var sql = @"UPDATE SYS_USER SET SUR_PASSWORD = :password, SUR_DISPLAYNAME = :displayName, SUR_DESCRIPTION = :description, 
+                              SUR_CREATETIME = :createTime, SUR_UPDATETIME = :updateTime, 
+                              SUR_STATUS = :status, SUR_ERRORCOUNT = :errorCount, SUR_ISLOOKED = :isLooked 
                               WHERE SUR_USERACCOUNT = :userAccount";
 
             OracleParameter[] para = {
                     new OracleParameter("userAccount", userAccount),
                     new OracleParameter("password", password),
-                    //new OracleParameter("displayName", displayName),
-                    //new OracleParameter("description", description),
-                    //new OracleParameter("createTime", createTime),
-                    //new OracleParameter("updateTime", updateTime),
+                    new OracleParameter("displayName", displayName),
+                    new OracleParameter("description", description),
+                    new OracleParameter("createTime", createTime),
+                    new OracleParameter("updateTime", updateTime),
                     //new OracleParameter("group", group),
-                    //new OracleParameter("status", status),
-                    //new OracleParameter("errorCount", errorCount),
-                    //new OracleParameter("isLooked", isLooked)
+                    new OracleParameter("status", status),
+                    new OracleParameter("errorCount", errorCount),
+                    new OracleParameter("isLooked", isLooked)
             };
 
             OracleDataTool.ExecuteNonQuery(ConnectStringOracle.GetInternalTableConnection(), sql, para);

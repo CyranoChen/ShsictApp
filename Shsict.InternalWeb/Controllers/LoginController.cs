@@ -56,37 +56,34 @@ namespace Shsict.InternalWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Password(PasswordModel model)
+        public void Password(PasswordModel model)
         {
-            if (ModelState.IsValid)
+            Response.ContentType = "text/html";
+
+            try
             {
-                try
+                var username = Request.Cookies["uid"]?.Value;
+                var passwordOld = GetMd5Hash(model.PasswordOld);
+                List<LoginModel> users = LoginModel.Authenticate(username, passwordOld);
+
+                if (users != null && users.Count > 0)
                 {
-                    var username = Request.Cookies["uid"]?.Value;
-                    var passwordOld = GetMd5Hash(model.PasswordOld);
-                    List<LoginModel> users = LoginModel.Authenticate(username, passwordOld);
+                    var user = users[0];
 
-                    if (users != null && users.Count > 0)
-                    {
-                        var user = users[0];
+                    user.SUR_PASSWORD = GetMd5Hash(model.PasswordNew);
+                    user.Save();
 
-                        user.SUR_PASSWORD = GetMd5Hash(model.PasswordNew);
-                        user.Save();
-
-                        return RedirectToAction("Index", "Login");
-                    }
-                    else
-                    {
-                        throw new Exception("提示：用户或密码不正确");
-                    }
+                    Response.Write("success");
                 }
-                catch (Exception ex)
+                else
                 {
-                    ModelState.AddModelError("Warn", ex.Message);
+                    throw new Exception("提示：用户或密码不正确");
                 }
             }
-
-            return View(model);
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
         }
 
         [HttpPost]

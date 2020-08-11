@@ -67,29 +67,31 @@
                 else {
                     $("#errorMsg").css("display", "block");
                     $("#errorMsg").text("提示：用户名与密码不能为空");
-                    return false;
                 }
+
+                return false;
             });
 
-            $("#LogOffBtn").click(function () {
-                $.ajax({
-                    url: "/Login/LogOff",
-                    type: "post",
-                    success: function (msg) {
-                        if (msg === "success") {
-                            window.location.href = "/Login/Phone";
-                            $("#errorMsg").text("提示：注销成功");
-                        }
-                        else
-                            $("#errorMsg").css("display", "block");
-                        $("#errorMsg").text("提示：注销失败");
-                    },
-                    error: function (msg) {
-                        $("#errorMsg").css("display", "block");
-                        $("#errorMsg").text("提示：注销失败");
-                    }
-                });
-            });
+            //$("#LogOffBtn").click(function () {
+            //    $.ajax({
+            //        url: "/Login/LogOff",
+            //        type: "post",
+            //        success: function (msg) {
+            //            if (msg === "success") {
+            //                window.location.href = "/Login/Phone";
+            //                $("#errorMsg").text("提示：注销成功");
+            //            }
+            //            else {
+            //                $("#errorMsg").css("display", "block");
+            //                $("#errorMsg").text("提示：注销失败");
+            //            }
+            //        },
+            //        error: function (msg) {
+            //            $("#errorMsg").css("display", "block");
+            //            $("#errorMsg").text("提示：注销失败");
+            //        }
+            //    });
+            //});
         });
 
     </script>
@@ -125,7 +127,6 @@
                         </div>
 
                         <button type="button" class="ui-btn ui-corner-all ui-shadow" id="loginBtn">登录</button>
-                        <button type="button" class="ui-btn ui-corner-all ui-shadow" id="LogOffBtn">注销</button>
                     </div>
 
                     @Html.ValidationSummary(true)

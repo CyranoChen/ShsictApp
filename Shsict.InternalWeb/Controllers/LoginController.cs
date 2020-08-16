@@ -1,6 +1,7 @@
 ﻿using Shsict.InternalWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -71,6 +72,7 @@ namespace Shsict.InternalWeb.Controllers
                     var user = users[0];
 
                     user.SUR_PASSWORD = GetMd5Hash(model.PasswordNew);
+                    user.SUR_CREATETIME = DateTime.Now;
                     user.Save();
 
                     Response.Write("success");
@@ -89,18 +91,22 @@ namespace Shsict.InternalWeb.Controllers
         [HttpPost]
         public void LogOn(FormCollection collection, LoginModel model)
         {
+            Response.ContentType = "text/html";
+
             if (model.SUR_USERACCOUNT != null && model.SUR_PASSWORD != null)
             {
                 var password = GetMd5Hash(model.SUR_PASSWORD);
 
                 List<LoginModel> users = LoginModel.Authenticate(model.SUR_USERACCOUNT, password);
 
-                Response.ContentType = "text/html";
-
                 if (users != null && users.Count > 0)
                 {
                     var user = users[0];
                     //isTrue = user.Exists(t => t.SUR_PASSWORD.Equals(model.SUR_PASSWORD));
+
+                    user.SUR_ERRORCOUNT = 0;
+                    user.SUR_ISLOOKED = false;
+                    user.Save();
 
                     List<UserResource> userResources = UserResource.GetUserResourceByUserName(model.SUR_USERACCOUNT);
 
@@ -152,11 +158,36 @@ namespace Shsict.InternalWeb.Controllers
                     System.Web.HttpCookie authCookie = new System.Web.HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
 
-                    Response.Write("success");
+
+
+                    var expireDays =
+                        Convert.ToInt16(ConfigurationManager.AppSettings["PasswordExpireDays"]);
+
+                    if (expireDays > 0 && (DateTime.Now - user.SUR_CREATETIME).TotalDays > expireDays)
+                    {
+                        Response.Write("redirect");
+                    }
+                    else
+                    {
+                        Response.Write("success");
+                    }
                 }
                 else
                 {
-                    Response.Write("提示：用户名或密码不正确");
+                    var user = LoginModel.GetLoginModels().Find(x => x.SUR_USERACCOUNT == model.SUR_USERACCOUNT);
+
+                    if (user != null)
+                    {
+                        user.SUR_ERRORCOUNT += 1;
+                        user.SUR_ISLOOKED = user.SUR_ERRORCOUNT >= Convert.ToInt16(ConfigurationManager.AppSettings["MaxLoginFailed"]);
+                        user.Save();
+
+                        Response.Write(s: $"提示：用户名或密码不正确 ({user.SUR_ERRORCOUNT}) {(user.SUR_ISLOOKED ? "已锁定" : string.Empty)}");
+                    }
+                    else
+                    {
+                        Response.Write("提示：用户名或密码不正确");
+                    }
                 }
             }
             else

@@ -49,24 +49,25 @@
                         data: mydata,
                         success: function (msg) {
                             if (msg === "success") {
-                                $("#errorMsg").css("display", "none");
+                                $("#errorMsg").hide();
 
                                 window.location.href = "/Portal";
+                            } else if (msg === "redirect") {
+                                $("#errorMsg").hide();
+
+                                window.location.href = "/Login/Password";
                             }
                             else {
-                                $("#errorMsg").css("display", "block");
-                                $("#errorMsg").text(msg);
+                                $("#errorMsg").text(msg).show();
                             }
                         },
                         error: function (msg) {
-                            $("#errorMsg").css("display", "block");
-                            $("#errorMsg").text(msg);
+                            $("#errorMsg").text(msg).show();
                         }
                     });
                 }
                 else {
-                    $("#errorMsg").css("display", "block");
-                    $("#errorMsg").text("提示：用户名与密码不能为空");
+                    $("#errorMsg").text("提示：用户名与密码不能为空").show();
                 }
 
                 return false;

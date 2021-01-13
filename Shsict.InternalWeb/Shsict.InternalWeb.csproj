@@ -466,6 +466,9 @@
     <Content Include="Scripts\Time\mobiscroll.custom-2.6.2.min.js" />
     <Content Include="Scripts\Time\mobiscroll.js" />
     <Content Include="Scripts\Time\PluginDatetime.js" />
+    <Content Include="Scripts\Time\PluginDatetime.min.js">
+      <DependentUpon>PluginDatetime.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Time\wp_icons.png" />
     <Content Include="Scripts\Time\wp_icons_light.png" />
     <Content Include="Services\IsUpdateService.svc" />
@@ -683,6 +686,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\Password.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

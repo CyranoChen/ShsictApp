@@ -161,7 +161,6 @@
     <Compile Include="Models\MachineOperationModel.cs" />
     <Compile Include="Models\PlanCompletionModel.cs" />
     <Compile Include="Models\DailyReportModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MechanicalErrorModel.cs" />
     <Compile Include="Models\MechanicalModel.cs" />
     <Compile Include="Models\OperatePlanModel.cs" />

@@ -1,4 +1,4 @@
-﻿@model Shsict.InternalWeb.Models.LoginModel
+﻿@model Shsict.Entity.InternalUser
 @{
     ViewBag.Title = "盛东公司信息管理平台 登录";
 }
@@ -29,9 +29,10 @@
             var $lblErrorMsg = $("#errorMsg");
 
             $("#loginBtn").on('click', function () {
-                let userName = $("#un").val();
-                let passWord = $("#pw").val();
-                let captcha = $("#tbCaptcha").val().toLowerCase();
+                var userName = $("#un").val();
+                var passWord = $("#pw").val();
+                var captcha = $("#tbCaptcha").val().toLowerCase();
+                var weChatUserId = $("#tbWeChatUserId").val();
 
                 //console.log(captcha, $("#cvsCaptcha").attr('title'));
 
@@ -41,6 +42,10 @@
                 }
 
                 var mydata = "SUR_USERACCOUNT=" + userName + "&SUR_PASSWORD=" + passWord;
+
+                if (weChatUserId != null && weChatUserId !== '') {
+                    mydata += "&SUR_WECHATUSERID=" + weChatUserId;
+                }
 
                 if (userName !== "" && passWord !== "") {
                     $.ajax({
@@ -113,6 +118,8 @@
                         <label for="pw" class="ui-hidden-accessible">Password:</label>
                         @Html.PasswordFor(m => m.SUR_PASSWORD, new { name = "pass", type = "password", id = "pw", placeholder = "密码", data_theme = "b" })
                         @Html.ValidationMessageFor(m => m.SUR_PASSWORD)
+                        
+                        <input type="hidden" id="tbWeChatUserId" value="@(ViewBag.WeChatUserId != null ? ViewBag.WeChatUserId : string.Empty)" />
 
                         <div data-role="controlgroup" data-type="horizontal">
                             <table>

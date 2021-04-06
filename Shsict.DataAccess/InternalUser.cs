@@ -13,7 +13,7 @@ namespace Shsict.DataAccess
     {
         public static DataTable GetInternalUsers()
         {
-            string sql = @"SELECT SUR_USERACCOUNT, SUR_PASSWORD, SUR_DISPLAYNAME, SUR_DESCRIPTION, SUR_CREATETIME, SUR_UPDATETIME, SUR_GROUP, SUR_STATUS, SUR_ERRORCOUNT, SUR_ISLOOKED 
+            string sql = @"SELECT SUR_USERACCOUNT, SUR_PASSWORD, SUR_DISPLAYNAME, SUR_DESCRIPTION, SUR_CREATETIME, SUR_UPDATETIME, SUR_GROUP, SUR_STATUS, SUR_ERRORCOUNT, SUR_ISLOOKED, SUR_WECHATUSERID   
                                   FROM SYS_USER";
 
             DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql);
@@ -23,7 +23,7 @@ namespace Shsict.DataAccess
 
         public static DataTable GetInternalUserByUserName(string userAccount)
         {
-            string sql = @"SELECT SUR_USERACCOUNT, SUR_PASSWORD, SUR_DISPLAYNAME, SUR_DESCRIPTION, SUR_CREATETIME, SUR_UPDATETIME, SUR_GROUP, SUR_STATUS, SUR_ERRORCOUNT, SUR_ISLOOKED 
+            string sql = @"SELECT SUR_USERACCOUNT, SUR_PASSWORD, SUR_DISPLAYNAME, SUR_DESCRIPTION, SUR_CREATETIME, SUR_UPDATETIME, SUR_GROUP, SUR_STATUS, SUR_ERRORCOUNT, SUR_ISLOOKED, SUR_WECHATUSERID  
                                   FROM SYS_USER Where  SUR_USERACCOUNT = :userAccount";
 
             OracleParameter[] para = new OracleParameter[1];
@@ -34,9 +34,22 @@ namespace Shsict.DataAccess
             return ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
         }
 
+        public static DataTable GetInternalUserByWeChatUserId(string weChatUserId)
+        {
+            string sql = @"SELECT SUR_USERACCOUNT, SUR_PASSWORD, SUR_DISPLAYNAME, SUR_DESCRIPTION, SUR_CREATETIME, SUR_UPDATETIME, SUR_GROUP, SUR_STATUS, SUR_ERRORCOUNT, SUR_ISLOOKED, SUR_WECHATUSERID  
+                                  FROM SYS_USER Where  SUR_WECHATUSERID = :weChatUserId";
+
+            OracleParameter[] para = new OracleParameter[1];
+            para[0] = new OracleParameter("weChatUserId", weChatUserId);
+
+            DataSet ds = OracleDataTool.ExecuteDataset(ConnectStringOracle.GetInternalTableConnection(), sql, para);
+
+            return ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
+        }
+
         public static DataTable GetInternalUserByUserNamePassword(string userAccount, string password)
         {
-            string sql = @"SELECT SUR_USERACCOUNT, SUR_PASSWORD, SUR_DISPLAYNAME, SUR_DESCRIPTION, SUR_CREATETIME, SUR_UPDATETIME, SUR_GROUP, SUR_STATUS, SUR_ERRORCOUNT, SUR_ISLOOKED 
+            string sql = @"SELECT SUR_USERACCOUNT, SUR_PASSWORD, SUR_DISPLAYNAME, SUR_DESCRIPTION, SUR_CREATETIME, SUR_UPDATETIME, SUR_GROUP, SUR_STATUS, SUR_ERRORCOUNT, SUR_ISLOOKED, SUR_WECHATUSERID  
                                   FROM SYS_USER Where SUR_USERACCOUNT = :userAccount AND SUR_PASSWORD = :password";
 
             OracleParameter[] para = new OracleParameter[2];
@@ -61,7 +74,7 @@ namespace Shsict.DataAccess
             return ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
         }
 
-        public static void Update(string userAccount, string password, string displayName, string description, DateTime createTime, DateTime updateTime, string group, int status, int errorCount, int isLooked)
+        public static void Update(string userAccount, string password, string displayName, string description, DateTime createTime, DateTime updateTime, string group, int status, int errorCount, int isLooked, string wechatUserId)
         {
             //string sql = @"UPDATE SYS_USER SET SUR_PASSWORD = :password, SUR_DISPLAYNAME = :displayName, SUR_DESCRIPTION = :description, 
             //                      SUR_CREATETIME = :createTime, SUR_UPDATETIME = :updateTime, SUR_GROUP = :group,  SUR_STATUS = :status,  SUR_ERRORCOUNT = :errorCount, SUR_ISLOOKED = :isLooked 
@@ -69,7 +82,8 @@ namespace Shsict.DataAccess
 
             var sql = @"UPDATE SYS_USER SET SUR_PASSWORD = :password, SUR_DISPLAYNAME = :displayName, SUR_DESCRIPTION = :description, 
                               SUR_CREATETIME = :createTime, SUR_UPDATETIME = :updateTime, 
-                              SUR_STATUS = :status, SUR_ERRORCOUNT = :errorCount, SUR_ISLOOKED = :isLooked 
+                              SUR_STATUS = :status, SUR_ERRORCOUNT = :errorCount, SUR_ISLOOKED = :isLooked, 
+                              SUR_WECHATUSERID = :wechatUserId 
                               WHERE SUR_USERACCOUNT = :userAccount";
 
             OracleParameter[] para = {
@@ -82,7 +96,8 @@ namespace Shsict.DataAccess
                     //new OracleParameter("group", group),
                     new OracleParameter("status", status),
                     new OracleParameter("errorCount", errorCount),
-                    new OracleParameter("isLooked", isLooked)
+                    new OracleParameter("isLooked", isLooked),
+                    new OracleParameter("wechatUserId", wechatUserId)
             };
 
             OracleDataTool.ExecuteNonQuery(ConnectStringOracle.GetInternalTableConnection(), sql, para);

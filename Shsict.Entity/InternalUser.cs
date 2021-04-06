@@ -1,23 +1,22 @@
-﻿using Shsict.DataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace Shsict.InternalWeb.Models
+namespace Shsict.Entity
 {
     /// <summary>
     /// 靠离泊情况
     /// </summary>
-    public class LoginModel
+    public class InternalUser
     {
-        public LoginModel() { }
+        public InternalUser() { }
 
-        public LoginModel(DataRow dr)
+        public InternalUser(DataRow dr)
         {
-            InitLoginModel(dr);
+            InitInternalUser(dr);
         }
 
-        private void InitLoginModel(DataRow dr)
+        private void InitInternalUser(DataRow dr)
         {
             if (dr != null)
             {
@@ -31,7 +30,7 @@ namespace Shsict.InternalWeb.Models
                 SUR_STATUS = Convert.ToInt16(dr["SUR_STATUS"]);
                 SUR_ERRORCOUNT = Convert.ToInt16(dr["SUR_ERRORCOUNT"]);
                 SUR_ISLOOKED = Convert.ToBoolean(dr["SUR_ISLOOKED"]);
-
+                SUR_WECHATUSERID = dr["SUR_WECHATUSERID"].ToString();
             }
             else
             {
@@ -59,49 +58,74 @@ namespace Shsict.InternalWeb.Models
         public int SUR_ERRORCOUNT { get; set; }
 
         public bool SUR_ISLOOKED { get; set; }
+
+        public string SUR_WECHATUSERID { get; set; }
+
         #endregion
 
 
-        public static List<LoginModel> GetLoginModels()
+        public static List<InternalUser> GetInitInternalUsers()
         {
-            DataTable dt = Shsict.DataAccess.InternalUser.GetInternalUsers();
-            List<LoginModel> list = new List<LoginModel>();
+            DataTable dt = DataAccess.InternalUser.GetInternalUsers();
+            List<InternalUser> list = new List<InternalUser>();
 
             if (dt != null)
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    list.Add(new LoginModel(dr));
+                    list.Add(new InternalUser(dr));
                 }
             }
 
             return list;
         }
 
-        public static List<LoginModel> Authenticate(string userName, string password)
+        public static InternalUser Load(string username)
         {
-            DataTable dt = Shsict.DataAccess.InternalUser.GetInternalUserByUserNamePassword(userName, password);
-            List<LoginModel> list = new List<LoginModel>();
+            DataTable dt = DataAccess.InternalUser.GetInternalUserByUserName(username);
 
-            if (dt != null)
+            if (dt != null && dt.Rows.Count > 0)
             {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    list.Add(new LoginModel(dr));
-                }
+                return new InternalUser(dt.Rows[0]);
             }
 
-            return list;
+            return null;
+        }
+
+        public static InternalUser Authenticate(string username, string password)
+        {
+            DataTable dt = DataAccess.InternalUser.GetInternalUserByUserNamePassword(username, password);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                var dr = dt.Rows[0];
+                return new InternalUser(dr);
+            }
+
+            return null;
+        }
+
+        public static InternalUser AuthenticateWeChat(string weChatUserId)
+        {
+            DataTable dt = DataAccess.InternalUser.GetInternalUserByWeChatUserId(weChatUserId);
+
+            if (dt.Rows.Count > 0)
+            {
+                var dr = dt.Rows[0];
+                return new InternalUser(dr);
+            }
+
+            return null;
         }
 
         public void Save()
         {
-            Shsict.DataAccess.InternalUser.Update(this.SUR_USERACCOUNT, this.SUR_PASSWORD, this.SUR_DISPLAYNAME, this.SUR_DESCRIPTION,
-                this.SUR_CREATETIME, DateTime.Now, this.SUR_GROUP, this.SUR_STATUS, this.SUR_ERRORCOUNT, 
-                Convert.ToInt16(this.SUR_ISLOOKED));
+            DataAccess.InternalUser.Update(this.SUR_USERACCOUNT, this.SUR_PASSWORD, this.SUR_DISPLAYNAME, this.SUR_DESCRIPTION,
+                this.SUR_CREATETIME, DateTime.Now, this.SUR_GROUP, this.SUR_STATUS, this.SUR_ERRORCOUNT,
+                Convert.ToInt16(this.SUR_ISLOOKED), this.SUR_WECHATUSERID);
         }
     }
-    
+
     public class UserResource
     {
         public UserResource() { }

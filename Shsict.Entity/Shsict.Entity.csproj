@@ -85,6 +85,7 @@
     <Compile Include="Custom\Notice.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="InternalUser.cs" />
     <Compile Include="OTruck.cs" />
     <Compile Include="OVesselPlan.cs" />
     <Compile Include="PortOfCall.cs" />
@@ -92,6 +93,10 @@
     <Compile Include="TVDangerContainer.cs" />
     <Compile Include="TVDangerPlan.cs" />
     <Compile Include="Custom\VisitMsg.cs" />
+    <Compile Include="WeChat\RestClient.cs" />
+    <Compile Include="WeChat\WeChatApiClient.cs" />
+    <Compile Include="WeChat\WeChatAuthClient.cs" />
+    <Compile Include="WeChat\WeChatUserClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shsict.DataAccess\Shsict.DataAccess.csproj">

@@ -109,7 +109,7 @@ namespace Shsict.Entity
         {
             DataTable dt = DataAccess.InternalUser.GetInternalUserByWeChatUserId(weChatUserId);
 
-            if (dt.Rows.Count > 0)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 var dr = dt.Rows[0];
                 return new InternalUser(dr);

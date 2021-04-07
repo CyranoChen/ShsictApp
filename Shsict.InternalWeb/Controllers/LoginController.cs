@@ -97,7 +97,7 @@ namespace Shsict.InternalWeb.Controllers
                     {
                         // 企业成员授权时返回 {"UserId":"cyrano","DeviceId":"3cc38f93c7d87eec0103c06feca4779f"}
                         var userid = json["UserId"].Value<string>();
-                        var deviceId = json["DeviceId"].Value<string>();
+                        //var deviceId = json["DeviceId"].Value<string>();
 
                         // 查询当前微信用户的对应账号
                         var user = InternalUser.AuthenticateWeChat(userid);

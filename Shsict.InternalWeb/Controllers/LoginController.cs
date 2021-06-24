@@ -65,7 +65,7 @@ namespace Shsict.InternalWeb.Controllers
             {
                 var client = new WeChatAuthClient();
 
-                var authUri = client.GetOAuthUrl($"http://{HttpContext.Request.Url.Authority}/Login/WeChatAuth?returnUrl={returnUrl}",
+                var authUri = client.GetOAuthUrl($"{HttpContext.Request.Url.Scheme}://{HttpContext.Request.Url.Authority}/Login/WeChatAuth?returnUrl={returnUrl}",
                     ScopeType.snsapi_base, "ShsictApp");
 
                 if (!string.IsNullOrEmpty(authUri))
